@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AlienSpace
@@ -21,6 +19,8 @@ namespace AlienSpace
         private void Update()
         {
             _targetAnimPosition = AlienMovement.Instance.MoveInput;
+            
+            Debug.Log(_animSmoothTime);
             
             _currentBlendAnim = Vector2.SmoothDamp(_currentBlendAnim, _targetAnimPosition, ref _animVelocity, _animSmoothTime * Time.deltaTime);
             

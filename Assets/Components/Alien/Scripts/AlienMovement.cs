@@ -37,7 +37,7 @@ namespace AlienSpace
             ApplyGravity();
             ApplyRotation();
             ApplyMovement();
-            
+
             IsGrounded = _characterController.isGrounded;
         }
         
