@@ -20,8 +20,6 @@ namespace AlienSpace
         {
             _targetAnimPosition = AlienMovement.Instance.MoveInput;
             
-            Debug.Log(_animSmoothTime);
-            
             _currentBlendAnim = Vector2.SmoothDamp(_currentBlendAnim, _targetAnimPosition, ref _animVelocity, _animSmoothTime * Time.deltaTime);
             
             _animator.SetFloat("Horizontal", _currentBlendAnim.x);
