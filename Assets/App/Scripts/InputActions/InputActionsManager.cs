@@ -1,3 +1,4 @@
+using System;
 using AlienSpace;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +11,9 @@ namespace InputActionsSpace
         
         private InputAction _actionRun;
         private InputAction _actionJump;
+
+        public event Action<Vector2> OnInputtedRun; 
+        public event Action OnInputtedJump; 
         
         private void Awake()
         {
@@ -29,12 +33,14 @@ namespace InputActionsSpace
         
         private void Run(InputAction.CallbackContext obj)
         {
-            AlienMovement.Instance.MoveInput = obj.ReadValue<Vector2>();
+            OnInputtedRun?.Invoke(obj.ReadValue<Vector2>());
+            // AlienMovement.Instance.MoveInput = ;
         }
 
         private void Jump(InputAction.CallbackContext obj)
         {
-            AlienMovement.Instance.Jump();
+            OnInputtedJump?.Invoke();
+            // AlienMovement.Instance.Jump();
         }
 
         private void OnDisable()

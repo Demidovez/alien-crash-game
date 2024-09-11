@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 776984676835430646}
   - component: {fileID: 6084376161352237649}
   - component: {fileID: 2659122386423161992}
-  - component: {fileID: 5749631184058333569}
+  - component: {fileID: 4366695556576927554}
   m_Layer: 6
   m_Name: Alien
   m_TagString: Untagged
@@ -55,13 +55,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 3.6
-  m_Radius: 0.75
+  m_Height: 1.8
+  m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.8, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &2659122386423161992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f34964a41d550148b19491f3ec038c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5749631184058333569
+--- !u!114 &4366695556576927554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,7 +91,6 @@ MonoBehaviour:
   _gravityForce: 3
   _jumpHeight: 2
   _rotationSpeed: 10
-  _cameraTransform: {fileID: 0}
 --- !u!1 &2924778030503030652
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +116,7 @@ Transform:
   m_GameObject: {fileID: 2924778030503030652}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.93, z: -0.17}
+  m_LocalPosition: {x: 0, y: 1.44, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -150,6 +149,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 50257cb2cfbaea14885243b2bfb95e1c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 50257cb2cfbaea14885243b2bfb95e1c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 50257cb2cfbaea14885243b2bfb95e1c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 50257cb2cfbaea14885243b2bfb95e1c,
         type: 3}
@@ -743,7 +757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e7f24061dde154091311a30f8ef564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animSmoothTime: 5
+  _animSmoothTime: 4
 --- !u!4 &703063823422482273 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 50257cb2cfbaea14885243b2bfb95e1c,

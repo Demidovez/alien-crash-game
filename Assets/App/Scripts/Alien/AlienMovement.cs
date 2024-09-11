@@ -1,34 +1,47 @@
 using System;
+using CameraSpace;
+using InputActionsSpace;
 using UnityEngine;
+using Zenject;
 
 namespace AlienSpace
 {
     [RequireComponent(typeof(CharacterController))]
     public class AlienMovement : MonoBehaviour
     {
-        public static AlienMovement Instance;
-        
         public bool IsGrounded { get; private set; }
-        public Vector2 MoveInput { get; set; }
+        public Vector2 MoveInput { get; private set; }
         
         [SerializeField] private float _speed;
         [SerializeField] private float _gravity = -9.81f;
         [SerializeField] private float _gravityForce = 1f;
         [SerializeField] private float _jumpHeight = 1.0f;
         [SerializeField] private float _rotationSpeed = 2f;
-        [SerializeField] private Transform _cameraTransform;
         
+        private Transform _cameraTransform;
         private CharacterController _characterController;
+        private InputActionsManager _inputActionsManager;
         private Vector3 _movement;
         private float _rotationX;
         private float _rotationY;
         private float _verticalVelocity;
 
+        [Inject]
+        public void Construct(
+            CameraController cameraController, 
+            InputActionsManager inputActionsManager
+        )
+        {
+            _cameraTransform = cameraController.transform;
+            _inputActionsManager = inputActionsManager;
+
+            _inputActionsManager.OnInputtedRun += SetMoveInput;
+            _inputActionsManager.OnInputtedJump += Jump;
+        }
+
         private void Awake()
         {
-            Instance = this;
             IsGrounded = true;
-            
             _characterController = GetComponent<CharacterController>();
         }
         
@@ -39,6 +52,17 @@ namespace AlienSpace
             ApplyMovement();
 
             IsGrounded = _characterController.isGrounded;
+        }
+
+        private void OnDestroy()
+        {
+            _inputActionsManager.OnInputtedRun -= SetMoveInput;
+            _inputActionsManager.OnInputtedJump -= Jump;
+        }
+
+        private void SetMoveInput(Vector2 moveInput)
+        {
+            MoveInput = moveInput;
         }
         
         private void ApplyGravity()
@@ -80,7 +104,7 @@ namespace AlienSpace
             _characterController.Move(_movement * (resultSpeed * Time.deltaTime));
         }
         
-        public void Jump()
+        private void Jump()
         {
             if (IsGrounded)
             {

@@ -1,14 +1,7 @@
-using UnityEngine;
-
 namespace GameControllerSpace
 {
-    public class GameController : MonoBehaviour
+    public class GameController
     {
-        public static GameController Instance;
-
-        private void Awake()
-        {
-            Instance = this;
-        }
+        
     }
 }
