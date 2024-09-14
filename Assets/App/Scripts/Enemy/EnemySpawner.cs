@@ -1,10 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace EnemySpace
+namespace App.Scripts.Enemy
 {
     public class EnemySpawner : MonoBehaviour
     {

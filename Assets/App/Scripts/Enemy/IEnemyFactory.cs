@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EnemySpace
+namespace App.Scripts.Enemy
 {
     public interface IEnemyFactory
     {

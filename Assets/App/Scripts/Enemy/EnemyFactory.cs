@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace EnemySpace
+namespace App.Scripts.Enemy
 {
     public class EnemyFactory: IEnemyFactory
     {

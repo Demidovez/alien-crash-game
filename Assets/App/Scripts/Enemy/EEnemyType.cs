@@ -1,4 +1,4 @@
-﻿namespace EnemySpace
+﻿namespace App.Scripts.Enemy
 {
     public enum EEnemyType
     {

@@ -1,53 +1,42 @@
 using System;
-using AlienSpace;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace InputActionsSpace
+namespace App.Scripts.InputActions
 {
-    public class InputActionsManager : MonoBehaviour
+    public class InputActionsManager
     {
-        private PlayerInput _playerInput;
-        
         private InputAction _actionRun;
         private InputAction _actionJump;
 
         public event Action<Vector2> OnInputtedRun; 
-        public event Action OnInputtedJump; 
-        
-        private void Awake()
+        public event Action OnInputtedJump;
+
+        public InputActionsManager(PlayerInput playerInput)
         {
-            _playerInput = GetComponent<PlayerInput>();
+            _actionRun = playerInput.actions["Run"];
+            _actionJump = playerInput.actions["Jump"];
             
-            _actionRun = _playerInput.actions["Run"];
-            _actionJump = _playerInput.actions["Jump"];
-        }
-        
-        private void OnEnable()
-        {
             _actionRun.performed += Run;
             _actionRun.canceled += Run;
-            
             _actionJump.performed += Jump;
         }
         
         private void Run(InputAction.CallbackContext obj)
         {
             OnInputtedRun?.Invoke(obj.ReadValue<Vector2>());
-            // AlienMovement.Instance.MoveInput = ;
         }
 
         private void Jump(InputAction.CallbackContext obj)
         {
             OnInputtedJump?.Invoke();
-            // AlienMovement.Instance.Jump();
         }
 
+        // TODO: а где отписываться?
         private void OnDisable()
         {
             _actionRun.performed -= Run;
             _actionRun.canceled -= Run;
-            
             _actionJump.performed -= Jump;
         }
     }

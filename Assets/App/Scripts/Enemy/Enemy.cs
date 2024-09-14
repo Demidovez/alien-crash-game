@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace EnemySpace
+namespace App.Scripts.Enemy
 {
     public class Enemy : MonoBehaviour, IEnemy
     {

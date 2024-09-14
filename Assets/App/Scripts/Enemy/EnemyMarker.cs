@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace EnemySpace
+namespace App.Scripts.Enemy
 {
     public class EnemyMarker: MonoBehaviour
     {

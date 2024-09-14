@@ -1,19 +1,21 @@
-using AlienSpace;
 using Cinemachine;
 using UnityEngine;
-using Zenject;
 
-namespace CameraSpace
+namespace App.Scripts.Camera
 {
     public class CameraController : MonoBehaviour
     {
         [SerializeField] private CinemachineVirtualCamera _fallowCamera;
 
-        [Inject]
-        public void Construct(Alien alien)
+        public void SetTarget(Transform target)
         {
-            _fallowCamera.Follow = alien.GetCameraPivot;
-            _fallowCamera.LookAt = alien.GetCameraPivot;
+            _fallowCamera.Follow = target;
+            _fallowCamera.LookAt = target;
+        }
+
+        public Transform GetCameraTransform()
+        {
+            return _fallowCamera.transform;
         }
     }  
 }
