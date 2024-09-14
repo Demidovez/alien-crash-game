@@ -9,7 +9,7 @@ namespace App.Scripts.Infrastructure.DI
     {
         public override void InstallBindings()
         {
-            BindPlayer();
+            BindPlayerFactory();
             BindCamera();
             BindEnemyFactory();
         }
@@ -30,7 +30,7 @@ namespace App.Scripts.Infrastructure.DI
                 .AsSingle();
         }
 
-        private void BindPlayer()
+        private void BindPlayerFactory()
         {
             Container
                 .Bind<IPlayerFactory>()
