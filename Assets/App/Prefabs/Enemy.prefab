@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 599790556599692266}
   - component: {fileID: 1337175597253091040}
   - component: {fileID: 7190079739491365253}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,9 +116,11 @@ GameObject:
   - component: {fileID: 4639089976874012981}
   - component: {fileID: 9149248140093682510}
   - component: {fileID: 2511340467015712910}
-  - component: {fileID: 7282240240543960198}
+  - component: {fileID: 6771620650888620705}
+  - component: {fileID: 7447896931615131664}
   - component: {fileID: 2568670660505601370}
-  m_Layer: 0
+  - component: {fileID: 7649755962189097146}
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +136,7 @@ Transform:
   m_GameObject: {fileID: 7145726398926687521}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.89, y: 1, z: -8.16}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -191,8 +193,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7282240240543960198
-CapsuleCollider:
+--- !u!135 &6771620650888620705
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7145726398926687521}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.1509098
+  m_Center: {x: 0, y: 0.32641876, z: 0}
+--- !u!143 &7447896931615131664
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -209,10 +232,13 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
+  serializedVersion: 3
   m_Height: 2
-  m_Direction: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.0001
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2568670660505601370
 MonoBehaviour:
@@ -226,3 +252,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad1b0102f95e4a04e8ead72771014143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7649755962189097146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7145726398926687521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51db60edebc64f71b33db73ac50b131d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  _speed: 3
+  _gravity: -9.81
+  _gravityForce: 1
+  _rotationSpeed: 2
