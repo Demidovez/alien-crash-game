@@ -10,16 +10,7 @@ namespace App.Scripts.Infrastructure.DI
         public override void InstallBindings()
         {
             BindPlayerFactory();
-            BindCamera();
             BindEnemyFactory();
-        }
-        
-        private void BindCamera()
-        {
-            Container
-                .Bind<CameraController>()
-                .FromComponentInHierarchy()
-                .AsSingle();
         }
 
         private void BindEnemyFactory()
