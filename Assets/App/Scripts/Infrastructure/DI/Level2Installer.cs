@@ -1,5 +1,6 @@
 using App.Scripts.Enemy;
 using App.Scripts.PlayerGame;
+using App.Scripts.ShipDetail;
 using Zenject;
 
 namespace App.Scripts.Infrastructure.DI
@@ -10,6 +11,7 @@ namespace App.Scripts.Infrastructure.DI
         {
             BindPlayerFactory();
             BindEnemyFactory();
+            BindShipDetailFactory();
         }
 
         private void BindEnemyFactory()
@@ -25,6 +27,14 @@ namespace App.Scripts.Infrastructure.DI
             Container
                 .Bind<IPlayerFactory>()
                 .To<PlayerFactory>()
+                .AsSingle();
+        }
+        
+        private void BindShipDetailFactory()
+        {
+            Container
+                .Bind<IShipDetailFactory>()
+                .To<ShipDetailFactory>()
                 .AsSingle();
         }
     }
