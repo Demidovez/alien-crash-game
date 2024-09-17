@@ -6,7 +6,6 @@ namespace App.Scripts.Enemy
     public class EnemyMovement : MonoBehaviour
     {
         public Transform Target;
-        public bool IsGrounded { get; private set; }
         
         [SerializeField] private float _speed;
         [SerializeField] private float _gravity = -9.81f;
@@ -15,6 +14,7 @@ namespace App.Scripts.Enemy
         
         private CharacterController _characterController;
         private Vector3 _targetDirection;
+        private bool _isGrounded;
         
         private void Awake()
         {
@@ -23,25 +23,25 @@ namespace App.Scripts.Enemy
 
         private void Start()
         {
-            IsGrounded = true;
+            _isGrounded = true;
             transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
         }
 
         private void Update()
         {
-            if (Target != null)
+            if (Target)
             {
                 ApplyGravity();
                 ApplyRotation();
                 ApplyMovement(); 
             }
 
-            IsGrounded = _characterController.isGrounded;
+            _isGrounded = _characterController.isGrounded;
         }
         
         private void ApplyGravity()
         {
-            if (!IsGrounded)
+            if (!_isGrounded)
             {
                 _characterController.Move(Vector3.up * (_gravity * Time.deltaTime * _gravityForce));
             }
@@ -75,11 +75,6 @@ namespace App.Scripts.Enemy
             {
                 Target = other.transform;
             }
-        }
-
-        public void SetTargetPosition(Vector3 position)
-        {
-            // _characterController.Move()
         }
     }
 }
