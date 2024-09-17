@@ -28,13 +28,15 @@ namespace App.Scripts.Infrastructure
                 yield break;
             }
             
+            yield return null;
+
             AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
 
             if (waitNextScene == null)
             {
                 yield break;
             }
-
+            
             while (!waitNextScene.isDone)
             {
                 yield return null;

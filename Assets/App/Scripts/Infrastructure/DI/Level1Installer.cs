@@ -1,6 +1,6 @@
 using App.Scripts.Camera;
 using App.Scripts.Enemy;
-using App.Scripts.GamePlayer;
+using App.Scripts.PlayerGame;
 using Zenject;
 
 namespace App.Scripts.Infrastructure.DI

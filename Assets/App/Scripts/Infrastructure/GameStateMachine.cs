@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using App.Scripts.GamePlayer;
 
 namespace App.Scripts.Infrastructure
 {

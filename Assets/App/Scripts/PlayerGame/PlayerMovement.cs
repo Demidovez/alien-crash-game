@@ -3,7 +3,7 @@ using App.Scripts.InputActions;
 using UnityEngine;
 using Zenject;
 
-namespace App.Scripts.GamePlayer
+namespace App.Scripts.PlayerGame
 {
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMovement : MonoBehaviour

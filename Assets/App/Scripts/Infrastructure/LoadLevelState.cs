@@ -1,6 +1,4 @@
-﻿using App.Scripts.GamePlayer;
-
-namespace App.Scripts.Infrastructure
+﻿namespace App.Scripts.Infrastructure
 {
     public class LoadLevelState : IPayloadedState<string>
     {
@@ -19,6 +17,7 @@ namespace App.Scripts.Infrastructure
         {
             _sceneLoader.Load(nameScene, OnLoaded);
         }
+        
         public void Exit()
         {
             
