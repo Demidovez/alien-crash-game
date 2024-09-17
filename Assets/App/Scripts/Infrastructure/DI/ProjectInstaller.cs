@@ -1,4 +1,6 @@
+using App.Scripts.Camera;
 using App.Scripts.InputActions;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
@@ -7,6 +9,7 @@ namespace App.Scripts.Infrastructure.DI
     public class ProjectInstaller : MonoInstaller
     {
         public PlayerInput PlayerInput;
+        public GameObject CameraPrefab;
         
         public override void InstallBindings()
         {
@@ -15,11 +18,20 @@ namespace App.Scripts.Infrastructure.DI
             BindInputManager();
             BindSceneLoader();
             BindGame();
+            BindCamera();
         }
         
         private void BindGame()
         {
             Container.Bind<Game>().AsSingle().NonLazy();
+        }
+        
+        private void BindCamera()
+        {
+            Container
+                .Bind<CameraController>()
+                .FromComponentInNewPrefab(CameraPrefab)
+                .AsSingle();
         }
 
         private void BindAsyncProcessor()

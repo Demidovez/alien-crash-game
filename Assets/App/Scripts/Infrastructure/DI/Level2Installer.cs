@@ -1,4 +1,5 @@
 using App.Scripts.Enemy;
+using App.Scripts.PlayerGame;
 using Zenject;
 
 namespace App.Scripts.Infrastructure.DI
@@ -7,12 +8,24 @@ namespace App.Scripts.Infrastructure.DI
     {
         public override void InstallBindings()
         {
+            BindPlayerFactory();
             BindEnemyFactory();
         }
-        
+
         private void BindEnemyFactory()
         {
-            Container.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();
+            Container
+                .Bind<IEnemyFactory>()
+                .To<EnemyFactory>()
+                .AsSingle();
+        }
+
+        private void BindPlayerFactory()
+        {
+            Container
+                .Bind<IPlayerFactory>()
+                .To<PlayerFactory>()
+                .AsSingle();
         }
     }
 }
