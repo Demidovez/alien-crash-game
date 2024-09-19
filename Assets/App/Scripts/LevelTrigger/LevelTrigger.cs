@@ -1,3 +1,4 @@
+using App.Scripts.Helpers;
 using App.Scripts.Infrastructure;
 using UnityEngine;
 using Zenject;
@@ -19,7 +20,7 @@ namespace App.Scripts.LevelTrigger
         
         private void OnTriggerEnter(Collider other)
         {
-            if (((1 << other.gameObject.layer) & _layerMaskAllowedEntities) != 0)
+            if (Helper.ContainsLayer(other.gameObject.layer, _layerMaskAllowedEntities))
             {
                 _game.ToNextLevel(_nextLevel);
             }

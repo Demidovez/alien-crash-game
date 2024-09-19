@@ -1,12 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace App.Scripts.Enemy
 {
+    [RequireComponent(typeof(CharacterController))]
     public class EnemyMovement : MonoBehaviour
     {
-        public Transform Target;
-        
         [SerializeField] private float _speed;
         [SerializeField] private float _gravity = -9.81f;
         [SerializeField] private float _gravityForce = 1f;
@@ -15,7 +13,11 @@ namespace App.Scripts.Enemy
         private CharacterController _characterController;
         private Vector3 _targetDirection;
         private bool _isGrounded;
+        private Transform _target;
+        private Vector3 _initPosition;
         
+        private Vector3 TargetPosition => _target ? _target.position : _initPosition;
+
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
@@ -24,17 +26,16 @@ namespace App.Scripts.Enemy
         private void Start()
         {
             _isGrounded = true;
+            _initPosition = transform.position;
+            
             transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
         }
 
         private void Update()
         {
-            if (Target)
-            {
-                ApplyGravity();
-                ApplyRotation();
-                ApplyMovement(); 
-            }
+            ApplyGravity();
+            ApplyRotation();
+            ApplyMovement();
 
             _isGrounded = _characterController.isGrounded;
         }
@@ -49,7 +50,7 @@ namespace App.Scripts.Enemy
         
         private void ApplyRotation()
         {
-            _targetDirection = Target.position - transform.position;
+            _targetDirection = TargetPosition - transform.position;
             _targetDirection.y = 0;
             _targetDirection.Normalize();
             
@@ -60,21 +61,12 @@ namespace App.Scripts.Enemy
         
         private void ApplyMovement()
         {
-            if (transform.position == Target.position)
-            {
-                return;
-            }
-            
             _characterController.Move(_targetDirection * (_speed * Time.deltaTime));
         }
 
-        // TODO: временно 
-        private void OnTriggerEnter(Collider other)
+        public void SetTarget(Transform target)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
-            {
-                Target = other.transform;
-            }
+            _target = target;
         }
     }
 }

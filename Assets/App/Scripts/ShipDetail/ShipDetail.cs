@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using App.Scripts.Helpers;
+using UnityEngine;
 
 namespace App.Scripts.ShipDetail
 {
@@ -8,7 +9,7 @@ namespace App.Scripts.ShipDetail
         
         private void OnTriggerEnter(Collider other)
         {
-            if (((1 << other.gameObject.layer) & _layerMaskAllowedEntities) != 0)
+            if (Helper.ContainsLayer(other.gameObject.layer, _layerMaskAllowedEntities))
             {
                 Destroy(gameObject);
             }
