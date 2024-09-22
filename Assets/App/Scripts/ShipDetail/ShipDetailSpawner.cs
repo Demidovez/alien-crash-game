@@ -17,10 +17,10 @@ namespace App.Scripts.ShipDetail
         private void Start()
         {
             _shipDetailFactory.Load();
-            
-            foreach (var shipDetailMarker in ShipDetailMarkers)
+
+            for (var i = 0; i < ShipDetailMarkers.Length; i++)
             {
-                _shipDetailFactory.Create(shipDetailMarker.transform.position);
+                _shipDetailFactory.Create(ShipDetailMarkers[i].transform.position, i);
             }
         }
     }

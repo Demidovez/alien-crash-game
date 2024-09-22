@@ -1,8 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
-using Random = UnityEngine.Random;
 
 namespace App.Scripts.ShipDetail
 {
@@ -23,9 +21,9 @@ namespace App.Scripts.ShipDetail
             _shipDetailPrefabs = Resources.LoadAll(ShipDetailFolder);
         }
 
-        public void Create(Vector3 spawnPoint)
+        public void Create(Vector3 spawnPoint, int index)
         {
-            Object shipDetailPrefab = _shipDetailPrefabs[Random.Range(0, _shipDetailPrefabs.Length)];
+            Object shipDetailPrefab = _shipDetailPrefabs[index % _shipDetailPrefabs.Length];
             
             _diContainer.InstantiatePrefab(shipDetailPrefab, spawnPoint, Quaternion.identity, null);
         }
