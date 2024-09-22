@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8632422469411687771
+--- !u!1 &7045256871156946958
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4550982719821201135}
-  - component: {fileID: 8795146145946673245}
-  - component: {fileID: 5561019620917374957}
-  - component: {fileID: 4203780078347866730}
-  - component: {fileID: 4022567332640496591}
+  - component: {fileID: 203398099036042578}
+  - component: {fileID: 2214683705401456681}
+  - component: {fileID: 604608196737476936}
+  - component: {fileID: 6653709044950270270}
+  - component: {fileID: 6132155444665661062}
   m_Layer: 0
-  m_Name: ShipDetail
+  m_Name: SpaceShipBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4550982719821201135
+--- !u!4 &203398099036042578
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8632422469411687771}
+  m_GameObject: {fileID: 7045256871156946958}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8795146145946673245
+--- !u!33 &2214683705401456681
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8632422469411687771}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5561019620917374957
+  m_GameObject: {fileID: 7045256871156946958}
+  m_Mesh: {fileID: 3371948813491338285, guid: 41ee0ccc5df061a4c9990f4e11db6a70, type: 3}
+--- !u!23 &604608196737476936
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8632422469411687771}
+  m_GameObject: {fileID: 7045256871156946958}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -63,7 +63,10 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: -8911499558433741390, guid: 41ee0ccc5df061a4c9990f4e11db6a70, type: 3}
+  - {fileID: -3324096961576636649, guid: 41ee0ccc5df061a4c9990f4e11db6a70, type: 3}
+  - {fileID: -580896390898798407, guid: 41ee0ccc5df061a4c9990f4e11db6a70, type: 3}
+  - {fileID: -2669957238963622279, guid: 41ee0ccc5df061a4c9990f4e11db6a70, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,13 +88,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4203780078347866730
-SphereCollider:
+--- !u!65 &6653709044950270270
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8632422469411687771}
+  m_GameObject: {fileID: 7045256871156946958}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -104,15 +107,15 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4022567332640496591
+  m_Size: {x: 0.42002523, y: 0.40661603, z: 0.41913348}
+  m_Center: {x: 0.00083943456, y: 0.005538918, z: -0.019147582}
+--- !u!114 &6132155444665661062
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8632422469411687771}
+  m_GameObject: {fileID: 7045256871156946958}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6d5bebc5ded42b08104bb8bd297b13d, type: 3}
