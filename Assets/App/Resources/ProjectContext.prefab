@@ -109,3 +109,5 @@ MonoBehaviour:
   PlayerInput: {fileID: -235457506648414101}
   CameraPrefab: {fileID: 3866538549376231272, guid: 1b85b620637f006438390d0a3645d8b6,
     type: 3}
+  PopupsPrefab: {fileID: 5424567646327308086, guid: f035b9364f681204ea464f0deac2b59f,
+    type: 3}

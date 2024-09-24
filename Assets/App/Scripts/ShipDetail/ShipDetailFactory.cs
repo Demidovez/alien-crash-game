@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Zenject;
+using Object = UnityEngine.Object;
 
 namespace App.Scripts.ShipDetail
 {
@@ -7,8 +8,8 @@ namespace App.Scripts.ShipDetail
     {
         private readonly DiContainer _diContainer;
         
-        private const string ShipDetail = "ShipDetail";
-        private Object _shipDetailPrefab;
+        private const string ShipDetailFolder = "ShipDetails";
+        private Object[] _shipDetailPrefabs;
         
         public ShipDetailFactory(DiContainer diContainer)
         {
@@ -17,12 +18,14 @@ namespace App.Scripts.ShipDetail
         
         public void Load()
         {
-            _shipDetailPrefab = Resources.Load(ShipDetail);
+            _shipDetailPrefabs = Resources.LoadAll(ShipDetailFolder);
         }
 
-        public void Create(Vector3 spawnPoint)
+        public void Create(Vector3 spawnPoint, int index)
         {
-            _diContainer.InstantiatePrefab(_shipDetailPrefab, spawnPoint, Quaternion.identity, null);
+            Object shipDetailPrefab = _shipDetailPrefabs[index % _shipDetailPrefabs.Length];
+            
+            _diContainer.InstantiatePrefab(shipDetailPrefab, spawnPoint, Quaternion.identity, null);
         }
     }
 }

@@ -7,20 +7,23 @@ namespace App.Scripts.ShipDetail
     {
         public ShipDetailMarker[] ShipDetailMarkers;
         private IShipDetailFactory _shipDetailFactory;
+        private ShipDetailCounter _shipDetailCounter;
 
         [Inject]
-        public void Construct(IShipDetailFactory shipDetailFactory)
+        public void Construct(IShipDetailFactory shipDetailFactory, ShipDetailCounter shipDetailCounter)
         {
             _shipDetailFactory = shipDetailFactory;
+            _shipDetailCounter = shipDetailCounter;
         }
         
         private void Start()
         {
             _shipDetailFactory.Load();
+            _shipDetailCounter.SetCountAll(ShipDetailMarkers.Length);
             
-            foreach (var shipDetailMarker in ShipDetailMarkers)
+            for (var i = 0; i < ShipDetailMarkers.Length; i++)
             {
-                _shipDetailFactory.Create(shipDetailMarker.transform.position);
+                _shipDetailFactory.Create(ShipDetailMarkers[i].transform.position, i);
             }
         }
     }
