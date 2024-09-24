@@ -15,7 +15,7 @@ namespace App.Scripts.ShipDetail
             if (Helper.ContainsLayer(other.gameObject.layer, _layerMaskAllowedEntities))
             {
                 OnCollectedShipDetail?.Invoke();
-                Destroy(gameObject);
+                Destroy(gameObject.transform.parent.gameObject);
             }
         }
     }

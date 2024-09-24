@@ -386,6 +386,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6247969931272052597}
   - component: {fileID: -6465728817355976954}
+  - component: {fileID: 2247101608369988409}
+  - component: {fileID: -2380910242931365202}
   m_Layer: 0
   m_Name: SpaceShipPixelBox1
   m_TagString: Untagged
@@ -430,6 +432,42 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!135 &2247101608369988409
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5131809949308410578}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 4
+  m_Center: {x: 0, y: 0.32, z: 0}
+--- !u!114 &-2380910242931365202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5131809949308410578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb7e8cf06cf4ac3936052b720ac830c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMaskAllowedEntities:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &6434310061072290393
 GameObject:
   m_ObjectHideFlags: 0
