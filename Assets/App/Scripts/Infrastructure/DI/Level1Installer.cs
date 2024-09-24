@@ -1,18 +1,29 @@
-using App.Scripts.Camera;
 using App.Scripts.Enemy;
 using App.Scripts.PlayerGame;
 using App.Scripts.ShipDetail;
+using TMPro;
 using Zenject;
 
 namespace App.Scripts.Infrastructure.DI
 {
     public class Level1Installer : MonoInstaller
     {
+        public TMP_Text ShipDetailCountText;
+        
         public override void InstallBindings()
         {
             BindPlayerFactory();
             BindEnemyFactory();
             BindShipDetailFactory();
+            BindShipDetailsCounter();
+        }
+
+        private void BindShipDetailsCounter()
+        {
+            Container
+                .BindInterfacesAndSelfTo<ShipDetailCounter>()
+                .AsSingle()
+                .WithArguments(ShipDetailCountText);
         }
 
         private void BindEnemyFactory()

@@ -1,5 +1,6 @@
 using App.Scripts.Camera;
 using App.Scripts.InputActions;
+using App.Scripts.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -10,6 +11,7 @@ namespace App.Scripts.Infrastructure.DI
     {
         public PlayerInput PlayerInput;
         public GameObject CameraPrefab;
+        public GameObject PopupsPrefab;
         
         public override void InstallBindings()
         {
@@ -19,8 +21,17 @@ namespace App.Scripts.Infrastructure.DI
             BindSceneLoader();
             BindGame();
             BindCamera();
+            BindPopupManager();
         }
-        
+
+        private void BindPopupManager()
+        {
+            Container
+                .Bind<PopupManager>()
+                .FromComponentInNewPrefab(PopupsPrefab)
+                .AsSingle();
+        }
+
         private void BindGame()
         {
             Container.Bind<Game>().AsSingle().NonLazy();
