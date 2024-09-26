@@ -1,72 +1,62 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 namespace App.Scripts.Enemy
 {
-    [RequireComponent(typeof(CharacterController))]
     public class EnemyMovement : MonoBehaviour
     {
-        [SerializeField] private float _speed;
-        [SerializeField] private float _gravity = -9.81f;
-        [SerializeField] private float _gravityForce = 1f;
-        [SerializeField] private float _rotationSpeed = 2f;
+        [SerializeField] private float _minMoveSpeed = 0.75f;
+        [SerializeField] private float _maxMoveSpeed = 1.5f;
+        [SerializeField] private float _chaseSpeed = 10f;
         
-        private CharacterController _characterController;
-        private Vector3 _targetDirection;
-        private bool _isGrounded;
-        private Transform _target;
-        private Vector3 _initPosition;
+        private Transform _forceMoveTarget;
+        private Vector3 _defaultDestination;
+        private NavMeshAgent _navMeshAgent;
+        private float _speed;
         
-        private Vector3 TargetPosition => _target ? _target.position : _initPosition;
-
-        private void Awake()
-        {
-            _characterController = GetComponent<CharacterController>();
-        }
+        public bool IsReachedDestination { get; private set; }
 
         private void Start()
         {
-            _isGrounded = true;
-            _initPosition = transform.position;
-            
-            transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+            _navMeshAgent = GetComponent<NavMeshAgent>();
+            _speed = Random.Range(_minMoveSpeed, _maxMoveSpeed);
+
+            _navMeshAgent.speed = _speed;
         }
 
         private void Update()
         {
-            ApplyGravity();
-            ApplyRotation();
-            ApplyMovement();
-
-            _isGrounded = _characterController.isGrounded;
-        }
-        
-        private void ApplyGravity()
-        {
-            if (!_isGrounded)
+            if (_forceMoveTarget)
             {
-                _characterController.Move(Vector3.up * (_gravity * Time.deltaTime * _gravityForce));
+                _navMeshAgent.SetDestination(_forceMoveTarget.position);
+                IsReachedDestination = false;
+            }
+            else
+            {
+                IsReachedDestination = _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance;
             }
         }
-        
-        private void ApplyRotation()
-        {
-            _targetDirection = TargetPosition - transform.position;
-            _targetDirection.y = 0;
-            _targetDirection.Normalize();
-            
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, _targetDirection, _rotationSpeed * Time.deltaTime, 0.0f);
-            
-            transform.rotation = Quaternion.LookRotation(newDirection);
-        }
-        
-        private void ApplyMovement()
-        {
-            _characterController.Move(_targetDirection * (_speed * Time.deltaTime));
-        }
 
-        public void SetTarget(Transform target)
+        public void SetDestination(Vector3 position)
         {
-            _target = target;
+            _navMeshAgent.SetDestination(position);
+            IsReachedDestination = false;
+        }
+        
+        public void SetForceMoveTarget(Transform target)
+        {
+            _forceMoveTarget = target;
+            
+            if (target)
+            {
+                _defaultDestination = _navMeshAgent.destination;
+                _navMeshAgent.speed = _chaseSpeed;
+            }
+            else
+            {
+                _navMeshAgent.SetDestination(_defaultDestination);
+                _navMeshAgent.speed = _speed;
+            }
         }
     }
 }

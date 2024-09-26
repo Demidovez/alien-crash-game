@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using App.Scripts.Entity;
+using App.Scripts.Tools.WayPoints;
+using UnityEngine;
 using Zenject;
 
 namespace App.Scripts.Enemy
@@ -23,19 +25,28 @@ namespace App.Scripts.Enemy
             _farmerEnemyPrefab = Resources.Load("EnemyPink");
         }
 
-        public void Create(EEnemyType enemyType, Vector3 spawnPoint)
+        public void Create(EEnemyType enemyType, WayPoint initialWayPoint, Vector3 spawnPoint)
         {
+            Object enemyPrefab = null;
+            
             switch (enemyType)
             {
                 case EEnemyType.Cop:
-                    _diContainer.InstantiatePrefab(_copEnemyPrefab, spawnPoint, Quaternion.identity, null);
+                    enemyPrefab = _copEnemyPrefab;
                     break;
                 case EEnemyType.Farmer:
-                    _diContainer.InstantiatePrefab(_farmerEnemyPrefab, spawnPoint, Quaternion.identity, null);
+                    enemyPrefab = _farmerEnemyPrefab;
                     break;
                 case EEnemyType.Ufologist:
-                    _diContainer.InstantiatePrefab(_ufologistEnemyPrefab, spawnPoint, Quaternion.identity, null);
+                    enemyPrefab = _ufologistEnemyPrefab;
                     break;
+            }
+            
+            GameObject enemy = _diContainer.InstantiatePrefab(enemyPrefab, spawnPoint, Quaternion.identity, null);
+
+            if (enemy.TryGetComponent(out IEntityNavigation navigation))
+            {
+                navigation.SetCurrentWayPoint(initialWayPoint);
             }
         }
     }

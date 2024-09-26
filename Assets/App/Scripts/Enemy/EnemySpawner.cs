@@ -20,7 +20,10 @@ namespace App.Scripts.Enemy
             
             foreach (var enemyMarker in EnemyMarkers)
             {
-                _enemyFactory.Create(enemyMarker.EnemyType, enemyMarker.transform.position);
+                if (enemyMarker.isActiveAndEnabled)
+                {
+                    _enemyFactory.Create(enemyMarker.EnemyType, enemyMarker.InitialWayPoint, enemyMarker.transform.position);
+                }
             }
         }
     }

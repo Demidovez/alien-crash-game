@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Entity;
+using App.Scripts.Tools.WayPoints;
 using UnityEngine;
 
 namespace App.Scripts.Enemy
@@ -7,6 +8,7 @@ namespace App.Scripts.Enemy
     {
         public EEnemyType EnemyType;
         public EEntityRole EntityRole;
+        public WayPoint InitialWayPoint;
 
         private void OnDrawGizmos()
         {

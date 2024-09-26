@@ -2,6 +2,7 @@
 {
     public enum EEntityRole
     {
-        Walker = 0,
+        Unknown = 0,
+        Walker = 1,
     }
 }

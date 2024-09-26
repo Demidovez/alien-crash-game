@@ -51,7 +51,8 @@ namespace App.Scripts.Enemy
                 _shouldReset = false;
                 
                 _target = null;
-                _enemyMovement.SetTarget(null);
+                
+                _enemyMovement.SetForceMoveTarget(null);
             }
         }
 
@@ -64,7 +65,7 @@ namespace App.Scripts.Enemy
             }
 
             _target = target;
-            _enemyMovement.SetTarget(target);
+            _enemyMovement.SetForceMoveTarget(target);
         }
         
         private void TryRemoveChaseTarget(Transform target)
