@@ -9,9 +9,9 @@ namespace App.Scripts.Enemy
     {
         private readonly EnemyMovement _enemyMovement;
         private readonly FieldOfView _fieldOfView;
+        
         private const float ChaseDelay = 3f;
         private Transform _target;
-
         private float _chaseTime;
         private bool _shouldReset;
 

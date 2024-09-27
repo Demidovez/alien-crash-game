@@ -24,21 +24,12 @@ namespace App.Scripts.Enemy
 
         public void Create(EEnemyType enemyType, WayPoint initialWayPoint, Vector3 spawnPoint)
         {
-            Object enemyPrefab = _enemiesPrefabs[0 % _enemiesPrefabs.Length];
-            /*Object enemyPrefab = null;*/
-            
-            /*switch (enemyType)
+            if (_enemiesPrefabs.Length == 0)
             {
-                case EEnemyType.Cop:
-                    enemyPrefab = _copEnemyPrefab;
-                    break;
-                case EEnemyType.Farmer:
-                    enemyPrefab = _farmerEnemyPrefab;
-                    break;
-                case EEnemyType.Ufologist:
-                    enemyPrefab = _ufologistEnemyPrefab;
-                    break;
-            }*/
+                return;
+            }
+            
+            Object enemyPrefab = _enemiesPrefabs[0];
             
             GameObject enemy = _diContainer.InstantiatePrefab(enemyPrefab, spawnPoint, Quaternion.identity, null);
 

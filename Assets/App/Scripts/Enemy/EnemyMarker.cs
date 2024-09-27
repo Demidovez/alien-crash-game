@@ -1,5 +1,4 @@
-﻿using App.Scripts.Entity;
-using App.Scripts.Tools.WayPoints;
+﻿using App.Scripts.Tools.WayPoints;
 using UnityEngine;
 
 namespace App.Scripts.Enemy
@@ -7,7 +6,6 @@ namespace App.Scripts.Enemy
     public class EnemyMarker: MonoBehaviour
     {
         public EEnemyType EnemyType;
-        public EEntityRole EntityRole;
         public WayPoint InitialWayPoint;
 
         private void OnDrawGizmos()

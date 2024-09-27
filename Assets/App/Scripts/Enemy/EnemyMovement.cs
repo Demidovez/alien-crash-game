@@ -1,39 +1,52 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 
 namespace App.Scripts.Enemy
 {
-    public class EnemyMovement : MonoBehaviour
+    public class EnemyMovement : ITickable
     {
-        [SerializeField] private float _minMoveSpeed = 0.75f;
-        [SerializeField] private float _maxMoveSpeed = 1.5f;
-        [SerializeField] private float _chaseSpeed = 10f;
-        
+        private readonly float _chaseSpeed;
+        private readonly float _speed;
+        private readonly NavMeshAgent _navMeshAgent;
+
         private Transform _forceMoveTarget;
         private Vector3 _defaultDestination;
-        private NavMeshAgent _navMeshAgent;
-        private float _speed;
-        
+
         public bool IsReachedDestination { get; private set; }
+        public bool IsMoving { get; private set; }
+        public bool IsRunning { get; private set; }
+        
+        // TODO: перенести в другое место
+        public bool IsAttacking { get; private set; }
 
-        private void Start()
+        public EnemyMovement(NavMeshAgent navMeshAgent, float minMoveSpeed, float maxMoveSpeed, float chaseSpeed)
         {
-            _navMeshAgent = GetComponent<NavMeshAgent>();
-            _speed = Random.Range(_minMoveSpeed, _maxMoveSpeed);
-
+            _navMeshAgent = navMeshAgent;
+            _chaseSpeed = chaseSpeed;
+            _speed = Random.Range(minMoveSpeed, maxMoveSpeed);
+            
             _navMeshAgent.speed = _speed;
         }
 
-        private void Update()
+        public void Tick()
         {
             if (_forceMoveTarget)
             {
                 _navMeshAgent.SetDestination(_forceMoveTarget.position);
-                IsReachedDestination = false;
+            }
+            
+            IsReachedDestination = _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance;
+
+            if (IsReachedDestination && _forceMoveTarget)
+            {
+                IsAttacking = true; // TODO: временно
+                IsRunning = false;
+                IsMoving = false;
             }
             else
             {
-                IsReachedDestination = _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance;
+                IsMoving = _navMeshAgent.velocity.magnitude >= 0.1f;
             }
         }
 
@@ -46,6 +59,7 @@ namespace App.Scripts.Enemy
         public void SetForceMoveTarget(Transform target)
         {
             _forceMoveTarget = target;
+            IsRunning = target;
             
             if (target)
             {

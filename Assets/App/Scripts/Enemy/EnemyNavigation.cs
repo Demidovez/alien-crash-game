@@ -1,21 +1,22 @@
 ﻿using App.Scripts.Entity;
 using App.Scripts.Tools.WayPoints;
-using UnityEngine;
+using Zenject;
 
 namespace App.Scripts.Enemy
 {
-    public class EnemyNavigation: MonoBehaviour, IEntityNavigation
+    public class EnemyNavigation: IInitializable, ITickable, IEntityNavigation
     {
+        private readonly EnemyMovement _enemyMovement;
+        
         private WayPoint _currentWayPoint;
-        private EnemyMovement _enemyMovement;
         private int _direction;
-
-        private void Awake()
+        
+        public EnemyNavigation(EnemyMovement enemyMovement)
         {
-            _enemyMovement = GetComponent<EnemyMovement>();
+            _enemyMovement = enemyMovement;
         }
-
-        private void Start()
+        
+        public void Initialize()
         {
             if (_currentWayPoint)
             {
@@ -23,7 +24,7 @@ namespace App.Scripts.Enemy
             }
         }
 
-        private void Update()
+        public void Tick()
         {
             if (_currentWayPoint && _enemyMovement.IsReachedDestination)
             {
