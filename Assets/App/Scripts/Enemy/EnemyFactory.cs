@@ -9,10 +9,9 @@ namespace App.Scripts.Enemy
     {
         private readonly DiContainer _diContainer;
         
-        private Object _copEnemyPrefab;
-        private Object _ufologistEnemyPrefab;
-        private Object _farmerEnemyPrefab;
-
+        private const string EnemiesFolder = "Enemies";
+        private Object[] _enemiesPrefabs;
+        
         public EnemyFactory(DiContainer diContainer)
         {
             _diContainer = diContainer;
@@ -20,16 +19,15 @@ namespace App.Scripts.Enemy
 
         public void Load()
         {
-            _copEnemyPrefab = Resources.Load("EnemyBlue");
-            _ufologistEnemyPrefab = Resources.Load("EnemyRed");
-            _farmerEnemyPrefab = Resources.Load("EnemyPink");
+            _enemiesPrefabs = Resources.LoadAll(EnemiesFolder);
         }
 
         public void Create(EEnemyType enemyType, WayPoint initialWayPoint, Vector3 spawnPoint)
         {
-            Object enemyPrefab = null;
+            Object enemyPrefab = _enemiesPrefabs[0 % _enemiesPrefabs.Length];
+            /*Object enemyPrefab = null;*/
             
-            switch (enemyType)
+            /*switch (enemyType)
             {
                 case EEnemyType.Cop:
                     enemyPrefab = _copEnemyPrefab;
@@ -40,7 +38,7 @@ namespace App.Scripts.Enemy
                 case EEnemyType.Ufologist:
                     enemyPrefab = _ufologistEnemyPrefab;
                     break;
-            }
+            }*/
             
             GameObject enemy = _diContainer.InstantiatePrefab(enemyPrefab, spawnPoint, Quaternion.identity, null);
 

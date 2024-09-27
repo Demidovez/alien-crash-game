@@ -14,7 +14,6 @@ namespace App.Scripts.Enemy
 
         private float _chaseTime;
         private bool _shouldReset;
-        
 
         public EnemyChaseManager(
             FieldOfView fieldOfView,
