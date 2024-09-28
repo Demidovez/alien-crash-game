@@ -7,7 +7,9 @@ namespace App.Scripts.Enemy
 {
     public class EnemyChaseManager : ITickable, IDisposable
     {
-        private readonly EnemyMovement _enemyMovement;
+        public bool IsChasing { get; private set; }
+        
+        private readonly EnemyNavigation _enemyNavigation;
         private readonly FieldOfView _fieldOfView;
         
         private const float ChaseDelay = 3f;
@@ -17,10 +19,10 @@ namespace App.Scripts.Enemy
 
         public EnemyChaseManager(
             FieldOfView fieldOfView,
-            EnemyMovement enemyMovement
+            EnemyNavigation enemyNavigation
         )
         {
-            _enemyMovement = enemyMovement;
+            _enemyNavigation = enemyNavigation;
             _fieldOfView = fieldOfView;
             
             _fieldOfView.OnAddedVisibleTarget += TryAddChaseTarget;
@@ -48,10 +50,10 @@ namespace App.Scripts.Enemy
             if (_shouldReset && _chaseTime >= ChaseDelay)
             {
                 _shouldReset = false;
-                
+
+                IsChasing = false;
                 _target = null;
-                
-                _enemyMovement.SetForceMoveTarget(null);
+                _enemyNavigation.SetForceDestinationTarget(null);
             }
         }
 
@@ -63,8 +65,9 @@ namespace App.Scripts.Enemy
                 return;
             }
 
+            IsChasing = true;
             _target = target;
-            _enemyMovement.SetForceMoveTarget(target);
+            _enemyNavigation.SetForceDestinationTarget(target);
         }
         
         private void TryRemoveChaseTarget(Transform target)

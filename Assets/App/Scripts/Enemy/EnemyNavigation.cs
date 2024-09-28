@@ -1,19 +1,34 @@
 ﻿using App.Scripts.Entity;
 using App.Scripts.Tools.WayPoints;
+using UnityEngine;
+using UnityEngine.AI;
 using Zenject;
 
 namespace App.Scripts.Enemy
 {
-    public class EnemyNavigation: IInitializable, ITickable, IEntityNavigation
+    public class EnemyNavigation: IEntityNavigation, IInitializable, ITickable
     {
-        private readonly EnemyMovement _enemyMovement;
+        public bool IsReachedDestination { get; private set; }
+        public bool IsMoving { get; private set; }
+        public bool IsRunning { get; private set; }
         
+        private readonly NavMeshAgent _navMeshAgent;
+        private readonly float _chaseSpeed;
+        private readonly float _speed;
+
         private WayPoint _currentWayPoint;
         private int _direction;
-        
-        public EnemyNavigation(EnemyMovement enemyMovement)
+        private Vector3 _defaultDestination;
+        private Transform _forceDestinationTarget;
+
+        public EnemyNavigation(NavMeshAgent navMeshAgent, float minMoveSpeed, float maxMoveSpeed, float chaseSpeed)
         {
-            _enemyMovement = enemyMovement;
+            _navMeshAgent = navMeshAgent;
+            
+            _chaseSpeed = chaseSpeed;
+            _speed = Random.Range(minMoveSpeed, maxMoveSpeed);
+            
+            _navMeshAgent.speed = _speed;
         }
         
         public void Initialize()
@@ -26,35 +41,55 @@ namespace App.Scripts.Enemy
 
         public void Tick()
         {
-            if (_currentWayPoint && _enemyMovement.IsReachedDestination)
+            CorrectWayNavigation();
+            CorrectTargetNavigation();
+            
+            IsReachedDestination = _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance;
+            IsMoving = _navMeshAgent.velocity.magnitude >= 0.1f;
+            IsRunning = IsMoving && Mathf.Approximately(_navMeshAgent.speed, _chaseSpeed);
+        }
+
+        private void CorrectTargetNavigation()
+        {
+            if (_forceDestinationTarget)
             {
-                if (_direction == 0)
+                _navMeshAgent.SetDestination(_forceDestinationTarget.position);
+            }
+        }
+
+        private void CorrectWayNavigation()
+        {
+            if (_forceDestinationTarget || !_currentWayPoint || !IsReachedDestination)
+            {
+                return;
+            }
+            
+            if (_direction == 0)
+            {
+                if (_currentWayPoint.Next)
                 {
-                    if (_currentWayPoint.Next)
-                    {
-                        _currentWayPoint = _currentWayPoint.Next;
-                    }
-                    else
-                    {
-                        _direction = 1;
-                        _currentWayPoint = _currentWayPoint.Previous;
-                    }
+                    _currentWayPoint = _currentWayPoint.Next;
                 }
                 else
                 {
-                    if (_currentWayPoint.Previous)
-                    {
-                        _currentWayPoint = _currentWayPoint.Previous;
-                    }
-                    else
-                    {
-                        _direction = 0;
-                        _currentWayPoint = _currentWayPoint.Next;
-                    }
+                    _direction = 1;
+                    _currentWayPoint = _currentWayPoint.Previous;
                 }
-                
-                SetDestination(_currentWayPoint);
             }
+            else
+            {
+                if (_currentWayPoint.Previous)
+                {
+                    _currentWayPoint = _currentWayPoint.Previous;
+                }
+                else
+                {
+                    _direction = 0;
+                    _currentWayPoint = _currentWayPoint.Next;
+                }
+            }
+                
+            SetDestination(_currentWayPoint);
         }
 
         public void SetCurrentWayPoint(WayPoint wayPoint)
@@ -69,7 +104,24 @@ namespace App.Scripts.Enemy
         
         public void SetDestination(WayPoint wayPoint)
         {
-            _enemyMovement.SetDestination(wayPoint.GetPosition());
+            _navMeshAgent.SetDestination(wayPoint.GetPosition());
+            IsReachedDestination = false;
+        }
+        
+        public void SetForceDestinationTarget(Transform target)
+        {
+            _forceDestinationTarget = target;
+            
+            if (target)
+            {
+                _defaultDestination = _navMeshAgent.destination;
+                _navMeshAgent.speed = _chaseSpeed;
+            }
+            else
+            {
+                _navMeshAgent.SetDestination(_defaultDestination);
+                _navMeshAgent.speed = _speed;
+            }
         }
     }
 }

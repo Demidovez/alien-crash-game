@@ -15,12 +15,19 @@ namespace App.Scripts.Infrastructure.DI
         public override void InstallBindings()
         {
             BindFieldOfView();
-            BindEnemyMovement();
             BindEnemyChaseManager();
+            BindEnemyAttack();
             BindEnemyAnimator();
             BindEnemyAnimation();
             BindEnemyNavigation();
             BindEnemyNavMeshAgent();
+        }
+
+        private void BindEnemyAttack()
+        {
+            Container
+                .BindInterfacesAndSelfTo<EnemyAttack>()
+                .AsSingle();
         }
 
         private void BindEnemyNavMeshAgent()
@@ -30,7 +37,10 @@ namespace App.Scripts.Infrastructure.DI
 
         private void BindEnemyNavigation()
         {
-            Container.BindInterfacesAndSelfTo<EnemyNavigation>().AsSingle();
+            Container
+                .BindInterfacesAndSelfTo<EnemyNavigation>()
+                .AsSingle()
+                .WithArguments(MinMoveSpeed, MaxMoveSpeed, ChaseSpeed);
         }
 
         private void BindEnemyAnimation()
@@ -46,14 +56,6 @@ namespace App.Scripts.Infrastructure.DI
         private void BindFieldOfView()
         {
             Container.Bind<FieldOfView>().FromComponentInHierarchy().AsSingle();
-        }
-        
-        private void BindEnemyMovement()
-        {
-            Container
-                .BindInterfacesAndSelfTo<EnemyMovement>()
-                .AsSingle()
-                .WithArguments(MinMoveSpeed, MaxMoveSpeed, ChaseSpeed);
         }
 
         private void BindEnemyChaseManager()
