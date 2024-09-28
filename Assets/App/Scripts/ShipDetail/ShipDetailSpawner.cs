@@ -23,7 +23,7 @@ namespace App.Scripts.ShipDetail
             
             for (var i = 0; i < ShipDetailMarkers.Length; i++)
             {
-                _shipDetailFactory.Create(ShipDetailMarkers[i].transform.position, i);
+                _shipDetailFactory.Create(i, ShipDetailMarkers[i].transform.position);
             }
         }
     }

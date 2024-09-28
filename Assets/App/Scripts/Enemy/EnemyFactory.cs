@@ -21,14 +21,14 @@ namespace App.Scripts.Enemy
             _enemiesPrefabs = Resources.LoadAll(EnemiesFolder);
         }
 
-        public void Create(EEnemyType enemyType, WayPoint initialWayPoint, Vector3 spawnPoint)
+        public void Create(int index, EEnemyType enemyType, WayPoint initialWayPoint, Vector3 spawnPoint)
         {
             if (_enemiesPrefabs.Length == 0)
             {
                 return;
             }
             
-            Object enemyPrefab = _enemiesPrefabs[0];
+            Object enemyPrefab = _enemiesPrefabs[index % _enemiesPrefabs.Length];
             
             Enemy enemy = _diContainer.InstantiatePrefabForComponent<Enemy>(enemyPrefab, spawnPoint, Quaternion.identity, null);
 

@@ -18,12 +18,9 @@ namespace App.Scripts.Enemy
         {
             _enemyFactory.Load();
             
-            foreach (var enemyMarker in EnemyMarkers)
+            for (var i = 0; i < EnemyMarkers.Length; i++)
             {
-                if (enemyMarker.isActiveAndEnabled)
-                {
-                    _enemyFactory.Create(enemyMarker.EnemyType, enemyMarker.InitialWayPoint, enemyMarker.transform.position);
-                }
+                _enemyFactory.Create(i, EnemyMarkers[i].EnemyType, EnemyMarkers[i].InitialWayPoint, EnemyMarkers[i].transform.position);
             }
         }
     }

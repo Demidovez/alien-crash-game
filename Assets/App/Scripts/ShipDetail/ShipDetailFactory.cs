@@ -21,7 +21,7 @@ namespace App.Scripts.ShipDetail
             _shipDetailPrefabs = Resources.LoadAll(ShipDetailFolder);
         }
 
-        public void Create(Vector3 spawnPoint, int index)
+        public void Create(int index, Vector3 spawnPoint)
         {
             Object shipDetailPrefab = _shipDetailPrefabs[index % _shipDetailPrefabs.Length];
             
