@@ -26,6 +26,7 @@ namespace App.Scripts.Enemy
             
             _chaseSpeed = chaseSpeed;
             _speed = Random.Range(minMoveSpeed, maxMoveSpeed);
+            _direction = Random.Range(0, 2);
             
             _navMeshAgent.speed = _speed;
         }
