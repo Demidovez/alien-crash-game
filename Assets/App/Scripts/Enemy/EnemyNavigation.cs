@@ -1,12 +1,11 @@
-﻿using App.Scripts.Entity;
-using App.Scripts.Tools.WayPoints;
+﻿using App.Scripts.Tools.WayPoints;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
 namespace App.Scripts.Enemy
 {
-    public class EnemyNavigation: IEntityNavigation, IInitializable, ITickable
+    public class EnemyNavigation: IInitializable, ITickable
     {
         public bool IsReachedDestination { get; private set; }
         public bool IsMoving { get; private set; }
@@ -114,6 +113,7 @@ namespace App.Scripts.Enemy
             
             if (target)
             {
+                IsReachedDestination = false;
                 _defaultDestination = _navMeshAgent.destination;
                 _navMeshAgent.speed = _chaseSpeed;
             }

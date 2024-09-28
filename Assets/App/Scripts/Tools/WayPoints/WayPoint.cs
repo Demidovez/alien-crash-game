@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using App.Scripts.Entity;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace App.Scripts.Tools.WayPoints
 {
@@ -8,8 +6,6 @@ namespace App.Scripts.Tools.WayPoints
     {
         public WayPoint Previous;
         public WayPoint Next;
-        
-        internal IEntityNavigation ConnectedEntity = null;
         
         [Range(0f, 7f)] public float Width = 1f;
         

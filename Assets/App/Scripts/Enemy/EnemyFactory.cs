@@ -1,5 +1,4 @@
-﻿using App.Scripts.Entity;
-using App.Scripts.Tools.WayPoints;
+﻿using App.Scripts.Tools.WayPoints;
 using UnityEngine;
 using Zenject;
 
@@ -31,12 +30,9 @@ namespace App.Scripts.Enemy
             
             Object enemyPrefab = _enemiesPrefabs[0];
             
-            GameObject enemy = _diContainer.InstantiatePrefab(enemyPrefab, spawnPoint, Quaternion.identity, null);
+            Enemy enemy = _diContainer.InstantiatePrefabForComponent<Enemy>(enemyPrefab, spawnPoint, Quaternion.identity, null);
 
-            if (enemy.TryGetComponent(out IEntityNavigation navigation))
-            {
-                navigation.SetCurrentWayPoint(initialWayPoint);
-            }
+            enemy?.Init(initialWayPoint);
         }
     }
 }
