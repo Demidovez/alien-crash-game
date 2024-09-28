@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using App.Scripts.Tools.WayPoints;
+using UnityEngine;
 
 namespace App.Scripts.Enemy
 {
     public class EnemyMarker: MonoBehaviour
     {
         public EEnemyType EnemyType;
+        public WayPoint InitialWayPoint;
 
         private void OnDrawGizmos()
         {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using App.Scripts.Tools.WayPoints;
+using UnityEngine;
 using Zenject;
 
 namespace App.Scripts.Enemy
@@ -7,10 +8,9 @@ namespace App.Scripts.Enemy
     {
         private readonly DiContainer _diContainer;
         
-        private Object _copEnemyPrefab;
-        private Object _ufologistEnemyPrefab;
-        private Object _farmerEnemyPrefab;
-
+        private const string EnemiesFolder = "Enemies";
+        private Object[] _enemiesPrefabs;
+        
         public EnemyFactory(DiContainer diContainer)
         {
             _diContainer = diContainer;
@@ -18,25 +18,21 @@ namespace App.Scripts.Enemy
 
         public void Load()
         {
-            _copEnemyPrefab = Resources.Load("EnemyBlue");
-            _ufologistEnemyPrefab = Resources.Load("EnemyRed");
-            _farmerEnemyPrefab = Resources.Load("EnemyPink");
+            _enemiesPrefabs = Resources.LoadAll(EnemiesFolder);
         }
 
-        public void Create(EEnemyType enemyType, Vector3 spawnPoint)
+        public void Create(int index, EEnemyType enemyType, WayPoint initialWayPoint, Vector3 spawnPoint)
         {
-            switch (enemyType)
+            if (_enemiesPrefabs.Length == 0)
             {
-                case EEnemyType.Cop:
-                    _diContainer.InstantiatePrefab(_copEnemyPrefab, spawnPoint, Quaternion.identity, null);
-                    break;
-                case EEnemyType.Farmer:
-                    _diContainer.InstantiatePrefab(_farmerEnemyPrefab, spawnPoint, Quaternion.identity, null);
-                    break;
-                case EEnemyType.Ufologist:
-                    _diContainer.InstantiatePrefab(_ufologistEnemyPrefab, spawnPoint, Quaternion.identity, null);
-                    break;
+                return;
             }
+            
+            Object enemyPrefab = _enemiesPrefabs[index % _enemiesPrefabs.Length];
+            
+            Enemy enemy = _diContainer.InstantiatePrefabForComponent<Enemy>(enemyPrefab, spawnPoint, Quaternion.identity, null);
+
+            enemy?.Init(initialWayPoint);
         }
     }
 }

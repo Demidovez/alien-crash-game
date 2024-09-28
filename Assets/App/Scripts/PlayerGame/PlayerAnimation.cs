@@ -12,6 +12,10 @@ namespace App.Scripts.PlayerGame
         private Vector2 _targetAnimPosition;
         private Vector2 _currentBlendAnim;
         private Vector2 _animVelocity;
+        
+        private static readonly int Horizontal = Animator.StringToHash("Horizontal");
+        private static readonly int Vertical = Animator.StringToHash("Vertical");
+        private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
 
         [Inject]
         public void Construct(PlayerMovement playerMovement)
@@ -30,9 +34,9 @@ namespace App.Scripts.PlayerGame
             
             _currentBlendAnim = Vector2.SmoothDamp(_currentBlendAnim, _targetAnimPosition, ref _animVelocity, _animSmoothTime * Time.deltaTime);
             
-            _animator.SetFloat("Horizontal", _currentBlendAnim.x);
-            _animator.SetFloat("Vertical", _currentBlendAnim.y);
-            _animator.SetBool("IsGrounded", _playerMovement.IsGrounded);
+            _animator.SetFloat(Horizontal, _currentBlendAnim.x);
+            _animator.SetFloat(Vertical, _currentBlendAnim.y);
+            _animator.SetBool(IsGrounded, _playerMovement.IsGrounded);
         }
     }
 }
