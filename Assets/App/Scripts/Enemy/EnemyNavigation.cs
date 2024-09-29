@@ -20,7 +20,12 @@ namespace App.Scripts.Enemy
         private Vector3 _defaultDestination;
         private Transform _forceDestinationTarget;
 
-        public EnemyNavigation(NavMeshAgent navMeshAgent, float minMoveSpeed, float maxMoveSpeed, float chaseSpeed)
+        public EnemyNavigation(
+            NavMeshAgent navMeshAgent, 
+            float minMoveSpeed, 
+            float maxMoveSpeed, 
+            float chaseSpeed
+        )
         {
             _navMeshAgent = navMeshAgent;
             
@@ -43,10 +48,20 @@ namespace App.Scripts.Enemy
         {
             CorrectWayNavigation();
             CorrectTargetNavigation();
+            CorrectRotation();
             
             IsReachedDestination = _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance;
             IsMoving = _navMeshAgent.velocity.magnitude >= 0.1f;
             IsRunning = IsMoving && Mathf.Approximately(_navMeshAgent.speed, _chaseSpeed);
+        }
+
+        private void CorrectRotation()
+        {
+            if (_forceDestinationTarget && IsReachedDestination)
+            {
+                Vector3 direction = _forceDestinationTarget.position - _navMeshAgent.transform.position;
+                _navMeshAgent.transform.rotation = Quaternion.RotateTowards(_navMeshAgent.transform.rotation, Quaternion.LookRotation(direction), 100 * Time.deltaTime);
+            }
         }
 
         private void CorrectTargetNavigation()
