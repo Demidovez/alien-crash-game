@@ -1,5 +1,5 @@
-using App.Scripts.Enemy;
-using App.Scripts.PlayerGame;
+using App.Scripts.Enemies;
+using App.Scripts.Players;
 using App.Scripts.ShipDetail;
 using Zenject;
 

@@ -1,4 +1,4 @@
-﻿using App.Scripts.PlayerGame;
+﻿using App.Scripts.Players;
 using Zenject;
 
 namespace App.Scripts.Infrastructure.DI
@@ -8,6 +8,12 @@ namespace App.Scripts.Infrastructure.DI
         public override void InstallBindings()
         {
             BindPlayerMovement();
+            BindPlayerHealth();
+        }
+
+        private void BindPlayerHealth()
+        {
+            Container.Bind<PlayerHealth>().AsSingle();
         }
 
         private void BindPlayerMovement()

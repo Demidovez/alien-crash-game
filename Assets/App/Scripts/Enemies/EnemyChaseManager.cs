@@ -3,17 +3,17 @@ using App.Scripts.Components;
 using UnityEngine;
 using Zenject;
 
-namespace App.Scripts.Enemy
+namespace App.Scripts.Enemies
 {
     public class EnemyChaseManager : ITickable, IDisposable
     {
         public bool IsChasing { get; private set; }
+        public Transform Target { get; private set; }
         
         private readonly EnemyNavigation _enemyNavigation;
         private readonly FieldOfView _fieldOfView;
         
         private const float ChaseDelay = 3f;
-        private Transform _target;
         private float _chaseTime;
         private bool _shouldReset;
 
@@ -52,27 +52,27 @@ namespace App.Scripts.Enemy
                 _shouldReset = false;
 
                 IsChasing = false;
-                _target = null;
+                Target = null;
                 _enemyNavigation.SetForceDestinationTarget(null);
             }
         }
 
         private void TryAddChaseTarget(Transform target)
         {
-            if (_target)
+            if (Target)
             {
                 _shouldReset = false;
                 return;
             }
 
             IsChasing = true;
-            _target = target;
+            Target = target;
             _enemyNavigation.SetForceDestinationTarget(target);
         }
         
         private void TryRemoveChaseTarget(Transform target)
         {
-            if (_target == target)
+            if (Target == target)
             {
                 _shouldReset = true;
                 _chaseTime = 0f;

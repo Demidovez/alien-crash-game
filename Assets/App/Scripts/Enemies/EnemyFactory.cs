@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace App.Scripts.Enemy
+namespace App.Scripts.Enemies
 {
     public class EnemyFactory: IEnemyFactory
     {

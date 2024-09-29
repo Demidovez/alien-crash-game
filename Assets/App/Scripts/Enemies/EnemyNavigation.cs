@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
-namespace App.Scripts.Enemy
+namespace App.Scripts.Enemies
 {
     public class EnemyNavigation: IInitializable, ITickable
     {

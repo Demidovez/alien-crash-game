@@ -1,7 +1,7 @@
 ﻿using App.Scripts.Tools.WayPoints;
 using UnityEngine;
 
-namespace App.Scripts.Enemy
+namespace App.Scripts.Enemies
 {
     public class EnemyMarker: MonoBehaviour
     {
