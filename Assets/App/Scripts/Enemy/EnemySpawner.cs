@@ -3,24 +3,27 @@ using Zenject;
 
 namespace App.Scripts.Enemy
 {
-    public class EnemySpawner : MonoBehaviour
+    public class EnemySpawner : IInitializable
     {
-        public EnemyMarker[] EnemyMarkers;
-        private IEnemyFactory _enemyFactory;
-        
-        [Inject]
-        public void Construct(IEnemyFactory enemyFactory)
+        private readonly IEnemyFactory _enemyFactory;
+        private readonly Transform _enemyMarkersContainer;
+
+        public EnemySpawner(IEnemyFactory enemyFactory, Transform enemyMarkersContainer)
         {
             _enemyFactory = enemyFactory;
+            _enemyMarkersContainer = enemyMarkersContainer;
         }
         
-        private void Start()
+        public void Initialize()
         {
             _enemyFactory.Load();
             
-            for (var i = 0; i < EnemyMarkers.Length; i++)
+            for (var i = 0; i < _enemyMarkersContainer.childCount; i++)
             {
-                _enemyFactory.Create(i, EnemyMarkers[i].EnemyType, EnemyMarkers[i].InitialWayPoint, EnemyMarkers[i].transform.position);
+                if (_enemyMarkersContainer.GetChild(i).TryGetComponent(out EnemyMarker marker))
+                {
+                    _enemyFactory.Create(i, marker.EnemyType, marker.InitialWayPoint, marker.transform.position);
+                }
             }
         }
     }

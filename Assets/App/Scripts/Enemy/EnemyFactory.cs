@@ -10,6 +10,7 @@ namespace App.Scripts.Enemy
         
         private const string EnemiesFolder = "Enemies";
         private Object[] _enemiesPrefabs;
+        private Transform _enemiesContainer;
         
         public EnemyFactory(DiContainer diContainer)
         {
@@ -18,6 +19,7 @@ namespace App.Scripts.Enemy
 
         public void Load()
         {
+            _enemiesContainer = new GameObject("Enemies").transform;
             _enemiesPrefabs = Resources.LoadAll(EnemiesFolder);
         }
 
@@ -30,7 +32,8 @@ namespace App.Scripts.Enemy
             
             Object enemyPrefab = _enemiesPrefabs[index % _enemiesPrefabs.Length];
             
-            Enemy enemy = _diContainer.InstantiatePrefabForComponent<Enemy>(enemyPrefab, spawnPoint, Quaternion.identity, null);
+            Enemy enemy = _diContainer
+                .InstantiatePrefabForComponent<Enemy>(enemyPrefab, spawnPoint, Quaternion.identity, _enemiesContainer);
 
             enemy?.Init(initialWayPoint);
         }

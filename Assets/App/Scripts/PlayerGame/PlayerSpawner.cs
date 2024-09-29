@@ -3,22 +3,21 @@ using Zenject;
 
 namespace App.Scripts.PlayerGame
 {
-    public class PlayerSpawner: MonoBehaviour
+    public class PlayerSpawner: IInitializable
     {
-        public Transform SpawnPoint;
-        
-        private IPlayerFactory _playerFactory;
+        private readonly IPlayerFactory _playerFactory;
+        private readonly Transform _spawnPoint;
 
-        [Inject]
-        public void Construct(IPlayerFactory playerFactory)
+        public PlayerSpawner(IPlayerFactory playerFactory, Transform spawnPoint)
         {
             _playerFactory = playerFactory;
+            _spawnPoint = spawnPoint;
         }
         
-        private void Start()
+        public void Initialize()
         {
             _playerFactory.Load();
-            _playerFactory.Create(SpawnPoint.position);
+            _playerFactory.Create(_spawnPoint.position);
         }
     }
 }

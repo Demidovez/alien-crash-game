@@ -2,20 +2,56 @@ using App.Scripts.Enemy;
 using App.Scripts.PlayerGame;
 using App.Scripts.ShipDetail;
 using TMPro;
+using UnityEngine;
 using Zenject;
 
 namespace App.Scripts.Infrastructure.DI
 {
     public class Level1Installer : MonoInstaller
     {
+        [Header("Player")]
+        public Transform SpawnPlayerPoint;
+        
+        [Header("Enemies")]
+        public Transform EnemyMarkersContainer;
+        
+        [Header("Ship details")]
+        public Transform ShipDetailMarkersContainer;
         public TMP_Text ShipDetailCountText;
         
         public override void InstallBindings()
         {
             BindPlayerFactory();
             BindEnemyFactory();
+            BindEnemiesSpawner();
             BindShipDetailFactory();
             BindShipDetailsCounter();
+            BindShipDetailsSpawner();
+            BindPlayerSpawner();
+        }
+
+        private void BindPlayerSpawner()
+        {
+            Container
+                .BindInterfacesTo<PlayerSpawner>()
+                .AsSingle()
+                .WithArguments(SpawnPlayerPoint);
+        }
+
+        private void BindShipDetailsSpawner()
+        {
+            Container
+                .BindInterfacesTo<ShipDetailSpawner>()
+                .AsSingle()
+                .WithArguments(ShipDetailMarkersContainer);
+        }
+
+        private void BindEnemiesSpawner()
+        {
+            Container
+                .BindInterfacesTo<EnemySpawner>()
+                .AsSingle()
+                .WithArguments(EnemyMarkersContainer);
         }
 
         private void BindShipDetailsCounter()
