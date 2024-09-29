@@ -581,7 +581,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3638635051731459929}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -1420,8 +1420,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5357203416288170398}
-  - component: {fileID: 8280536294071510013}
-  - component: {fileID: 8613385433298562113}
   m_Layer: 8
   m_Name: skin
   m_TagString: Untagged
@@ -1446,50 +1444,6 @@ Transform:
   - {fileID: 689926897181917541}
   m_Father: {fileID: 2331010942198399048}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &8280536294071510013
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8832185417760445392}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 088cd57903488d74f87aaaa2882716e1, type: 3}
-  m_Controller: {fileID: 9100000, guid: c68cfd93dabe267418e601f255cc2901, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!136 &8613385433298562113
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8832185417760445392}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.22766507
-  m_Height: 1.8
-  m_Direction: 1
-  m_Center: {x: 0.008133611, y: 0.9, z: 0}
 --- !u!1 &9007615569403667743
 GameObject:
   m_ObjectHideFlags: 0

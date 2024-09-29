@@ -17,13 +17,20 @@ namespace App.Scripts.Enemy
         public void Initialize()
         {
             _enemyFactory.Load();
-            
-            for (var i = 0; i < _enemyMarkersContainer.childCount; i++)
+            int index = 0;
+
+            foreach (Transform markerTransform in _enemyMarkersContainer)
             {
-                if (_enemyMarkersContainer.GetChild(i).TryGetComponent(out EnemyMarker marker))
+                if (!markerTransform.gameObject.activeInHierarchy)
                 {
-                    _enemyFactory.Create(i, marker.EnemyType, marker.InitialWayPoint, marker.transform.position);
+                    continue;
                 }
+                
+                if (markerTransform.gameObject.TryGetComponent(out EnemyMarker marker))
+                {
+                    _enemyFactory.Create(index, marker.EnemyType, marker.InitialWayPoint, marker.transform.position);
+                    index++;
+                } 
             }
         }
     }

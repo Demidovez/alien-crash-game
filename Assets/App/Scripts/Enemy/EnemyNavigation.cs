@@ -49,10 +49,22 @@ namespace App.Scripts.Enemy
             CorrectWayNavigation();
             CorrectTargetNavigation();
             CorrectRotation();
+            CheckReachedDestination();
             
-            IsReachedDestination = _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance;
-            IsMoving = _navMeshAgent.velocity.magnitude >= 0.1f;
+            IsMoving = _navMeshAgent.velocity.magnitude >= 1f;
             IsRunning = IsMoving && Mathf.Approximately(_navMeshAgent.speed, _chaseSpeed);
+        }
+
+        private void CheckReachedDestination()
+        {
+            float reachedCoefficient = 1;
+            
+            if (_forceDestinationTarget && IsReachedDestination)
+            {
+                reachedCoefficient = 1.3f;
+            }
+            
+            IsReachedDestination = _navMeshAgent.remainingDistance <= reachedCoefficient * _navMeshAgent.stoppingDistance;
         }
 
         private void CorrectRotation()
@@ -60,7 +72,11 @@ namespace App.Scripts.Enemy
             if (_forceDestinationTarget && IsReachedDestination)
             {
                 Vector3 direction = _forceDestinationTarget.position - _navMeshAgent.transform.position;
-                _navMeshAgent.transform.rotation = Quaternion.RotateTowards(_navMeshAgent.transform.rotation, Quaternion.LookRotation(direction), 100 * Time.deltaTime);
+                Quaternion target = Quaternion.LookRotation(direction);
+                float speed = 100 * Time.deltaTime;
+                Quaternion smoothTarget = Quaternion.RotateTowards(_navMeshAgent.transform.rotation, target, speed);
+
+                _navMeshAgent.transform.rotation = smoothTarget;
             }
         }
 

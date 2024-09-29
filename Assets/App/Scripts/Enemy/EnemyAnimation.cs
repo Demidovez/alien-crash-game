@@ -26,10 +26,11 @@ namespace App.Scripts.Enemy
         
         public void Tick()
         {
-            bool isWalkingAnim = _enemyNavigation.IsMoving && !_enemyNavigation.IsRunning;
+            bool isWalkingAnim = _enemyNavigation.IsMoving && !_enemyNavigation.IsRunning && !_enemyAttack.IsAttacking;
+            bool isRunningAnim = _enemyNavigation.IsRunning && !_enemyAttack.IsAttacking;
 
             _animator.SetBool(IsWalking, isWalkingAnim);
-            _animator.SetBool(IsRunning, _enemyNavigation.IsRunning);
+            _animator.SetBool(IsRunning, isRunningAnim);
             _animator.SetBool(IsAttacking, _enemyAttack.IsAttacking);
         }
     }
