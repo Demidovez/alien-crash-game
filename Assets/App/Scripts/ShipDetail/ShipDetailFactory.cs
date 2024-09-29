@@ -10,6 +10,7 @@ namespace App.Scripts.ShipDetail
         
         private const string ShipDetailFolder = "ShipDetails";
         private Object[] _shipDetailPrefabs;
+        private Transform _shipDetailsContainer;
         
         public ShipDetailFactory(DiContainer diContainer)
         {
@@ -18,6 +19,7 @@ namespace App.Scripts.ShipDetail
         
         public void Load()
         {
+            _shipDetailsContainer = new GameObject("ShipDetails").transform;
             _shipDetailPrefabs = Resources.LoadAll(ShipDetailFolder);
         }
 
@@ -25,7 +27,7 @@ namespace App.Scripts.ShipDetail
         {
             Object shipDetailPrefab = _shipDetailPrefabs[index % _shipDetailPrefabs.Length];
             
-            _diContainer.InstantiatePrefab(shipDetailPrefab, spawnPoint, Quaternion.identity, null);
+            _diContainer.InstantiatePrefab(shipDetailPrefab, spawnPoint, Quaternion.identity, _shipDetailsContainer);
         }
     }
 }

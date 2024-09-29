@@ -20,7 +20,12 @@ namespace App.Scripts.Enemy
         private Vector3 _defaultDestination;
         private Transform _forceDestinationTarget;
 
-        public EnemyNavigation(NavMeshAgent navMeshAgent, float minMoveSpeed, float maxMoveSpeed, float chaseSpeed)
+        public EnemyNavigation(
+            NavMeshAgent navMeshAgent, 
+            float minMoveSpeed, 
+            float maxMoveSpeed, 
+            float chaseSpeed
+        )
         {
             _navMeshAgent = navMeshAgent;
             
@@ -43,10 +48,36 @@ namespace App.Scripts.Enemy
         {
             CorrectWayNavigation();
             CorrectTargetNavigation();
+            CorrectRotation();
+            CheckReachedDestination();
             
-            IsReachedDestination = _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance;
-            IsMoving = _navMeshAgent.velocity.magnitude >= 0.1f;
+            IsMoving = _navMeshAgent.velocity.magnitude >= 1f;
             IsRunning = IsMoving && Mathf.Approximately(_navMeshAgent.speed, _chaseSpeed);
+        }
+
+        private void CheckReachedDestination()
+        {
+            float reachedCoefficient = 1;
+            
+            if (_forceDestinationTarget && IsReachedDestination)
+            {
+                reachedCoefficient = 1.3f;
+            }
+            
+            IsReachedDestination = _navMeshAgent.remainingDistance <= reachedCoefficient * _navMeshAgent.stoppingDistance;
+        }
+
+        private void CorrectRotation()
+        {
+            if (_forceDestinationTarget && IsReachedDestination)
+            {
+                Vector3 direction = _forceDestinationTarget.position - _navMeshAgent.transform.position;
+                Quaternion target = Quaternion.LookRotation(direction);
+                float speed = 100 * Time.deltaTime;
+                Quaternion smoothTarget = Quaternion.RotateTowards(_navMeshAgent.transform.rotation, target, speed);
+
+                _navMeshAgent.transform.rotation = smoothTarget;
+            }
         }
 
         private void CorrectTargetNavigation()

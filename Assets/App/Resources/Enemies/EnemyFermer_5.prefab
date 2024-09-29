@@ -424,7 +424,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2524765314730465084}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -935,7 +935,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8814456472639126376}
-  - component: {fileID: 1394836483760855548}
   m_Layer: 8
   m_Name: skin
   m_TagString: Untagged
@@ -960,27 +959,6 @@ Transform:
   - {fileID: 6090850753729686181}
   m_Father: {fileID: 5628354077108797959}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1394836483760855548
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5153806110851496904}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 088cd57903488d74f87aaaa2882716e1, type: 3}
-  m_Controller: {fileID: 9100000, guid: c68cfd93dabe267418e601f255cc2901, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5307495602804668503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,6 +1569,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 918130077923657798, guid: a584a8b3a84406e459b2fff09e273cdc,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991577242922236801, guid: a584a8b3a84406e459b2fff09e273cdc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991577242922236801, guid: a584a8b3a84406e459b2fff09e273cdc,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

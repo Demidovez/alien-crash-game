@@ -3,27 +3,31 @@ using Zenject;
 
 namespace App.Scripts.ShipDetail
 {
-    public class ShipDetailSpawner : MonoBehaviour
+    public class ShipDetailSpawner: IInitializable
     {
-        public ShipDetailMarker[] ShipDetailMarkers;
-        private IShipDetailFactory _shipDetailFactory;
-        private ShipDetailCounter _shipDetailCounter;
+        private readonly IShipDetailFactory _shipDetailFactory;
+        private readonly ShipDetailCounter _shipDetailCounter;
+        private readonly Transform _shipDetailMarkersContainer;
 
-        [Inject]
-        public void Construct(IShipDetailFactory shipDetailFactory, ShipDetailCounter shipDetailCounter)
+        public ShipDetailSpawner(
+            IShipDetailFactory shipDetailFactory, 
+            ShipDetailCounter shipDetailCounter,
+            Transform shipDetailMarkersContainer
+        )
         {
             _shipDetailFactory = shipDetailFactory;
             _shipDetailCounter = shipDetailCounter;
+            _shipDetailMarkersContainer = shipDetailMarkersContainer;
         }
         
-        private void Start()
+        public void Initialize()
         {
             _shipDetailFactory.Load();
-            _shipDetailCounter.SetCountAll(ShipDetailMarkers.Length);
+            _shipDetailCounter.SetCountAll(_shipDetailMarkersContainer.childCount);
             
-            for (var i = 0; i < ShipDetailMarkers.Length; i++)
+            for (var i = 0; i < _shipDetailMarkersContainer.childCount; i++)
             {
-                _shipDetailFactory.Create(i, ShipDetailMarkers[i].transform.position);
+                _shipDetailFactory.Create(i, _shipDetailMarkersContainer.GetChild(i).transform.position);
             }
         }
     }

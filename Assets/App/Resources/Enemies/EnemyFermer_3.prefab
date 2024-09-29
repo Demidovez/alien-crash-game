@@ -581,7 +581,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3638635051731459929}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -1420,7 +1420,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5357203416288170398}
-  - component: {fileID: 8280536294071510013}
   m_Layer: 8
   m_Name: skin
   m_TagString: Untagged
@@ -1437,7 +1436,7 @@ Transform:
   m_GameObject: {fileID: 8832185417760445392}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1445,27 +1444,6 @@ Transform:
   - {fileID: 689926897181917541}
   m_Father: {fileID: 2331010942198399048}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &8280536294071510013
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8832185417760445392}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 088cd57903488d74f87aaaa2882716e1, type: 3}
-  m_Controller: {fileID: 9100000, guid: c68cfd93dabe267418e601f255cc2901, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9007615569403667743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,6 +1570,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 918130077923657798, guid: a584a8b3a84406e459b2fff09e273cdc,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991577242922236801, guid: a584a8b3a84406e459b2fff09e273cdc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991577242922236801, guid: a584a8b3a84406e459b2fff09e273cdc,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
