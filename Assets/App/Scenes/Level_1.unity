@@ -10190,10 +10190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7aa6871ac4256d4b88c731834afaf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnPlayerPoint: {fileID: 29425655}
   EnemyMarkersContainer: {fileID: 278676419}
   ShipDetailMarkersContainer: {fileID: 896614976}
   ShipDetailCountText: {fileID: 481091227}
-  SpawnPlayerPoint: {fileID: 29425655}
 --- !u!1001 &348220439
 PrefabInstance:
   m_ObjectHideFlags: 0
