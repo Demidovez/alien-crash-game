@@ -23,12 +23,14 @@ namespace App.Scripts.Enemies
 
         public void TryAttack()
         {
-            if (!IsAttacking)
+            if (!IsAttacking || !_enemyChaseManager.IsFocusedOnTarget())
             {
                 return;
             }
+
+            GameObject target = _enemyChaseManager.Target.gameObject;
             
-            if (_enemyChaseManager.Target.gameObject.TryGetComponent(out IDamageable damageable))
+            if (target.TryGetComponent(out IDamageable damageable))
             {
                 damageable.Damage(10);
             }

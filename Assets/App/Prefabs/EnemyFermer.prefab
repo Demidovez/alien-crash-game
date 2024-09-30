@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 4234633025064978426}
   - component: {fileID: 4147890425462436574}
   - component: {fileID: 8068711763364505686}
+  - component: {fileID: 6830072978282747471}
+  - component: {fileID: 3686416597187605734}
+  - component: {fileID: 3213911596532316983}
   - component: {fileID: 923689244717747293}
   - component: {fileID: 6758118906416267485}
-  - component: {fileID: 6830072978282747471}
-  - component: {fileID: 3213911596532316983}
   m_Layer: 8
   m_Name: EnemyFermer
   m_TagString: Untagged
@@ -104,6 +105,52 @@ CapsuleCollider:
   m_Height: 2.6
   m_Direction: 1
   m_Center: {x: 0.005996625, y: 1.3, z: 0.014373859}
+--- !u!114 &6830072978282747471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182261765470886253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad1b0102f95e4a04e8ead72771014143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3686416597187605734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182261765470886253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05a3fd3f3254681aeec2b0c2e09329f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3213911596532316983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182261765470886253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1abc8b47616d497eb6df5341cc4135ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ViewRadius: 10
+  ViewAngle: 65
+  VisibleTarget: {fileID: 0}
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _visibleMask:
+    serializedVersion: 2
+    m_Bits: 576
+  _delayTimeFinding: 0.2
 --- !u!114 &923689244717747293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,37 +184,3 @@ MonoBehaviour:
   MinMoveSpeed: 3
   MaxMoveSpeed: 3
   ChaseSpeed: 7
---- !u!114 &6830072978282747471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 182261765470886253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad1b0102f95e4a04e8ead72771014143, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3213911596532316983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 182261765470886253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1abc8b47616d497eb6df5341cc4135ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ViewRadius: 10
-  ViewAngle: 65
-  VisibleTarget: {fileID: 0}
-  _targetMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _visibleMask:
-    serializedVersion: 2
-    m_Bits: 576
-  _delayTimeFinding: 0.2

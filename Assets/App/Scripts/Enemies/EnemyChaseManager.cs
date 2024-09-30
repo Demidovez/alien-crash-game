@@ -12,7 +12,8 @@ namespace App.Scripts.Enemies
         
         private readonly EnemyNavigation _enemyNavigation;
         private readonly FieldOfView _fieldOfView;
-        
+
+        private const float FocusDistance = 2f;
         private const float ChaseDelay = 3f;
         private float _chaseTime;
         private bool _shouldReset;
@@ -43,6 +44,27 @@ namespace App.Scripts.Enemies
         {
             _fieldOfView.OnAddedVisibleTarget -= TryAddChaseTarget;
             _fieldOfView.OnRemovedVisibleTarget -= TryRemoveChaseTarget;
+        }
+
+        public bool IsFocusedOnTarget()
+        {
+            if (!Target)
+            {
+                return false;
+            }
+
+            Vector3 directionToTarget = _enemyNavigation.CurrentTransform.forward.normalized;
+            Vector3 startRay = _enemyNavigation.CurrentTransform.position + Vector3.up;
+            
+            if (Physics.Raycast(startRay, directionToTarget, out RaycastHit hitInfo, FocusDistance))
+            {
+                if (hitInfo.collider.gameObject == Target.gameObject)
+                {
+                    return true;
+                }
+            }
+            
+            return false;
         }
 
         private void ResetChase()
