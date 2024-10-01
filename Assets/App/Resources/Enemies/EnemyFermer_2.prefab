@@ -1572,6 +1572,11 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 126
       objectReference: {fileID: 0}
+    - target: {fileID: 4234633025064978426, guid: a584a8b3a84406e459b2fff09e273cdc,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8068711763364505686, guid: a584a8b3a84406e459b2fff09e273cdc,
         type: 3}
       propertyPath: m_Height

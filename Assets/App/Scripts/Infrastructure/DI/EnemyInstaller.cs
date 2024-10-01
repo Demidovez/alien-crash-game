@@ -1,5 +1,5 @@
 ﻿using App.Scripts.Components;
-using App.Scripts.Enemy;
+using App.Scripts.Enemies;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
@@ -15,12 +15,21 @@ namespace App.Scripts.Infrastructure.DI
         public override void InstallBindings()
         {
             BindFieldOfView();
+            BindEnemy();
             BindEnemyChaseManager();
             BindEnemyAttack();
             BindEnemyAnimator();
             BindEnemyAnimation();
             BindEnemyNavigation();
             BindEnemyNavMeshAgent();
+        }
+
+        private void BindEnemy()
+        {
+            Container
+                .BindInterfacesTo<Enemy>()
+                .FromComponentInHierarchy()
+                .AsSingle();
         }
 
         private void BindEnemyAttack()
@@ -55,7 +64,7 @@ namespace App.Scripts.Infrastructure.DI
 
         private void BindFieldOfView()
         {
-            Container.Bind<FieldOfView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<IFieldOfView>().FromComponentInHierarchy().AsSingle();
         }
 
         private void BindEnemyChaseManager()

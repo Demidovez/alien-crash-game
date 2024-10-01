@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace App.Scripts.Components
 {
-    public class FieldOfView : MonoBehaviour
+    public class FieldOfView : MonoBehaviour, IFieldOfView
     {
         public float ViewRadius;
         [Range(0, 360)] 
