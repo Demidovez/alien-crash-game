@@ -11,7 +11,7 @@ namespace App.Scripts.Enemies
         public Transform Target { get; private set; }
         
         private readonly EnemyNavigation _enemyNavigation;
-        private readonly FieldOfView _fieldOfView;
+        private readonly IFieldOfView _fieldOfView;
 
         private const float FocusDistance = 2f;
         private const float ChaseDelay = 3f;
@@ -19,7 +19,7 @@ namespace App.Scripts.Enemies
         private bool _shouldReset;
 
         public EnemyChaseManager(
-            FieldOfView fieldOfView,
+            IFieldOfView fieldOfView,
             EnemyNavigation enemyNavigation
         )
         {

@@ -64,7 +64,7 @@ namespace App.Scripts.Infrastructure.DI
 
         private void BindFieldOfView()
         {
-            Container.Bind<FieldOfView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<IFieldOfView>().FromComponentInHierarchy().AsSingle();
         }
 
         private void BindEnemyChaseManager()
