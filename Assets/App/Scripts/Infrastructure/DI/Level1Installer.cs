@@ -1,4 +1,5 @@
 using App.Scripts.Enemies;
+using App.Scripts.HealthPills;
 using App.Scripts.Players;
 using App.Scripts.ShipDetail;
 using TMPro;
@@ -19,6 +20,9 @@ namespace App.Scripts.Infrastructure.DI
         [Header("Ship details")]
         public Transform ShipDetailMarkersContainer;
         public TMP_Text ShipDetailCountText;
+        
+        [Header("Health Pills")]
+        public Transform HealthPillMarkersContainer;
 
         [Header("UI")] 
         public Image PlayerHealthBarLevel;
@@ -31,8 +35,26 @@ namespace App.Scripts.Infrastructure.DI
             BindShipDetailFactory();
             BindShipDetailsCounter();
             BindShipDetailsSpawner();
+            BindHealthPillsSpawner();
+            BindHealthPillFactory();
             BindPlayerSpawner();
             BindPlayerInfoUI();
+        }
+
+        private void BindHealthPillFactory()
+        {
+            Container
+                .Bind<IHealthPillFactory>()
+                .To<HealthPillFactory>()
+                .AsSingle();
+        }
+
+        private void BindHealthPillsSpawner()
+        {
+            Container
+                .BindInterfacesTo<HealthPillsSpawner>()
+                .AsSingle()
+                .WithArguments(HealthPillMarkersContainer);
         }
 
         private void BindPlayerInfoUI()

@@ -13,7 +13,7 @@ namespace App.Scripts.Infrastructure.DI
 
         private void BindPlayerHealth()
         {
-            Container.Bind<PlayerHealth>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerHealth>().AsSingle();
         }
 
         private void BindPlayerMovement()
