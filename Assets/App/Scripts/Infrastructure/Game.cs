@@ -1,4 +1,6 @@
-﻿namespace App.Scripts.Infrastructure
+﻿using UnityEngine.SceneManagement;
+
+namespace App.Scripts.Infrastructure
 {
     public class Game
     {
@@ -13,6 +15,11 @@
         public void ToNextLevel(string nextScene)
         {
             _stateMachine.Enter<LoadLevelState, string>(nextScene);
+        }
+        
+        public void RestartLevel()
+        {
+            _stateMachine.Enter<LoadLevelState, string>(SceneManager.GetActiveScene().name);
         }
     }
 }

@@ -3,6 +3,7 @@ using App.Scripts.Players;
 using App.Scripts.ShipDetail;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace App.Scripts.Infrastructure.DI
@@ -18,6 +19,9 @@ namespace App.Scripts.Infrastructure.DI
         [Header("Ship details")]
         public Transform ShipDetailMarkersContainer;
         public TMP_Text ShipDetailCountText;
+
+        [Header("UI")] 
+        public Image PlayerHealthBarLevel;
         
         public override void InstallBindings()
         {
@@ -28,6 +32,15 @@ namespace App.Scripts.Infrastructure.DI
             BindShipDetailsCounter();
             BindShipDetailsSpawner();
             BindPlayerSpawner();
+            BindPlayerInfoUI();
+        }
+
+        private void BindPlayerInfoUI()
+        {
+            Container
+                .Bind<PlayerInfoUI>()
+                .AsSingle()
+                .WithArguments(PlayerHealthBarLevel);
         }
 
         private void BindPlayerSpawner()
