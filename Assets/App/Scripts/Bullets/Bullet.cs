@@ -32,6 +32,7 @@ namespace App.Scripts.Bullets
         {
             transform.position = from;
             _targetPosition = to;
+            transform.rotation = Quaternion.LookRotation(to - from);
             
             _isMoving = true;
             gameObject.SetActive(true);

@@ -6,9 +6,9 @@ namespace App.Scripts.Bullets
     public class BulletsPool
     {
         private readonly BulletFactory _bulletFactory;
-        private const int InitPoolSize = 20;
+        private const int InitPoolSize = 10;
         
-        private List<GameObject> _poolObjects;
+        private readonly List<GameObject> _poolObjects;
         
         public BulletsPool(BulletFactory bulletFactory)
         {
