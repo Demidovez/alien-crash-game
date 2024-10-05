@@ -18,7 +18,7 @@ namespace App.Scripts.Bullets
                 return;    
             }
 
-            if (_time >= LifeTime)
+            if (_time >= LifeTime || transform.position == _targetPosition)
             {
                 CompleteMove();
                 return;
@@ -48,7 +48,7 @@ namespace App.Scripts.Bullets
         private void OnTriggerEnter(Collider other)
         {
             CompleteMove();
-            Debug.Log("Bullet trigger");
+            Debug.Log("Bullet trigger " + other.gameObject);
         }
     }
 }
