@@ -1,4 +1,4 @@
-using App.Scripts.Camera;
+using App.Scripts.Cameras;
 using UnityEngine;
 using Zenject;
 

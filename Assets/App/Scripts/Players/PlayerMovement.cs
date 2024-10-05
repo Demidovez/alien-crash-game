@@ -1,4 +1,4 @@
-using App.Scripts.Camera;
+using App.Scripts.Cameras;
 using App.Scripts.InputActions;
 using UnityEngine;
 using Zenject;
@@ -21,6 +21,7 @@ namespace App.Scripts.Players
         private Transform _cameraTransform;
         private CharacterController _characterController;
         private InputActionsManager _inputActionsManager;
+        private PlayerShooting _playerShooting;
         private Vector3 _movement;
         private float _rotationX;
         private float _rotationY;
@@ -29,14 +30,17 @@ namespace App.Scripts.Players
         [Inject]
         public void Construct(
             CameraController cameraController, 
-            InputActionsManager inputActionsManager
+            InputActionsManager inputActionsManager,
+            PlayerShooting playerShooting
         )
         {
             _cameraTransform = cameraController.GetCameraTransform();
             _inputActionsManager = inputActionsManager;
+            _playerShooting = playerShooting;
 
             _inputActionsManager.OnInputtedRun += SetMoveInput;
             _inputActionsManager.OnInputtedJump += Jump;
+            _playerShooting.OnShootEvent += ApplyShootRotation;
         }
 
         private void Awake()
@@ -44,7 +48,7 @@ namespace App.Scripts.Players
             IsGrounded = true;
             _characterController = GetComponent<CharacterController>();
         }
-        
+
         private void Update()
         {
             ApplyGravity();
@@ -59,13 +63,14 @@ namespace App.Scripts.Players
         {
             _inputActionsManager.OnInputtedRun -= SetMoveInput;
             _inputActionsManager.OnInputtedJump -= Jump;
+            _playerShooting.OnShootEvent -= ApplyShootRotation;
         }
 
         private void SetMoveInput(Vector2 moveInput)
         {
             MoveInput = moveInput;
         }
-        
+
         private void ApplyGravity()
         {
             if (IsGrounded && _verticalVelocity < 0)
@@ -78,7 +83,7 @@ namespace App.Scripts.Players
                 _characterController.Move(Vector3.up * (_verticalVelocity * Time.deltaTime * _gravityForce));
             }
         }
-        
+
         private void ApplyRotation()
         {
             if (MoveInput == Vector2.zero)
@@ -88,8 +93,18 @@ namespace App.Scripts.Players
             
             Quaternion rotation = Quaternion.Euler(0f, _cameraTransform.eulerAngles.y, 0f);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, _rotationSpeed * Time.deltaTime);
-        } 
+        }
         
+        private void ApplyShootRotation()
+        {
+            if (MoveInput != Vector2.zero)
+            {
+                return;
+            }
+            
+            transform.rotation = Quaternion.Euler(0f, _cameraTransform.eulerAngles.y, 0f);
+        }
+
         private void ApplyMovement()
         {
             _movement = _cameraTransform.right * MoveInput.x + _cameraTransform.forward * MoveInput.y;

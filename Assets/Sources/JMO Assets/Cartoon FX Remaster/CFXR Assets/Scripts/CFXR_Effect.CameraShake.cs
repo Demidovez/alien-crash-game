@@ -42,8 +42,8 @@ namespace CartoonFX
 
 			//--------------------------------------------------------------------------------------------------------------------------------
 			// STATIC
-			// Use static methods to dispatch the Camera callbacks, to ensure that ScreenShake components are called in an order in PreRender,
-			// and in the _reverse_ order for PostRender, so that the final Camera position is the same as it is originally (allowing concurrent
+			// Use static methods to dispatch the Cameras callbacks, to ensure that ScreenShake components are called in an order in PreRender,
+			// and in the _reverse_ order for PostRender, so that the final Cameras position is the same as it is originally (allowing concurrent
 			// screen shake to be active)
 
 			static bool s_CallbackRegistered;
@@ -104,8 +104,8 @@ namespace CartoonFX
 						RenderPipelineManager.endCameraRendering += OnPostRenderCamera_Static_URP;
 					}
 #else
-						Camera.onPreRender += OnPreRenderCamera_Static;
-						Camera.onPostRender += OnPostRenderCamera_Static;
+						Cameras.onPreRender += OnPreRenderCamera_Static;
+						Cameras.onPostRender += OnPostRenderCamera_Static;
 #endif
 
 					s_CallbackRegistered = true;
@@ -136,8 +136,8 @@ namespace CartoonFX
 						RenderPipelineManager.endCameraRendering -= OnPostRenderCamera_Static_URP;
 					}
 #else
-						Camera.onPreRender -= OnPreRenderCamera_Static;
-						Camera.onPostRender -= OnPostRenderCamera_Static;
+						Cameras.onPreRender -= OnPreRenderCamera_Static;
+						Cameras.onPostRender -= OnPostRenderCamera_Static;
 #endif
 
 					s_CallbackRegistered = false;

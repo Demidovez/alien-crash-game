@@ -23,7 +23,7 @@ namespace Zenject.Tests.Bindings
 
         GameObject CameraPrefab
         {
-            get { return GetPrefab("Camera"); }
+            get { return GetPrefab("Cameras"); }
         }
 
         [UnityTest]
