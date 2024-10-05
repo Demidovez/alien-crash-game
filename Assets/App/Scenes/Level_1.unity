@@ -11379,9 +11379,7 @@ MonoBehaviour:
   SpawnPlayerPoint: {fileID: 29425655}
   EnemyMarkersContainer: {fileID: 278676419}
   ShipDetailMarkersContainer: {fileID: 896614976}
-  ShipDetailCountText: {fileID: 0}
   HealthPillMarkersContainer: {fileID: 928749706}
-  PlayerHealthBarLevel: {fileID: 0}
 --- !u!1001 &348220439
 PrefabInstance:
   m_ObjectHideFlags: 0

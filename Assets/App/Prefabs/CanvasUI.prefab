@@ -742,4 +742,5 @@ MonoBehaviour:
   HealthLevel: {fileID: 8951697699584769642}
   ShipDetails: {fileID: 4018998550083439525}
   WeaponAim: {fileID: 585676691257915073}
+  ShipDetailCountText: {fileID: 6763324017271301992}
   HealthBarLevel: {fileID: 5887660491524113063}

@@ -18,7 +18,6 @@ namespace App.Scripts.Infrastructure.DI
         
         [Header("Ship details")]
         public Transform ShipDetailMarkersContainer;
-        public TMP_Text ShipDetailCountText;
         
         [Header("Health Pills")]
         public Transform HealthPillMarkersContainer;
@@ -80,8 +79,7 @@ namespace App.Scripts.Infrastructure.DI
         {
             Container
                 .BindInterfacesAndSelfTo<ShipDetailCounter>()
-                .AsSingle()
-                .WithArguments(ShipDetailCountText);
+                .AsSingle();
         }
 
         private void BindEnemyFactory()

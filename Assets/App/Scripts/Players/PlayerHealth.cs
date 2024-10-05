@@ -51,7 +51,7 @@ namespace App.Scripts.Players
             _health += value;
             _health = Mathf.Min(100, _health);
             
-            _game.UpdateHealthBar(_health); // TODO: не нравится
+            _game.UpdateHealthUI(_health);
 
             if (_health <= 0)
             {

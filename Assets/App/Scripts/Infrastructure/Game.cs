@@ -15,9 +15,14 @@ namespace App.Scripts.Infrastructure
             stateMachine.Enter<BootstrapState>();
         }
 
-        public void UpdateHealthBar(float health)
+        public void UpdateHealthUI(float health)
         {
             _uiManager.UpdateHealth(health);
+        }
+        
+        public void UpdateShipDetailsUI(int countCollected, int countAllDetails)
+        {
+            _uiManager.UpdateShipDetailsCounter(countCollected, countAllDetails);
         }
 
         public void ToNextLevel(string nextScene)

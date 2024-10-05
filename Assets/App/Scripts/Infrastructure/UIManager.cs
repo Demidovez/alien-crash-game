@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace App.Scripts.Infrastructure
@@ -8,7 +9,7 @@ namespace App.Scripts.Infrastructure
         public Transform HealthLevel;
         public Transform ShipDetails;
         public Transform WeaponAim;
-        
+        public TMP_Text ShipDetailCountText;
         public Image HealthBarLevel;
 
         private void Awake()
@@ -37,6 +38,11 @@ namespace App.Scripts.Infrastructure
         {
             float newPositionX = - HealthBarLevel.rectTransform.sizeDelta.x * (1 - (value / 100f));
             HealthBarLevel.rectTransform.localPosition = new Vector3(newPositionX, 0f, 0f);
+        }
+        
+        public void UpdateShipDetailsCounter(int countCollected, int countAllDetails)
+        {
+            ShipDetailCountText.text = $"{countCollected} / {countAllDetails}";
         }
     }
 }
