@@ -8,12 +8,12 @@ namespace App.Scripts.ShipDetail
     {
         private int _countAllDetails;
         private int _countCollected;
-        private readonly TMP_Text _shipDetailCountText;
+        // private readonly TMP_Text _shipDetailCountText;
         private readonly PopupManager _popupManager;
 
         public ShipDetailCounter(TMP_Text shipDetailCountText, PopupManager popupManager)
         {
-            _shipDetailCountText = shipDetailCountText;
+            // _shipDetailCountText = shipDetailCountText;
             _popupManager = popupManager;
 
             ShipDetail.OnCollectedShipDetail += CollectedDetail;
@@ -44,7 +44,7 @@ namespace App.Scripts.ShipDetail
 
         private void UpdateTextCounter()
         {
-            _shipDetailCountText.text = $"{_countCollected} / {_countAllDetails}";
+            // _shipDetailCountText.text = $"{_countCollected} / {_countAllDetails}";
         }
     }
 }

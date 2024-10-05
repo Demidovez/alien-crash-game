@@ -11,20 +11,20 @@ namespace App.Scripts.Players
     {
         public Action OnTookDamageEvent;
         public Action OnDeadEvent;
-        
-        private readonly PlayerInfoUI _playerInfoUI;
+
+        private readonly Game _game;
         private readonly PopupManager _popupManager;
         private readonly AsyncProcessor _asyncProcessor;
         private const float DeathDelay = 2f;
         private float _health = 100;
 
         public PlayerHealth(
-            PlayerInfoUI playerInfoUI, 
+            Game game,
             PopupManager popupManager,
             AsyncProcessor asyncProcessor
         )
         {
-            _playerInfoUI = playerInfoUI;
+            _game = game;
             _popupManager = popupManager;
             _asyncProcessor = asyncProcessor;
 
@@ -51,7 +51,7 @@ namespace App.Scripts.Players
             _health += value;
             _health = Mathf.Min(100, _health);
             
-            _playerInfoUI.UpdateHealth(_health);
+            _game.UpdateHealthBar(_health); // TODO: не нравится
 
             if (_health <= 0)
             {

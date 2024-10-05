@@ -4,7 +4,6 @@ using App.Scripts.Players;
 using App.Scripts.ShipDetail;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace App.Scripts.Infrastructure.DI
@@ -23,9 +22,6 @@ namespace App.Scripts.Infrastructure.DI
         
         [Header("Health Pills")]
         public Transform HealthPillMarkersContainer;
-
-        [Header("UI")] 
-        public Image PlayerHealthBarLevel;
         
         public override void InstallBindings()
         {
@@ -38,7 +34,6 @@ namespace App.Scripts.Infrastructure.DI
             BindHealthPillsSpawner();
             BindHealthPillFactory();
             BindPlayerSpawner();
-            BindPlayerInfoUI();
         }
 
         private void BindHealthPillFactory()
@@ -55,14 +50,6 @@ namespace App.Scripts.Infrastructure.DI
                 .BindInterfacesTo<HealthPillsSpawner>()
                 .AsSingle()
                 .WithArguments(HealthPillMarkersContainer);
-        }
-
-        private void BindPlayerInfoUI()
-        {
-            Container
-                .Bind<PlayerInfoUI>()
-                .AsSingle()
-                .WithArguments(PlayerHealthBarLevel);
         }
 
         private void BindPlayerSpawner()
