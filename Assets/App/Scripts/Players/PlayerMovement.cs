@@ -9,6 +9,7 @@ namespace App.Scripts.Players
     public class PlayerMovement : MonoBehaviour
     {
         public bool IsGrounded { get; private set; }
+        public bool IsMoving { get; private set; }
         public Vector2 MoveInput { get; private set; }
         
         [SerializeField] private float _speed;
@@ -51,6 +52,7 @@ namespace App.Scripts.Players
             ApplyMovement();
 
             IsGrounded = _characterController.isGrounded;
+            IsMoving = _characterController.velocity != Vector3.zero;
         }
 
         private void OnDestroy()

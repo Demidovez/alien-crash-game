@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using App.Scripts.Infrastructure;
+using UnityEngine;
+using Zenject;
 
 namespace App.Scripts.UI
 {
@@ -6,6 +8,15 @@ namespace App.Scripts.UI
     {
         [SerializeField] private GameObject Background;
         [SerializeField] private GameObject CompleteCollectDetailsPopup;
+        [SerializeField] private GameObject GameOverPopup;
+
+        private Game _game; 
+
+        [Inject]
+        public void Construct(Game game)
+        {
+            _game = game;
+        }
         
         public void ShowCompleteCollectDetails()
         {
@@ -21,6 +32,24 @@ namespace App.Scripts.UI
             
             Background.SetActive(false);
             CompleteCollectDetailsPopup.SetActive(false);
+        }
+        
+        public void ShowGameOver()
+        {
+            Time.timeScale = 0;
+            
+            Background.SetActive(true);
+            GameOverPopup.SetActive(true);
+        }
+        
+        public void HideGameOver()
+        {
+            Time.timeScale = 1;
+            
+            Background.SetActive(false);
+            GameOverPopup.SetActive(false);
+            
+            _game.RestartLevel();
         }
     }
 }

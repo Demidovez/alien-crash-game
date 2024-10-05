@@ -9,11 +9,17 @@ namespace App.Scripts.Infrastructure.DI
         {
             BindPlayerMovement();
             BindPlayerHealth();
+            BindPlayerShooting();
+        }
+
+        private void BindPlayerShooting()
+        {
+            Container.BindInterfacesAndSelfTo<PlayerShooting>().AsSingle();
         }
 
         private void BindPlayerHealth()
         {
-            Container.Bind<PlayerHealth>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerHealth>().AsSingle();
         }
 
         private void BindPlayerMovement()

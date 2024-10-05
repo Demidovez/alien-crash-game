@@ -8,6 +8,8 @@ namespace App.Scripts.Enemies
     {
         private readonly EnemyNavigation _enemyNavigation;
         private readonly EnemyChaseManager _enemyChaseManager;
+        private const float DamageValue = 10f;
+        
         public bool IsAttacking { get; private set; }
 
         public EnemyAttack(EnemyNavigation enemyNavigation, EnemyChaseManager enemyChaseManager)
@@ -32,7 +34,7 @@ namespace App.Scripts.Enemies
             
             if (target.TryGetComponent(out IDamageable damageable))
             {
-                damageable.Damage(10);
+                damageable.Damage(DamageValue);
             }
         }
     }

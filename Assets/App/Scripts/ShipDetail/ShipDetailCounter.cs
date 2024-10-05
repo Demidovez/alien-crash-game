@@ -1,6 +1,6 @@
 ﻿using System;
+using App.Scripts.Infrastructure;
 using App.Scripts.UI;
-using TMPro;
 
 namespace App.Scripts.ShipDetail
 {
@@ -8,12 +8,12 @@ namespace App.Scripts.ShipDetail
     {
         private int _countAllDetails;
         private int _countCollected;
-        private readonly TMP_Text _shipDetailCountText;
+        private readonly Game _game;
         private readonly PopupManager _popupManager;
 
-        public ShipDetailCounter(TMP_Text shipDetailCountText, PopupManager popupManager)
+        public ShipDetailCounter(Game game, PopupManager popupManager)
         {
-            _shipDetailCountText = shipDetailCountText;
+            _game = game;
             _popupManager = popupManager;
 
             ShipDetail.OnCollectedShipDetail += CollectedDetail;
@@ -27,24 +27,19 @@ namespace App.Scripts.ShipDetail
         public void SetCountAll(int value)
         {
             _countAllDetails = value;
-            UpdateTextCounter();
+            _game.UpdateShipDetailsUI(0, _countAllDetails);
         }
 
         private void CollectedDetail()
         {
             _countCollected++;
             
-            UpdateTextCounter();
+            _game.UpdateShipDetailsUI(_countCollected, _countAllDetails);
 
             if (_countAllDetails == _countCollected)
             {
                 _popupManager.ShowCompleteCollectDetails();
             }
-        }
-
-        private void UpdateTextCounter()
-        {
-            _shipDetailCountText.text = $"{_countCollected} / {_countAllDetails}";
         }
     }
 }

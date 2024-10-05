@@ -1,4 +1,5 @@
 using App.Scripts.Enemies;
+using App.Scripts.HealthPills;
 using App.Scripts.Players;
 using App.Scripts.ShipDetail;
 using TMPro;
@@ -17,7 +18,9 @@ namespace App.Scripts.Infrastructure.DI
         
         [Header("Ship details")]
         public Transform ShipDetailMarkersContainer;
-        public TMP_Text ShipDetailCountText;
+        
+        [Header("Health Pills")]
+        public Transform HealthPillMarkersContainer;
         
         public override void InstallBindings()
         {
@@ -27,7 +30,25 @@ namespace App.Scripts.Infrastructure.DI
             BindShipDetailFactory();
             BindShipDetailsCounter();
             BindShipDetailsSpawner();
+            BindHealthPillsSpawner();
+            BindHealthPillFactory();
             BindPlayerSpawner();
+        }
+
+        private void BindHealthPillFactory()
+        {
+            Container
+                .Bind<IHealthPillFactory>()
+                .To<HealthPillFactory>()
+                .AsSingle();
+        }
+
+        private void BindHealthPillsSpawner()
+        {
+            Container
+                .BindInterfacesTo<HealthPillsSpawner>()
+                .AsSingle()
+                .WithArguments(HealthPillMarkersContainer);
         }
 
         private void BindPlayerSpawner()
@@ -58,8 +79,7 @@ namespace App.Scripts.Infrastructure.DI
         {
             Container
                 .BindInterfacesAndSelfTo<ShipDetailCounter>()
-                .AsSingle()
-                .WithArguments(ShipDetailCountText);
+                .AsSingle();
         }
 
         private void BindEnemyFactory()
