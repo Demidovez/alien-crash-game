@@ -52,6 +52,11 @@ namespace App.Scripts.Bullets
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other.gameObject.layer == LayerMask.NameToLayer("ShipDetail"))
+            {
+                return;
+            }
+            
             CompleteMove();
             
             if (other.TryGetComponent(out IDamageableWithAttacker damageable))

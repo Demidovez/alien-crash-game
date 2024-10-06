@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -4602750693901995749}
   - component: {fileID: 8549033836816627865}
   - component: {fileID: -3075630366233263816}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpaceShipCrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 3215158324556176928}
   - component: {fileID: 894591621970243979}
   - component: {fileID: 9123827848908105339}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpaceShipCrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 5755766316570143041}
   - component: {fileID: 4252086044706563595}
   - component: {fileID: 7078940088822077414}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Crate
   m_TagString: Untagged
   m_Icon: {fileID: 0}

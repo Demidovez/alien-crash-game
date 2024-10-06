@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 207854150637777715}
   - component: {fileID: 6206288311635816944}
   - component: {fileID: 6725213258362253857}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpaceShipBarrelBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 1930006144240930451}
   - component: {fileID: 8561684303517306413}
   - component: {fileID: -5757428968141447363}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpaceShipBarrelBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4464093455367374972}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: -8196003453824032473}
   - component: {fileID: 835290236946401258}
   - component: {fileID: -1179652350984538796}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpaceShipPixelBox3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 477879531212237782}
   - component: {fileID: 4043422984568719897}
   - component: {fileID: 563013660665149831}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpaceShipPixelBox3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1922277951013397725}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Down_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6087300547938962385}
   - component: {fileID: 1810272029567100740}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pixel_box_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6535485590063873219}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 739450911803383460}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pixel_box_03_Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2767969016201784269}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UP_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}

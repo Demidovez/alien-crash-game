@@ -60,7 +60,7 @@ namespace App.Scripts.Players
                 OnDeadEvent?.Invoke();
                 _asyncProcessor.StartCoroutine(Death());
             }
-            else
+            else if(value < 0)
             {
                 OnTookDamageEvent?.Invoke();
             }

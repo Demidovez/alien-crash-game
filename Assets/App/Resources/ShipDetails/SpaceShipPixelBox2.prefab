@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4268437947683757265}
   - component: {fileID: 1575053623731031743}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pixel_box_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4600864649362205289}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rotation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8178010792507297852}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 5595346516719457891}
   - component: {fileID: -6969674689119251850}
   - component: {fileID: -7710348701308676726}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpaceShipPixelBox2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 6088145842774146050}
   - component: {fileID: 1621598379813521393}
   - component: {fileID: 4243447883769940204}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpaceShipPixelBox2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2938786058822106060}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Down_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,7 +355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 599032290216649328}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rotation_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8662914397558226538}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3465834649550468362}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pixel_box_02_Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,7 +452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1693696692553163999}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UP_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}

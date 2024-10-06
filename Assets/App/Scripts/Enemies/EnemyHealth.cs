@@ -14,12 +14,17 @@ namespace App.Scripts.Enemies
         public bool IsConcussion => _health <= 0;
         
         private readonly AsyncProcessor _asyncProcessor;
+        private readonly Transform _concussionEffectObj;
         private const float ConcussionDelay = 20f;
         private float _health = 100;
 
-        public EnemyHealth(AsyncProcessor asyncProcessor)
+        public EnemyHealth(
+            AsyncProcessor asyncProcessor,
+            Transform concussionEffectObj
+        )
         {
             _asyncProcessor = asyncProcessor;
+            _concussionEffectObj = concussionEffectObj;
         }
 
         public void TryTakeDamage(float value, Transform attacker)
@@ -51,8 +56,11 @@ namespace App.Scripts.Enemies
         
         IEnumerator Concussion()
         {
+            _concussionEffectObj.gameObject.SetActive(true);
             yield return new WaitForSeconds(ConcussionDelay);
             _health = 100f;
+            _concussionEffectObj.gameObject.SetActive(false);
+            
             OnOutFromConcussionEvent?.Invoke();
         }
     }

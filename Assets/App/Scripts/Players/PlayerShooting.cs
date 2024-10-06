@@ -55,8 +55,10 @@ namespace App.Scripts.Players
         {
             Vector3 startRay = _weaponAimPoint.position;
             Vector3 direction = _weaponAimPoint.forward;
+
+            int layerMask = ~(1 << LayerMask.NameToLayer("ShipDetail"));
             
-            if (Physics.Raycast(startRay, direction, out RaycastHit hitInfo, 1000))
+            if (Physics.Raycast(startRay, direction, out RaycastHit hitInfo, 1000, layerMask))
             {
                 return hitInfo.point;
             }
