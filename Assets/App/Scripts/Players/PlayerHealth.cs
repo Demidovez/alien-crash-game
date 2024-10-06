@@ -11,6 +11,8 @@ namespace App.Scripts.Players
     {
         public Action OnTookDamageEvent;
         public Action OnDeadEvent;
+        
+        public bool IsAlive => _health > 0;
 
         private readonly Game _game;
         private readonly PopupManager _popupManager;
@@ -58,7 +60,7 @@ namespace App.Scripts.Players
                 OnDeadEvent?.Invoke();
                 _asyncProcessor.StartCoroutine(Death());
             }
-            else
+            else if(value < 0)
             {
                 OnTookDamageEvent?.Invoke();
             }

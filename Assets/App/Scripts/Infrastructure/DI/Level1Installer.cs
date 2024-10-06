@@ -1,3 +1,4 @@
+using App.Scripts.Bullets;
 using App.Scripts.Enemies;
 using App.Scripts.HealthPills;
 using App.Scripts.Players;
@@ -33,6 +34,23 @@ namespace App.Scripts.Infrastructure.DI
             BindHealthPillsSpawner();
             BindHealthPillFactory();
             BindPlayerSpawner();
+            BindBulletFactory();
+            BindBulletsPool();
+        }
+
+        private void BindBulletFactory()
+        {
+            Container
+                .Bind<BulletFactory>()
+                .AsSingle();
+        }
+
+        private void BindBulletsPool()
+        {
+            Container
+                .Bind<BulletsPool>()
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindHealthPillFactory()

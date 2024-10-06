@@ -37,7 +37,7 @@ namespace Kino
             #if UNITY_5_6_OR_NEWER
             if (bloom.GetComponent<Camera>().allowHDR)
             #else
-            if (bloom.GetComponent<Camera>().hdr)
+            if (bloom.GetComponent<Cameras>().hdr)
             #endif
             {
                 _rangeX = 6;

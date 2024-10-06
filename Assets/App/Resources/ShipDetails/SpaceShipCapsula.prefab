@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -5734595154169019743}
   - component: {fileID: 5871440914749540881}
   - component: {fileID: -5082126506924100085}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpaceShipCapsula
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 6270878170825068947}
   - component: {fileID: 68015302601280990}
   - component: {fileID: 5485506523891115008}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpaceShipCapsula
   m_TagString: Untagged
   m_Icon: {fileID: 0}

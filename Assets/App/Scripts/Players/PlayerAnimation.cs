@@ -10,6 +10,7 @@ namespace App.Scripts.Players
 
         private PlayerMovement _playerMovement;
         private PlayerHealth _playerHealth;
+        private PlayerShooting _playerShooting;
         private Animator _animator;
         private Vector2 _targetAnimPosition;
         private Vector2 _currentBlendAnim;
@@ -18,21 +19,25 @@ namespace App.Scripts.Players
         private static readonly int Horizontal = Animator.StringToHash("Horizontal");
         private static readonly int Vertical = Animator.StringToHash("Vertical");
         private static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
-        private static readonly int UnderAttackTrigger = Animator.StringToHash("UnderAttackTrigger");
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
+        private static readonly int UnderAttackTrigger = Animator.StringToHash("UnderAttackTrigger");
         private static readonly int DeadTrigger = Animator.StringToHash("DeadTrigger");
+        private static readonly int ShootTrigger = Animator.StringToHash("ShootTrigger");
 
         [Inject]
         public void Construct(
             PlayerMovement playerMovement,
-            PlayerHealth playerHealth
+            PlayerHealth playerHealth,
+            PlayerShooting playerShooting
         )
         {
             _playerMovement = playerMovement;
             _playerHealth = playerHealth;
+            _playerShooting = playerShooting;
             
             _playerHealth.OnTookDamageEvent += OnTookDamage;
             _playerHealth.OnDeadEvent += OnDead;
+            _playerShooting.OnShootEvent += OnShoot;
         }
 
         private void Start()
@@ -56,6 +61,12 @@ namespace App.Scripts.Players
         {
             _playerHealth.OnTookDamageEvent -= OnTookDamage;
             _playerHealth.OnDeadEvent -= OnDead;
+            _playerShooting.OnShootEvent -= OnShoot;
+        }
+
+        private void OnShoot()
+        {
+            _animator.SetTrigger(ShootTrigger);
         }
 
         private void OnTookDamage()

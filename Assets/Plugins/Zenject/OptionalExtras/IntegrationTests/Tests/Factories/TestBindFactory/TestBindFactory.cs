@@ -16,7 +16,7 @@ namespace Zenject.Tests.Factories
 
         GameObject CameraPrefab
         {
-            get { return FixtureUtil.GetPrefab("TestBindFactory/Camera"); }
+            get { return FixtureUtil.GetPrefab("TestBindFactory/Cameras"); }
         }
 
         GameObject FooSubContainerPrefab

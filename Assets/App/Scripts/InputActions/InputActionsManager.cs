@@ -4,24 +4,33 @@ using UnityEngine.InputSystem;
 
 namespace App.Scripts.InputActions
 {
-    public class InputActionsManager
+    public class InputActionsManager: IDisposable
     {
-        private InputAction _actionRun;
-        private InputAction _actionJump;
+        private readonly InputAction _actionRun;
+        private readonly InputAction _actionJump;
+        private readonly InputAction _actionShoot;
 
         public event Action<Vector2> OnInputtedRun; 
         public event Action OnInputtedJump;
+        public event Action OnInputtedShoot;
 
         public InputActionsManager(PlayerInput playerInput)
         {
             _actionRun = playerInput.actions["Run"];
             _actionJump = playerInput.actions["Jump"];
+            _actionShoot = playerInput.actions["Shoot"];
             
             _actionRun.performed += Run;
             _actionRun.canceled += Run;
             _actionJump.performed += Jump;
+            _actionShoot.performed += Shoot;
         }
-        
+
+        private void Shoot(InputAction.CallbackContext obj)
+        {
+            OnInputtedShoot?.Invoke();
+        }
+
         private void Run(InputAction.CallbackContext obj)
         {
             OnInputtedRun?.Invoke(obj.ReadValue<Vector2>());
@@ -32,12 +41,12 @@ namespace App.Scripts.InputActions
             OnInputtedJump?.Invoke();
         }
 
-        // TODO: а где отписываться?
-        private void OnDisable()
+        public void Dispose()
         {
             _actionRun.performed -= Run;
             _actionRun.canceled -= Run;
             _actionJump.performed -= Jump;
+            _actionShoot.performed -= Shoot;
         }
     }
 }

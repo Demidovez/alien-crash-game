@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6573481623213059992}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6540436199770931438}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1636307902429168598}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Left_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1385875762080809449}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1992027141810518389}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Down_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3714218548011647363}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1836048513157974077}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UP_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1822991449686552931}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Right_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9097642980573065723}
   - component: {fileID: 1165112658538978631}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pixel_box_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9090155654698184193}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pixel_box_01_Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: -6465728817355976954}
   - component: {fileID: 2247101608369988409}
   - component: {fileID: -2380910242931365202}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpaceShipPixelBox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 277423377111502190}
   - component: {fileID: 8557293559793624316}
   - component: {fileID: 4139520608642025458}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpaceShipPixelBox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

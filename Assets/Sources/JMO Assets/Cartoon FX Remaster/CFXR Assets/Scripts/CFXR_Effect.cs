@@ -782,7 +782,7 @@ namespace CartoonFX
 			GlobalOptionsGUI();
 
 #if DISABLE_CAMERA_SHAKE
-			EditorGUILayout.HelpBox("Camera Shake has been globally disabled in the code.\nThe properties remain to avoid data loss but the shaking won't be applied for any effect.", MessageType.Info);
+			EditorGUILayout.HelpBox("Cameras Shake has been globally disabled in the code.\nThe properties remain to avoid data loss but the shaking won't be applied for any effect.", MessageType.Info);
 #endif
 
 			base.OnInspectorGUI();
@@ -811,7 +811,7 @@ namespace CartoonFX
 				{
 					shakeEditorPreview = EditorPrefs.GetBool("CFXR CameraShake EditorPreview", true);
 				}
-				bool shakePreview = EditorGUILayout.Toggle("Camera Shake", shakeEditorPreview.Value);
+				bool shakePreview = EditorGUILayout.Toggle("Cameras Shake", shakeEditorPreview.Value);
 				if (shakePreview != shakeEditorPreview.Value)
 				{
 					shakeEditorPreview = shakePreview;

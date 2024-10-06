@@ -8,6 +8,10 @@ namespace App.Scripts.Infrastructure.DI
 {
     public class EnemyInstaller : MonoInstaller
     {
+        [Header("Health")] 
+        public Transform ConcussionEffect;
+        
+        [Header("Movement")]
         public float MinMoveSpeed = 0.75f;
         public float MaxMoveSpeed = 1.5f;
         public float ChaseSpeed = 5f;
@@ -20,8 +24,14 @@ namespace App.Scripts.Infrastructure.DI
             BindEnemyAttack();
             BindEnemyAnimator();
             BindEnemyAnimation();
+            BindEnemyHealth();
             BindEnemyNavigation();
             BindEnemyNavMeshAgent();
+        }
+
+        private void BindEnemyHealth()
+        {
+            Container.Bind<EnemyHealth>().AsSingle().WithArguments(ConcussionEffect);
         }
 
         private void BindEnemy()

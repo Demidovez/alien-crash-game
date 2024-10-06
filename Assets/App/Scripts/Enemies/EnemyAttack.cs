@@ -1,4 +1,4 @@
-﻿using App.Scripts.Players;
+﻿using App.Scripts.Common;
 using UnityEngine;
 using Zenject;
 

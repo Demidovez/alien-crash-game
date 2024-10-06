@@ -9139,6 +9139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8494d49c903f4d71bc68007a682f6bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponShootPosition: {fileID: 5516592229597615346}
 --- !u!1 &8878532307725797463
 GameObject:
   m_ObjectHideFlags: 0
@@ -9535,6 +9536,12 @@ PrefabInstance:
 --- !u!4 &1711968265689148550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 579545991206157009, guid: 98ac7c8948e022e4d83a0f153daa25e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2290313589124011607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5516592229597615346 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6000496148645937829, guid: 98ac7c8948e022e4d83a0f153daa25e9,
     type: 3}
   m_PrefabInstance: {fileID: 2290313589124011607}
   m_PrefabAsset: {fileID: 0}

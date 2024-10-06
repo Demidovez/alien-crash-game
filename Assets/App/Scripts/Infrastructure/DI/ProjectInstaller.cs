@@ -1,4 +1,4 @@
-using App.Scripts.Camera;
+using App.Scripts.Cameras;
 using App.Scripts.InputActions;
 using App.Scripts.UI;
 using UnityEngine;
@@ -72,7 +72,7 @@ namespace App.Scripts.Infrastructure.DI
 
         private void BindInputManager()
         {
-            Container.Bind<InputActionsManager>()
+            Container.BindInterfacesAndSelfTo<InputActionsManager>()
                 .AsSingle()
                 .WithArguments(PlayerInput)
                 .NonLazy();

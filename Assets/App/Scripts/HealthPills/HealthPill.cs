@@ -15,7 +15,7 @@ namespace App.Scripts.HealthPills
             if (Helper.ContainsLayer(other.gameObject.layer, _layerMaskAllowedEntities))
             {
                 OnCollectedHealthPill?.Invoke();
-                Destroy(gameObject.transform.parent.gameObject);
+                Destroy(gameObject.transform.parent.parent.gameObject);
             }
         }
     }

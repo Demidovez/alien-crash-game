@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7329284472635906585}
   - component: {fileID: -3145641785417189237}
   - component: {fileID: -356175373518385319}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpaceShipBarrelRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 2530122202204577716}
   - component: {fileID: 3120829658804921952}
   - component: {fileID: 8407787032392762076}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpaceShipBarrelRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
