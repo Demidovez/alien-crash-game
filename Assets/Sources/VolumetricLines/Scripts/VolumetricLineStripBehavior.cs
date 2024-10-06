@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace VolumetricLines
+namespace Sources.VolumetricLines.Scripts
 {
 	/// <summary>
 	/// Render a line strip of volumetric lines

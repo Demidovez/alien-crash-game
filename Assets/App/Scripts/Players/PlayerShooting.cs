@@ -9,7 +9,8 @@ namespace App.Scripts.Players
     public class PlayerShooting : IDisposable
     {
         public Action OnShootEvent;
-        
+
+        private readonly Player _player;
         private readonly PlayerHealth _playerHealth;
         private readonly InputActionsManager _inputActionsManager;
         private readonly BulletsPool _bulletsPool;
@@ -17,6 +18,7 @@ namespace App.Scripts.Players
         private readonly Transform _weaponAimPoint;
 
         public PlayerShooting(
+            Player player, 
             PlayerHealth playerHealth, 
             InputActionsManager inputActionsManager,
             BulletsPool bulletsPool,
@@ -24,6 +26,7 @@ namespace App.Scripts.Players
             CameraController cameraController
         )
         {
+            _player = player;
             _playerHealth = playerHealth;
             _inputActionsManager = inputActionsManager;
             _bulletsPool = bulletsPool;
@@ -43,7 +46,7 @@ namespace App.Scripts.Players
             Vector3 shootTargetPosition = GetTargetPosition();
 
             Bullet bullet = _bulletsPool.GetBullet();
-            bullet.MoveFromTo(_weaponShootPoint.position, shootTargetPosition);
+            bullet.MoveFromTo(_player.transform, _weaponShootPoint.position, shootTargetPosition);
                 
             OnShootEvent?.Invoke();
         }

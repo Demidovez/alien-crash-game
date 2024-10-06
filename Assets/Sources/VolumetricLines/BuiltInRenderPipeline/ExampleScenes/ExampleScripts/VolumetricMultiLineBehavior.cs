@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Sources.VolumetricLines.Scripts;
+using UnityEngine;
 
-namespace VolumetricLines
+namespace Sources.VolumetricLines.BuiltInRenderPipeline.ExampleScenes.ExampleScripts
 {
 	/// <summary>
 	/// Render a line strip consisting of multiple VolumetricLineBehavior pieces stitched together

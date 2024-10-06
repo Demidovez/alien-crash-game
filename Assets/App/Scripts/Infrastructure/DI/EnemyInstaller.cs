@@ -20,8 +20,14 @@ namespace App.Scripts.Infrastructure.DI
             BindEnemyAttack();
             BindEnemyAnimator();
             BindEnemyAnimation();
+            BindEnemyHealth();
             BindEnemyNavigation();
             BindEnemyNavMeshAgent();
+        }
+
+        private void BindEnemyHealth()
+        {
+            Container.Bind<EnemyHealth>().AsSingle();
         }
 
         private void BindEnemy()

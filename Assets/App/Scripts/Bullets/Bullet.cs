@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using App.Scripts.Common;
+using UnityEngine;
 
 namespace App.Scripts.Bullets
 {
@@ -6,8 +7,10 @@ namespace App.Scripts.Bullets
     {
         private const float Speed = 50f;
         private const float LifeTime = 5f;
-        
-        private Vector3 _targetPosition;
+        private const float DamageValue = 30f;
+
+        private Transform _attacker;
+        private Vector3 _direction;
         private bool _isMoving;
         private float _time;
 
@@ -18,20 +21,22 @@ namespace App.Scripts.Bullets
                 return;    
             }
 
-            if (_time >= LifeTime || transform.position == _targetPosition)
+            if (_time >= LifeTime)
             {
                 CompleteMove();
                 return;
             }
             
-            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, Speed * Time.deltaTime);
+            transform.position += _direction * (Speed * Time.deltaTime);
             _time += Time.deltaTime;
         }
 
-        public void MoveFromTo(Vector3 from, Vector3 to)
+        public void MoveFromTo(Transform attacker, Vector3 from, Vector3 to)
         {
+            _attacker = attacker;
+            _direction = (to - from).normalized;
+
             transform.position = from;
-            _targetPosition = to;
             transform.rotation = Quaternion.LookRotation(to - from);
             
             _isMoving = true;
@@ -48,7 +53,11 @@ namespace App.Scripts.Bullets
         private void OnTriggerEnter(Collider other)
         {
             CompleteMove();
-            Debug.Log("Bullet trigger " + other.gameObject);
+            
+            if (other.TryGetComponent(out IDamageableWithAttacker damageable))
+            {
+                damageable.Damage(DamageValue, _attacker);
+            }
         }
     }
 }

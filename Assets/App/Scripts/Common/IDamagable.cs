@@ -1,4 +1,4 @@
-﻿namespace App.Scripts.Players
+﻿namespace App.Scripts.Common
 {
     public interface IDamageable
     {

@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace VolumetricLines
+namespace Sources.VolumetricLines.Scripts
 {
 	public static class VolumetricLineVertexData
 	{

@@ -10,9 +10,15 @@ namespace App.Scripts.Infrastructure.DI
         
         public override void InstallBindings()
         {
+            BindPlayer();
             BindPlayerMovement();
             BindPlayerHealth();
             BindPlayerShooting();
+        }
+
+        private void BindPlayer()
+        {
+            Container.Bind<Player>().FromComponentInHierarchy().AsSingle();
         }
 
         private void BindPlayerShooting()

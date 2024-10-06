@@ -1,18 +1,26 @@
-﻿using App.Scripts.Tools.WayPoints;
+﻿using System;
+using System.Collections;
+using App.Scripts.Infrastructure;
+using App.Scripts.Tools.WayPoints;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace App.Scripts.Enemies
 {
-    public class EnemyNavigation: IInitializable, ITickable
+    public class EnemyNavigation: IInitializable, ITickable, IDisposable
     {
         public bool IsReachedDestination { get; private set; }
         public bool IsMoving { get; private set; }
         public bool IsRunning { get; private set; }
         public Transform CurrentTransform => _navMeshAgent.transform;
 
+        private const float DelayToSetTarget = 1.5f;
+        
         private readonly NavMeshAgent _navMeshAgent;
+        private readonly EnemyHealth _enemyHealth;
+        private readonly AsyncProcessor _asyncProcessor;
         private readonly float _chaseSpeed;
         private readonly float _speed;
 
@@ -23,20 +31,27 @@ namespace App.Scripts.Enemies
 
         public EnemyNavigation(
             NavMeshAgent navMeshAgent, 
+            EnemyHealth enemyHealth,
+            AsyncProcessor asyncProcessor,
             float minMoveSpeed, 
             float maxMoveSpeed, 
             float chaseSpeed
         )
         {
             _navMeshAgent = navMeshAgent;
-            
+            _enemyHealth = enemyHealth;
+            _asyncProcessor = asyncProcessor;
+
             _chaseSpeed = chaseSpeed;
             _speed = Random.Range(minMoveSpeed, maxMoveSpeed);
             _direction = Random.Range(0, 2);
             
             _navMeshAgent.speed = _speed;
+            _enemyHealth.OnTookDamageEvent += OnTookDamage;
+            _enemyHealth.OnConcussionEvent += OnConcussion;
+            _enemyHealth.OnOutFromConcussionEvent += OnOutFromConcussion;
         }
-        
+
         public void Initialize()
         {
             if (_currentWayPoint)
@@ -47,10 +62,13 @@ namespace App.Scripts.Enemies
 
         public void Tick()
         {
-            CorrectWayNavigation();
-            CorrectTargetNavigation();
-            CorrectRotation();
-            CheckReachedDestination();
+            if (!_enemyHealth.IsConcussion)
+            {
+                CorrectWayNavigation();
+                CorrectTargetNavigation();
+                CorrectRotation();
+                CheckReachedDestination();  
+            }
             
             IsMoving = _navMeshAgent.velocity.magnitude >= 1f;
             IsRunning = IsMoving && Mathf.Approximately(_navMeshAgent.speed, _chaseSpeed);
@@ -128,20 +146,20 @@ namespace App.Scripts.Enemies
         {
             _currentWayPoint = wayPoint;
         }
-        
-        public void SetDirection(int direction)
-        {
-            _direction = direction;
-        }
-        
-        public void SetDestination(WayPoint wayPoint)
+
+        private void SetDestination(WayPoint wayPoint)
         {
             _navMeshAgent.SetDestination(wayPoint.GetPosition());
             IsReachedDestination = false;
         }
-        
+
         public void SetForceDestinationTarget(Transform target)
         {
+            if (_enemyHealth.IsConcussion)
+            {
+                return;
+            }
+            
             _forceDestinationTarget = target;
             
             if (target)
@@ -155,6 +173,39 @@ namespace App.Scripts.Enemies
                 _navMeshAgent.SetDestination(_defaultDestination);
                 _navMeshAgent.speed = _speed;
             }
+        }
+
+        private void OnTookDamage(Transform attacker)
+        {
+            _navMeshAgent.speed = 0f;
+            _asyncProcessor.StartCoroutine(SetForceDestinationTargetWithDelay(attacker));
+        }
+
+        private void OnConcussion()
+        {
+            _navMeshAgent.speed = 0f;
+            _navMeshAgent.SetDestination(_defaultDestination);
+
+            IsReachedDestination = true;
+            _forceDestinationTarget = null;
+        }
+
+        private void OnOutFromConcussion()
+        {
+            _navMeshAgent.speed = _speed;
+        }
+
+        private IEnumerator SetForceDestinationTargetWithDelay(Transform attacker)
+        {
+            yield return new WaitForSeconds(DelayToSetTarget);
+            SetForceDestinationTarget(attacker);
+        }
+
+        public void Dispose()
+        {
+            _enemyHealth.OnTookDamageEvent -= OnTookDamage;
+            _enemyHealth.OnConcussionEvent -= OnConcussion;
+            _enemyHealth.OnOutFromConcussionEvent -= OnOutFromConcussion;
         }
     }
 }
