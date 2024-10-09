@@ -8,8 +8,10 @@ namespace App.Scripts.Enemies
     {
         private readonly DiContainer _diContainer;
         
-        private const string EnemiesFolder = "Enemies";
-        private Object[] _enemiesPrefabs;
+        private const string EnemiesFarmersFolder = "Enemies/Farmers";
+        private const string EnemiesCopsFolder = "Enemies/Cops";
+        private Object[] _enemiesFarmersPrefabs;
+        private Object[] _enemiesCopsPrefabs;
         private Transform _enemiesContainer;
         
         public EnemyFactory(DiContainer diContainer)
@@ -20,17 +22,35 @@ namespace App.Scripts.Enemies
         public void Load()
         {
             _enemiesContainer = new GameObject("Enemies").transform;
-            _enemiesPrefabs = Resources.LoadAll(EnemiesFolder);
+            
+            // TODO: это плохо, нужно переходить на ScriptableObjects
+            _enemiesFarmersPrefabs = Resources.LoadAll(EnemiesFarmersFolder);
+            _enemiesCopsPrefabs = Resources.LoadAll(EnemiesCopsFolder);
         }
 
         public void Create(int index, EEnemyType enemyType, WayPoint initialWayPoint, Vector3 spawnPoint)
         {
-            if (_enemiesPrefabs.Length == 0)
+            Object[] enemiesPrefabs;
+
+            switch (enemyType)
+            {
+                case EEnemyType.Farmer:
+                    enemiesPrefabs = _enemiesFarmersPrefabs;
+                    break;
+                case EEnemyType.Cop:
+                    enemiesPrefabs = _enemiesCopsPrefabs;
+                    break;
+                default:
+                    enemiesPrefabs = null;
+                    break;
+            }
+            
+            if (enemiesPrefabs == null || enemiesPrefabs.Length == 0)
             {
                 return;
             }
             
-            Object enemyPrefab = _enemiesPrefabs[index % _enemiesPrefabs.Length];
+            Object enemyPrefab = enemiesPrefabs[index % enemiesPrefabs.Length];
             
             Enemy enemy = _diContainer
                 .InstantiatePrefabForComponent<Enemy>(enemyPrefab, spawnPoint, Quaternion.identity, _enemiesContainer);

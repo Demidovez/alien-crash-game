@@ -23,6 +23,7 @@ namespace App.Scripts.Enemies
         private readonly AsyncProcessor _asyncProcessor;
         private readonly float _chaseSpeed;
         private readonly float _speed;
+        private readonly float _initialStopDistance;
 
         private WayPoint _currentWayPoint;
         private int _direction;
@@ -45,6 +46,7 @@ namespace App.Scripts.Enemies
             _chaseSpeed = chaseSpeed;
             _speed = Random.Range(minMoveSpeed, maxMoveSpeed);
             _direction = Random.Range(0, 2);
+            _initialStopDistance = _navMeshAgent.stoppingDistance;
             
             _navMeshAgent.speed = _speed;
             _enemyHealth.OnTookDamageEvent += OnTookDamage;
@@ -76,14 +78,16 @@ namespace App.Scripts.Enemies
 
         private void CheckReachedDestination()
         {
-            float reachedCoefficient = 1;
+            float stopDistanceCoefficient = 1;
             
             if (_forceDestinationTarget && IsReachedDestination)
             {
-                reachedCoefficient = 1.3f;
+                stopDistanceCoefficient = 1.3f;
             }
+
+            _navMeshAgent.stoppingDistance = stopDistanceCoefficient * _initialStopDistance;
             
-            IsReachedDestination = _navMeshAgent.remainingDistance <= reachedCoefficient * _navMeshAgent.stoppingDistance;
+            IsReachedDestination = _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance;
         }
 
         private void CorrectRotation()
