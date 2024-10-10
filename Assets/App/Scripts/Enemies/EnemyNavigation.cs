@@ -14,6 +14,7 @@ namespace App.Scripts.Enemies
         public bool IsReachedDestination { get; private set; }
         public bool IsMoving { get; private set; }
         public bool IsRunning { get; private set; }
+        public bool IsWaiting { get; private set; }
         public Transform CurrentTransform => _navMeshAgent.transform;
 
         private const float DelayToSetTarget = 1.5f;
@@ -82,11 +83,12 @@ namespace App.Scripts.Enemies
             
             if (_forceDestinationTarget && IsReachedDestination)
             {
-                stopDistanceCoefficient = 1.3f;
+                stopDistanceCoefficient = 1.4f;
             }
 
             _navMeshAgent.stoppingDistance = stopDistanceCoefficient * _initialStopDistance;
-            
+
+            IsWaiting = _navMeshAgent.remainingDistance == 0;
             IsReachedDestination = _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance;
         }
 

@@ -10,8 +10,10 @@ namespace App.Scripts.Enemies
         
         private const string EnemiesFarmersFolder = "Enemies/Farmers";
         private const string EnemiesCopsFolder = "Enemies/Cops";
+        private const string EnemiesScientistsFolder = "Enemies/Scientists";
         private Object[] _enemiesFarmersPrefabs;
         private Object[] _enemiesCopsPrefabs;
+        private Object[] _enemiesScientistsPrefabs;
         private Transform _enemiesContainer;
         
         public EnemyFactory(DiContainer diContainer)
@@ -26,6 +28,7 @@ namespace App.Scripts.Enemies
             // TODO: это плохо, нужно переходить на ScriptableObjects
             _enemiesFarmersPrefabs = Resources.LoadAll(EnemiesFarmersFolder);
             _enemiesCopsPrefabs = Resources.LoadAll(EnemiesCopsFolder);
+            _enemiesScientistsPrefabs = Resources.LoadAll(EnemiesScientistsFolder);
         }
 
         public void Create(int index, EEnemyType enemyType, WayPoint initialWayPoint, Vector3 spawnPoint)
@@ -39,6 +42,9 @@ namespace App.Scripts.Enemies
                     break;
                 case EEnemyType.Cop:
                     enemiesPrefabs = _enemiesCopsPrefabs;
+                    break;
+                case EEnemyType.Scientist:
+                    enemiesPrefabs = _enemiesScientistsPrefabs;
                     break;
                 default:
                     enemiesPrefabs = null;
