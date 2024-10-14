@@ -22,7 +22,7 @@ namespace App.Scripts.Infrastructure
 
         private void EnterLoadLevel()
         {
-            _stateMachine.Enter<LoadLevelState, string>("Level_3");
+            _stateMachine.Enter<LoadLevelState, string>("Level_2");
         }
 
         public void Exit()
