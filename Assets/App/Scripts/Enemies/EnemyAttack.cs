@@ -20,7 +20,7 @@ namespace App.Scripts.Enemies
 
         public void Tick()
         {
-            IsAttacking = _enemyNavigation.IsReachedDestination && _enemyChaseManager.IsChasing;
+            IsAttacking = !_enemyNavigation.IsWaiting && _enemyNavigation.IsReachedDestination && _enemyChaseManager.IsChasing;
         }
 
         public void TryAttack()
