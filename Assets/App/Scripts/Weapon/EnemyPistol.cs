@@ -12,7 +12,8 @@ namespace App.Scripts.Weapon
         public GameObject Explosion;
         
         private BulletsPool _bulletsPool;
-
+        private const float DamageValue = 5f;
+        
         [Inject]
         public void Construct(BulletsPool bulletsPool)
         {
@@ -22,7 +23,10 @@ namespace App.Scripts.Weapon
 
         public Bullet GetBullet()
         {
-            return _bulletsPool.GetBullet();
+            Bullet bullet = _bulletsPool.GetBullet();
+            bullet.SetDamageValue(DamageValue);
+            
+            return bullet;
         }
 
         public void Shoot()

@@ -24,7 +24,14 @@ namespace App.Scripts.Enemies
         {
             _enemyPistol.Shoot();
 
-            Vector3 targetPosition = _enemyChaseManager.Target.transform.position;
+            Transform target = _enemyChaseManager.Target.transform;
+            Vector3 targetPosition = target.position;
+            
+            if (target.TryGetComponent(out Collider collider))
+            {
+                float targetHeight = collider.bounds.size.y;
+                targetPosition.y += targetHeight * 0.7f;
+            }
             
             Bullet bullet = _enemyPistol.GetBullet();
             bullet.MoveFromTo(_enemyPistol.ShootPoint.position, targetPosition);
