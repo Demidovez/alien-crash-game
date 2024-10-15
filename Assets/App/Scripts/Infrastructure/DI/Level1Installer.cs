@@ -42,15 +42,14 @@ namespace App.Scripts.Infrastructure.DI
         {
             Container
                 .Bind<BulletFactory>()
-                .AsSingle();
+                .AsTransient();
         }
 
         private void BindBulletsPool()
         {
             Container
                 .Bind<BulletsPool>()
-                .AsSingle()
-                .NonLazy();
+                .AsTransient();
         }
 
         private void BindHealthPillFactory()

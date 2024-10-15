@@ -33,7 +33,9 @@ namespace App.Scripts.Players
             _weaponShootPoint = weaponShootPoint;
             _weaponAimPoint = cameraController.GetCameraTransform();
             
+            _bulletsPool.FillBy("BulletPlasma");
             _inputActionsManager.OnInputtedShoot += Shoot;
+            
         }
 
         private void Shoot()

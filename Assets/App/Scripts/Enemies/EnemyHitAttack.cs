@@ -13,6 +13,11 @@ namespace App.Scripts.Enemies
             _enemyChaseManager = enemyChaseManager;
         }
 
+        public void SetReady(bool isReady)
+        {
+            
+        }
+
         public void Attack()
         {
             if (!_enemyChaseManager.IsFocusedOnTarget())

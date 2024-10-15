@@ -30,6 +30,11 @@ namespace App.Scripts.Bullets
             transform.position += _direction * (Speed * Time.deltaTime);
             _time += Time.deltaTime;
         }
+        
+        public void MoveFromTo(Vector3 from, Vector3 to)
+        {
+            MoveFromTo(null, from, to);
+        }
 
         public void MoveFromTo(Transform attacker, Vector3 from, Vector3 to)
         {
@@ -59,9 +64,15 @@ namespace App.Scripts.Bullets
             
             CompleteMove();
             
-            if (other.TryGetComponent(out IDamageableWithAttacker damageable))
+            if (other.TryGetComponent(out IDamageableWithAttacker damageableWithAttacker))
             {
-                damageable.Damage(DamageValue, _attacker);
+                damageableWithAttacker.Damage(DamageValue, _attacker);
+                return;
+            } 
+            
+            if (other.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.Damage(DamageValue);
             }
         }
     }

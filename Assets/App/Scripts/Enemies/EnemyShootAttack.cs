@@ -1,4 +1,5 @@
-﻿using App.Scripts.Common;
+﻿using App.Scripts.Bullets;
+using App.Scripts.Weapon;
 using UnityEngine;
 
 namespace App.Scripts.Enemies
@@ -6,28 +7,27 @@ namespace App.Scripts.Enemies
     public class EnemyShootAttack: IAttackMode
     {
         private readonly EnemyChaseManager _enemyChaseManager;
-        private readonly Transform _shootStartPoint;
-        private const float DamageValue = 10f;
+        private readonly EnemyPistol _enemyPistol;
 
-        public EnemyShootAttack(EnemyChaseManager enemyChaseManager, Transform shootStartPoint)
+        public EnemyShootAttack(EnemyChaseManager enemyChaseManager, EnemyPistol enemyPistol)
         {
             _enemyChaseManager = enemyChaseManager;
-            _shootStartPoint = shootStartPoint;
+            _enemyPistol = enemyPistol;
+        }
+
+        public void SetReady(bool isReady)
+        {
+            _enemyPistol.gameObject.SetActive(isReady);
         }
 
         public void Attack()
         {
-            // if (!_enemyChaseManager.IsFocusedOnTarget())
-            // {
-            //     return;
-            // }
+            _enemyPistol.Shoot();
 
-            GameObject target = _enemyChaseManager.Target.gameObject;
+            Vector3 targetPosition = _enemyChaseManager.Target.transform.position;
             
-            if (target.TryGetComponent(out IDamageable damageable))
-            {
-                damageable.Damage(DamageValue);
-            }
+            Bullet bullet = _enemyPistol.GetBullet();
+            bullet.MoveFromTo(_enemyPistol.ShootPoint.position, targetPosition);
         }
     }
 }

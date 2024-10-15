@@ -1,16 +1,23 @@
 ﻿using App.Scripts.Enemies;
-using UnityEngine;
+using App.Scripts.Weapon;
 using Zenject;
 
 namespace App.Scripts.Infrastructure.DI
 {
     public class EnemyShootAttackInstaller : MonoInstaller
     {
-        public Transform ShootStartPoint;
-        
         public override void InstallBindings()
         {
             BindEnemyShoot();
+            BindEnemyPistol();
+        }
+
+        private void BindEnemyPistol()
+        {
+            Container
+                .Bind<EnemyPistol>()
+                .FromComponentInHierarchy()
+                .AsSingle();
         }
 
         private void BindEnemyShoot()
@@ -18,8 +25,7 @@ namespace App.Scripts.Infrastructure.DI
             Container
                 .Bind<IAttackMode>()
                 .To<EnemyShootAttack>()
-                .AsSingle()
-                .WithArguments(ShootStartPoint);
+                .AsSingle();
         }
     }
 }

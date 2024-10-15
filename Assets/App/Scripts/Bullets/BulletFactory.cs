@@ -5,7 +5,6 @@ namespace App.Scripts.Bullets
 {
     public class BulletFactory
     {
-        private const string BulletPrefabPath = "Bullet";
         private readonly DiContainer _diContainer;
         private Transform _bulletsContainer;
         private Object _bulletPrefab;
@@ -15,10 +14,10 @@ namespace App.Scripts.Bullets
             _diContainer = diContainer;
         }
         
-        public void Load()
+        public void Load(string bulletPrefabPath)
         {
             _bulletsContainer = new GameObject("Bullets").transform;
-            _bulletPrefab = Resources.Load(BulletPrefabPath);
+            _bulletPrefab = Resources.Load(bulletPrefabPath);
         }
         
         public GameObject Create()
