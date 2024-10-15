@@ -5,7 +5,7 @@ using Zenject;
 
 namespace App.Scripts.Enemies
 {
-    public class Enemy : MonoBehaviour, IEnemy, IAttacker, IDamageableWithAttacker
+    public class Enemy : MonoBehaviour, IEnemy, IDamageableWithAttacker
     {
         private EnemyNavigation _enemyNavigation;
         private EnemyAttack _enemyAttack;
@@ -26,11 +26,6 @@ namespace App.Scripts.Enemies
         public void Init(WayPoint initWayPoint)
         {
             _enemyNavigation.SetCurrentWayPoint(initWayPoint);
-        }
-
-        public void Attack()
-        {
-            _enemyAttack.TryAttack();
         }
 
         public void Damage(float damage, Transform attacker)
