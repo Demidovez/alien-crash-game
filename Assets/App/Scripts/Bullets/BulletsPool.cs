@@ -13,10 +13,14 @@ namespace App.Scripts.Bullets
         public BulletsPool(BulletFactory bulletFactory)
         {
             _bulletFactory = bulletFactory;
-            _bulletFactory.Load();
             
             _poolObjects = new List<GameObject>();
+        }
 
+        public void FillBy(string bulletPrefabPath)
+        {
+            _bulletFactory.Load(bulletPrefabPath);
+            
             for (int i = 0; i < InitPoolSize; i++)
             {
                 CreateObject();

@@ -1,6 +1,4 @@
-﻿using App.Scripts.Common;
-using UnityEngine;
-using Zenject;
+﻿using Zenject;
 
 namespace App.Scripts.Enemies
 {
@@ -8,34 +6,36 @@ namespace App.Scripts.Enemies
     {
         private readonly EnemyNavigation _enemyNavigation;
         private readonly EnemyChaseManager _enemyChaseManager;
-        private const float DamageValue = 10f;
+        private readonly IAttackMode _attackMode;
         
         public bool IsAttacking { get; private set; }
 
-        public EnemyAttack(EnemyNavigation enemyNavigation, EnemyChaseManager enemyChaseManager)
+        public EnemyAttack(
+            EnemyNavigation enemyNavigation, 
+            EnemyChaseManager enemyChaseManager, 
+            IAttackMode attackMode
+        )
         {
             _enemyNavigation = enemyNavigation;
             _enemyChaseManager = enemyChaseManager;
+            _attackMode = attackMode;
         }
 
         public void Tick()
         {
             IsAttacking = !_enemyNavigation.IsWaiting && _enemyNavigation.IsReachedDestination && _enemyChaseManager.IsChasing;
+            
+            _attackMode.SetReady(IsAttacking);
         }
 
         public void TryAttack()
         {
-            if (!IsAttacking || !_enemyChaseManager.IsFocusedOnTarget())
+            if (!IsAttacking)
             {
                 return;
             }
-
-            GameObject target = _enemyChaseManager.Target.gameObject;
             
-            if (target.TryGetComponent(out IDamageable damageable))
-            {
-                damageable.Damage(DamageValue);
-            }
+            _attackMode.Attack();
         }
     }
 }
