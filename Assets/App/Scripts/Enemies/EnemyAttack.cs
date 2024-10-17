@@ -24,8 +24,14 @@ namespace App.Scripts.Enemies
         public void Tick()
         {
             IsAttacking = !_enemyNavigation.IsWaiting && _enemyNavigation.IsReachedDestination && _enemyChaseManager.IsChasing;
-            
-            _attackMode.SetReady(IsAttacking);
+
+            if (IsAttacking && !_attackMode.IsAttacking)
+            {
+                _attackMode.SetReady(true);
+            } else if (!IsAttacking && _attackMode.IsAttacking)
+            {
+                _attackMode.SetReady(false);
+            }
         }
 
         public void TryAttack()

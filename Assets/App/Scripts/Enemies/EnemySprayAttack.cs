@@ -1,36 +1,38 @@
-﻿using App.Scripts.Common;
-using UnityEngine;
+﻿using App.Scripts.Weapon;
+using Zenject;
 
 namespace App.Scripts.Enemies
 {
-    public class EnemySprayAttack: IAttackMode
+    public class EnemySprayAttack: IAttackMode, ITickable
     {
+        public bool IsAttacking { get; set; }
+        
         private readonly EnemyChaseManager _enemyChaseManager;
-        private const float DamageValue = 10f;
+        private readonly EnemySpray _enemySpray;
 
-        public EnemySprayAttack(EnemyChaseManager enemyChaseManager)
+        public EnemySprayAttack(EnemyChaseManager enemyChaseManager, EnemySpray enemySpray)
         {
             _enemyChaseManager = enemyChaseManager;
+            _enemySpray = enemySpray;
+        }
+
+        public void Tick()
+        {
+            if (IsAttacking)
+            {
+                Attack();
+            }
         }
 
         public void SetReady(bool isReady)
         {
-            
+            IsAttacking = isReady;
+            _enemySpray.gameObject.SetActive(isReady);
         }
 
         public void Attack()
         {
-            // if (!_enemyChaseManager.IsFocusedOnTarget())
-            // {
-            //     return;
-            // }
-
-            GameObject target = _enemyChaseManager.Target.gameObject;
-            
-            if (target.TryGetComponent(out IDamageable damageable))
-            {
-                damageable.Damage(DamageValue);
-            }
+            _enemySpray.SprayTo(_enemyChaseManager.Target.transform);
         }
     }
 }

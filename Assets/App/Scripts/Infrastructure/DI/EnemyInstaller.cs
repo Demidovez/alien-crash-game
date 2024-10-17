@@ -15,6 +15,9 @@ namespace App.Scripts.Infrastructure.DI
         public float MinMoveSpeed = 0.75f;
         public float MaxMoveSpeed = 1.5f;
         public float ChaseSpeed = 5f;
+
+        [Header("Navigation")] 
+        public float DeltaStopDistance = 1.4f;
         
         public override void InstallBindings()
         {
@@ -59,7 +62,7 @@ namespace App.Scripts.Infrastructure.DI
             Container
                 .BindInterfacesAndSelfTo<EnemyNavigation>()
                 .AsSingle()
-                .WithArguments(MinMoveSpeed, MaxMoveSpeed, ChaseSpeed);
+                .WithArguments(MinMoveSpeed, MaxMoveSpeed, ChaseSpeed, DeltaStopDistance);
         }
 
         private void BindEnemyAnimation()

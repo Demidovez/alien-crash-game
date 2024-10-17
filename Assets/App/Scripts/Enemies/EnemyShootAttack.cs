@@ -1,11 +1,11 @@
-﻿using App.Scripts.Bullets;
-using App.Scripts.Weapon;
-using UnityEngine;
+﻿using App.Scripts.Weapon;
 
 namespace App.Scripts.Enemies
 {
     public class EnemyShootAttack: IAttackMode
     {
+        public bool IsAttacking { get; set; }
+        
         private readonly EnemyChaseManager _enemyChaseManager;
         private readonly EnemyPistol _enemyPistol;
 
@@ -17,24 +17,13 @@ namespace App.Scripts.Enemies
 
         public void SetReady(bool isReady)
         {
+            IsAttacking = isReady;
             _enemyPistol.gameObject.SetActive(isReady);
         }
 
         public void Attack()
         {
-            _enemyPistol.Shoot();
-
-            Transform target = _enemyChaseManager.Target.transform;
-            Vector3 targetPosition = target.position;
-            
-            if (target.TryGetComponent(out Collider collider))
-            {
-                float targetHeight = collider.bounds.size.y;
-                targetPosition.y += targetHeight * 0.7f;
-            }
-            
-            Bullet bullet = _enemyPistol.GetBullet();
-            bullet.MoveFromTo(_enemyPistol.ShootPoint.position, targetPosition);
+            _enemyPistol.ShootTo(_enemyChaseManager.Target.transform);
         }
     }
 }

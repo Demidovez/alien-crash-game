@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using App.Scripts.Bullets;
 using UnityEngine;
 using Zenject;
@@ -13,7 +14,7 @@ namespace App.Scripts.Weapon
         
         private BulletsPool _bulletsPool;
         private const float DamageValue = 5f;
-        
+
         [Inject]
         public void Construct(BulletsPool bulletsPool)
         {
@@ -21,7 +22,12 @@ namespace App.Scripts.Weapon
             _bulletsPool.FillBy(BulletPrefabPath);
         }
 
-        public Bullet GetBullet()
+        private void Start()
+        {
+            gameObject.SetActive(false);
+        }
+
+        private Bullet GetBullet()
         {
             Bullet bullet = _bulletsPool.GetBullet();
             bullet.SetDamageValue(DamageValue);
@@ -29,9 +35,21 @@ namespace App.Scripts.Weapon
             return bullet;
         }
 
-        public void Shoot()
+        public void ShootTo(Transform target)
         {
             Explosion.SetActive(true);
+            
+            Vector3 targetPosition = target.position;
+            
+            if (target.TryGetComponent(out Collider targetCollider))
+            {
+                var targetHeight = targetCollider.bounds.size.y;
+                targetPosition.y += targetHeight * 0.7f;
+            }
+            
+            Bullet bullet = GetBullet();
+            bullet.MoveFromTo(ShootPoint.position, targetPosition);
+            
             StartCoroutine(FinishExplosion());
         }
 

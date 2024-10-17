@@ -5,6 +5,8 @@ namespace App.Scripts.Enemies
 {
     public class EnemyHitAttack: IAttackMode
     {
+        public bool IsAttacking { get; set; }
+        
         private readonly EnemyChaseManager _enemyChaseManager;
         private const float DamageValue = 10f;
 
@@ -15,7 +17,7 @@ namespace App.Scripts.Enemies
 
         public void SetReady(bool isReady)
         {
-            
+            IsAttacking = isReady;
         }
 
         public void Attack()
