@@ -25,6 +25,7 @@ namespace App.Scripts.Enemies
         private readonly float _chaseSpeed;
         private readonly float _speed;
         private readonly float _initialStopDistance;
+        private readonly float _deltaStopDistance;
 
         private WayPoint _currentWayPoint;
         private int _direction;
@@ -37,7 +38,8 @@ namespace App.Scripts.Enemies
             AsyncProcessor asyncProcessor,
             float minMoveSpeed, 
             float maxMoveSpeed, 
-            float chaseSpeed
+            float chaseSpeed,
+            float deltaStopDistance
         )
         {
             _navMeshAgent = navMeshAgent;
@@ -48,6 +50,7 @@ namespace App.Scripts.Enemies
             _speed = Random.Range(minMoveSpeed, maxMoveSpeed);
             _direction = Random.Range(0, 2);
             _initialStopDistance = _navMeshAgent.stoppingDistance;
+            _deltaStopDistance = deltaStopDistance;
             
             _navMeshAgent.speed = _speed;
             _enemyHealth.OnTookDamageEvent += OnTookDamage;
@@ -83,7 +86,7 @@ namespace App.Scripts.Enemies
             
             if (_forceDestinationTarget && IsReachedDestination)
             {
-                stopDistanceCoefficient = 1.4f;
+                stopDistanceCoefficient = _deltaStopDistance;
             }
 
             _navMeshAgent.stoppingDistance = stopDistanceCoefficient * _initialStopDistance;
