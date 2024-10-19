@@ -7,14 +7,21 @@ namespace App.Scripts.UI
     {
         public event Action<string> OnLoadLevelEvent;
 
+        private void Awake()
+        {
+            gameObject.SetActive(false);
+        }
+
         public void ShowMenu()
         {
             Time.timeScale = 0;
+            gameObject.SetActive(true);
         }
         
         public void HideMenu()
         {
             Time.timeScale = 1;
+            gameObject.SetActive(false);
         }
 
         public void LoadLevel()

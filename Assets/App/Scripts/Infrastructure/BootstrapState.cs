@@ -27,10 +27,10 @@
 
         private void EnterLoadLevel()
         {
-            // Достаем сохранения и едем в меню
+            // Достаем сохранения и идем в меню
             _stateMachine.Enter<MenuState>();
             
-            // _stateMachine.Enter<LoadLevelState, string>("Level_3");
+            // _stateMachine.Enter<LoadLevelState, string>("Level_1");
         }
 
         public void Exit()
