@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.UI;
 
 namespace App.Scripts.Infrastructure
 {
@@ -8,13 +9,14 @@ namespace App.Scripts.Infrastructure
         private readonly Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;
 
-        public GameStateMachine(SceneLoader sceneLoader, UIManager uiManager)
+        public GameStateMachine(SceneLoader sceneLoader, PlayerInterfaceManager playerInterfaceManager, MenuManager menuManager)
         {
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader), 
+                [typeof(MenuState)] = new MenuState(this, menuManager), 
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader),
-                [typeof(GameLoopState)] = new GameLoopState(this, uiManager),
+                [typeof(GameLoopState)] = new GameLoopState(this, playerInterfaceManager),
             };
         }
         

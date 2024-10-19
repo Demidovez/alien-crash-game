@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace App.Scripts.Infrastructure
+﻿namespace App.Scripts.Infrastructure
 {
     public class BootstrapState : IState
     {
@@ -17,12 +15,22 @@ namespace App.Scripts.Infrastructure
 
         public void Enter()
         {
-            _sceneLoader.Load(Initial, EnterLoadLevel);
+            if (_sceneLoader.GetCurrentScene() != Initial)
+            {
+                _sceneLoader.Load(Initial, EnterLoadLevel);
+            }
+            else
+            {
+                EnterLoadLevel();
+            }
         }
 
         private void EnterLoadLevel()
         {
-            _stateMachine.Enter<LoadLevelState, string>("Level_3");
+            // Достаем сохранения и едем в меню
+            _stateMachine.Enter<MenuState>();
+            
+            // _stateMachine.Enter<LoadLevelState, string>("Level_3");
         }
 
         public void Exit()

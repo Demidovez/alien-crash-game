@@ -19,6 +19,11 @@ namespace App.Scripts.Infrastructure
         {
             _asyncProcessor.StartCoroutine(LoadScene(name, onLoaded));
         }
+
+        public string GetCurrentScene()
+        {
+            return SceneManager.GetActiveScene().name;
+        }
         
         private IEnumerator LoadScene(string nextScene, Action onLoaded = null)
         {

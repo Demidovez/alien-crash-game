@@ -12,7 +12,8 @@ namespace App.Scripts.Infrastructure.DI
         public PlayerInput PlayerInput;
         public GameObject CameraPrefab;
         public GameObject PopupsPrefab;
-        public GameObject CanvasUIPrefab;
+        public GameObject MenuPrefab;
+        public GameObject PlayerInterfacePrefab;
         
         public override void InstallBindings()
         {
@@ -23,14 +24,23 @@ namespace App.Scripts.Infrastructure.DI
             BindGame();
             BindCamera();
             BindPopupManager();
-            BindUI();
+            BindMenuManager();
+            BindPlayerInterfaceManager();
         }
 
-        private void BindUI()
+        private void BindMenuManager()
         {
             Container
-                .Bind<UIManager>()
-                .FromComponentInNewPrefab(CanvasUIPrefab)
+                .Bind<MenuManager>()
+                .FromComponentInNewPrefab(MenuPrefab)
+                .AsSingle();
+        }
+
+        private void BindPlayerInterfaceManager()
+        {
+            Container
+                .Bind<PlayerInterfaceManager>()
+                .FromComponentInNewPrefab(PlayerInterfacePrefab)
                 .AsSingle();
         }
 

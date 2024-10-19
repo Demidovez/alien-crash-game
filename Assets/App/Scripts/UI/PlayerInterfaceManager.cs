@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.Infrastructure
+namespace App.Scripts.UI
 {
-    public class UIManager : MonoBehaviour
+    public class PlayerInterfaceManager : MonoBehaviour
     {
         public Transform HealthLevel;
         public Transform ShipDetails;
@@ -14,23 +14,13 @@ namespace App.Scripts.Infrastructure
 
         private void Awake()
         {
-            HealthLevel.gameObject.SetActive(false);
-            ShipDetails.gameObject.SetActive(false);
-            WeaponAim.gameObject.SetActive(false);
+            SetVisible(false);
         }
 
-        public void SetVisibleHealthLevel(bool isVisible)
+        public void SetVisible(bool isVisible)
         {
             HealthLevel.gameObject.SetActive(isVisible);
-        }
-
-        public void SetVisibleShipDetails(bool isVisible)
-        {
             ShipDetails.gameObject.SetActive(isVisible);
-        }
-
-        public void SetVisibleWeaponAim(bool isVisible)
-        {
             WeaponAim.gameObject.SetActive(isVisible);
         }
 

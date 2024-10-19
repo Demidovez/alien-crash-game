@@ -1,32 +1,29 @@
-﻿using UnityEngine;
+﻿using App.Scripts.UI;
+using UnityEngine;
 
 namespace App.Scripts.Infrastructure
 {
     public class GameLoopState : IState
     {
-        private readonly UIManager _uiManager;
+        private readonly PlayerInterfaceManager _playerInterfaceManager;
 
-        public GameLoopState(GameStateMachine stateMachine, UIManager uiManager)
+        public GameLoopState(GameStateMachine stateMachine, PlayerInterfaceManager playerInterfaceManager)
         {
-            _uiManager = uiManager;
+            _playerInterfaceManager = playerInterfaceManager;
         }
         
         public void Enter()
         {
             Cursor.lockState = CursorLockMode.Locked;
             
-            _uiManager.SetVisibleHealthLevel(true);
-            _uiManager.SetVisibleShipDetails(true);
-            _uiManager.SetVisibleWeaponAim(true);
+            _playerInterfaceManager.SetVisible(true);
         }
 
         public void Exit()
         {
             Cursor.lockState = CursorLockMode.None;
             
-            _uiManager.SetVisibleHealthLevel(false);
-            _uiManager.SetVisibleShipDetails(false);
-            _uiManager.SetVisibleWeaponAim(false);
+            _playerInterfaceManager.SetVisible(false);
         }
     }
 }

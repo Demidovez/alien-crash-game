@@ -51,5 +51,15 @@ namespace App.Scripts.UI
             
             _game.RestartLevel();
         }
+
+        public void ShowMenu()
+        {
+            Time.timeScale = 0;
+        }
+        
+        public void HideMenu()
+        {
+            Time.timeScale = 1;
+        }
     }
 }

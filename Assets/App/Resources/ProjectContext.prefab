@@ -111,5 +111,7 @@ MonoBehaviour:
     type: 3}
   PopupsPrefab: {fileID: 5424567646327308086, guid: f035b9364f681204ea464f0deac2b59f,
     type: 3}
-  CanvasUIPrefab: {fileID: 9087244476181352734, guid: 9ee3d8dc4a47f2c4b9826950d20e74ed,
+  MenuPrefab: {fileID: 3062578230776921377, guid: 36fe100446885ea45bcbb59879067b8e,
+    type: 3}
+  PlayerInterfacePrefab: {fileID: 9087244476181352734, guid: 9ee3d8dc4a47f2c4b9826950d20e74ed,
     type: 3}
