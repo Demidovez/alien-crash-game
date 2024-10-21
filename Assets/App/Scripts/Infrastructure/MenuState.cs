@@ -21,14 +21,14 @@ namespace App.Scripts.Infrastructure
         {
             _menuManager.ShowMenu();
             
-            _menuManager.OnLoadLevelEvent += LoadLevel;
+            // _menuManager.OnLoadLevelEvent += LoadLevel;
         }
 
         public void Exit()
         {
             _menuManager.HideMenu();
             
-            _menuManager.OnLoadLevelEvent -= LoadLevel;
+            // _menuManager.OnLoadLevelEvent -= LoadLevel;
         }
         
         private void LoadLevel(string level)

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using App.Scripts.Levels;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +8,7 @@ namespace App.Scripts.UI
 {
     public class MenuManager : MonoBehaviour
     {
-        public event Action<string> OnLoadLevelEvent;
+        // public event Action<string> OnLoadLevelEvent;
 
         [Header("Icons")]
         public Sprite MusicOnIcon;
@@ -22,6 +24,13 @@ namespace App.Scripts.UI
         public Button LevelsButton;
         public Button ExitButton;
 
+        [Header("Levels")] 
+        public GridLayoutGroup LevelsGrid;
+        public GameObject LevelCardPrefab;
+        public List<LevelCardSO> LevelsConfig;
+        
+        private List<LevelCard> _levels;
+
         private void Awake()
         {
             gameObject.SetActive(false);
@@ -32,6 +41,34 @@ namespace App.Scripts.UI
             StartButton.onClick.AddListener(OnStartClick);
             LevelsButton.onClick.AddListener(OnLevelsClick);
             ExitButton.onClick.AddListener(OnExitClick);
+        }
+
+        private void Start()
+        {
+            InitLevelCards();
+        }
+
+        private void InitLevelCards()
+        {
+            _levels = new List<LevelCard>();
+
+            foreach (var level in LevelsConfig)
+            {
+                GameObject levelObj = Instantiate(
+                    LevelCardPrefab, 
+                    LevelsGrid.transform.position,
+                    Quaternion.identity,
+                    LevelsGrid.transform
+                );
+
+                if (levelObj.TryGetComponent(out LevelCard card))
+                {
+                    card.Title.SetText(level.Name);
+                    card.Icon.sprite = level.Icon;
+
+                    _levels.Add(card);
+                }
+            }
         }
 
         private void OnDestroy()
