@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: ba0df915833d3254f81c470e672f7899, type: 3}
   Name: "\u041F\u0430\u0434\u0435\u043D\u0438\u0435"
+  Scene: {fileID: 102900000, guid: 2e311dc41da762649af85569796d8b62, type: 3}

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace App.Scripts.Levels
 {
@@ -7,5 +8,6 @@ namespace App.Scripts.Levels
     {
         public Sprite Icon;
         public string Name;
+        public Object Scene;
     }
 }

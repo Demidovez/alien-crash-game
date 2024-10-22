@@ -8,7 +8,7 @@ namespace App.Scripts.UI
 {
     public class MenuManager : MonoBehaviour
     {
-        // public event Action<string> OnLoadLevelEvent;
+        public event Action<string> OnLoadLevelEvent;
 
         [Header("Icons")]
         public Sprite MusicOnIcon;
@@ -65,6 +65,7 @@ namespace App.Scripts.UI
                 {
                     card.Title.SetText(level.Name);
                     card.Icon.sprite = level.Icon;
+                    card.OnClick = () => OnLoadLevelEvent?.Invoke(level.Scene.name);
 
                     _levels.Add(card);
                 }
