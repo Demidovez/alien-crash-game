@@ -28,6 +28,7 @@ namespace App.Scripts.UI
         public GridLayoutGroup LevelsGrid;
         public GameObject LevelCardPrefab;
         public List<LevelCardSO> LevelsConfig;
+        public LevelsPopup LevelsPopup;
         
         private List<LevelCard> _levels;
 
@@ -39,7 +40,7 @@ namespace App.Scripts.UI
             SoundButton.onClick.AddListener(OnSoundClick);
             ContinueButton.onClick.AddListener(OnContinueClick);
             StartButton.onClick.AddListener(OnStartClick);
-            LevelsButton.onClick.AddListener(OnLevelsClick);
+            LevelsButton.onClick.AddListener(OnLevelsToggle);
             ExitButton.onClick.AddListener(OnExitClick);
         }
 
@@ -78,7 +79,7 @@ namespace App.Scripts.UI
             SoundButton.onClick.RemoveListener(OnSoundClick);
             ContinueButton.onClick.RemoveListener(OnContinueClick);
             StartButton.onClick.RemoveListener(OnStartClick);
-            LevelsButton.onClick.RemoveListener(OnLevelsClick);
+            LevelsButton.onClick.RemoveListener(OnLevelsToggle);
             ExitButton.onClick.RemoveListener(OnExitClick);
         }
 
@@ -94,19 +95,19 @@ namespace App.Scripts.UI
             gameObject.SetActive(false);
         }
 
+        public void OnLevelsToggle()
+        {
+            LevelsPopup.ToggleShow();
+        }
+
         private void OnMusicClick()
         {
             Debug.Log("OnMusicClick");
         }
-        
+
         private void OnExitClick()
         {
             Debug.Log("OnExitClick");
-        }
-
-        private void OnLevelsClick()
-        {
-            Debug.Log("OnLevelsClick");
         }
 
         private void OnStartClick()
