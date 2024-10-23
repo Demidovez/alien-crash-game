@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 7760999102347590100}
   - component: {fileID: 4705036555031141809}
   - component: {fileID: 5403403117464648979}
-  - component: {fileID: 6795559897915442580}
+  - component: {fileID: 2874660841295245720}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6795559897915442580
+--- !u!114 &2874660841295245720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,41 +221,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 465070083424869629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: f31924afd17b4ff0a9df9527c1d647b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 5403403117464648979}
-  m_OnClick:
+  ScaleValue: 1.025
+  RectTransform: {fileID: 7760999102347590100}
+  TextureMouse: {fileID: 2800000, guid: 1ab7ae95a94ea924686f6d3167f5bc67, type: 3}
+  OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6449571926626414681}
+        m_TargetAssemblyTypeName: App.Scripts.UI.MenuManager, Assembly-CSharp
+        m_MethodName: OnExitClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &507050467750610267
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31924afd17b4ff0a9df9527c1d647b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScaleValue: 1.05
   RectTransform: {fileID: 3947503855204132022}
   TextureMouse: {fileID: 2800000, guid: 1ab7ae95a94ea924686f6d3167f5bc67, type: 3}
   OnClick:
@@ -1187,16 +1174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60376460c9714fc6a6228278a9fe978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MusicOnIcon: {fileID: 21300000, guid: 57ded7ab267a09741b7bc0572f9089ea, type: 3}
-  MusicOffIcon: {fileID: 21300000, guid: 33b1200dc838754498c32d6508f161c9, type: 3}
-  SoundOnIcon: {fileID: 21300000, guid: 60d0daa1d033b3e478f9571c15c552c2, type: 3}
-  SoundOffIcon: {fileID: 21300000, guid: b292185c0dbaeb747a9e86348e0e5c3e, type: 3}
-  MusicButton: {fileID: 2585997021432901492}
-  SoundButton: {fileID: 6681805883397903990}
-  ContinueButton: {fileID: 2002405661586873381}
-  StartButton: {fileID: 217639968771980627}
-  LevelsButton: {fileID: 872618453970381389}
-  ExitButton: {fileID: 6795559897915442580}
+  ContinueButton: {fileID: 0}
+  StartButton: {fileID: 0}
+  LevelsButton: {fileID: 0}
+  ExitButton: {fileID: 0}
   LevelsGrid: {fileID: 563314351649276027}
   LevelCardPrefab: {fileID: 597405809377286729, guid: 1d29f2ca7fa450c409663d65954f2701,
     type: 3}
@@ -1217,8 +1198,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8351286693736963056}
   - component: {fileID: 670211489786412108}
+  - component: {fileID: 5674216791989084641}
   m_Layer: 5
-  m_Name: Icons
+  m_Name: SoundIcons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1271,6 +1253,24 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5674216791989084641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4885852076679584839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ff907e930747debf35162693ebd0d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundsIcon: {fileID: 1709593640001207229}
+  MusicIcon: {fileID: 7638255370464750316}
+  MusicOnIcon: {fileID: 21300000, guid: 57ded7ab267a09741b7bc0572f9089ea, type: 3}
+  MusicOffIcon: {fileID: 21300000, guid: 33b1200dc838754498c32d6508f161c9, type: 3}
+  SoundOnIcon: {fileID: 21300000, guid: 60d0daa1d033b3e478f9571c15c552c2, type: 3}
+  SoundOffIcon: {fileID: 21300000, guid: b292185c0dbaeb747a9e86348e0e5c3e, type: 3}
 --- !u!1 &5079224804712575004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,7 +1359,7 @@ GameObject:
   - component: {fileID: 375717021733936362}
   - component: {fileID: 2695778309064675518}
   - component: {fileID: 7638255370464750316}
-  - component: {fileID: 2585997021432901492}
+  - component: {fileID: 375875825939706435}
   m_Layer: 5
   m_Name: Music
   m_TagString: Untagged
@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2585997021432901492
+--- !u!114 &375875825939706435
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1433,41 +1433,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 5534115440487142672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: f31924afd17b4ff0a9df9527c1d647b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 7638255370464750316}
-  m_OnClick:
+  ScaleValue: 1.1
+  RectTransform: {fileID: 375717021733936362}
+  TextureMouse: {fileID: 2800000, guid: 1ab7ae95a94ea924686f6d3167f5bc67, type: 3}
+  OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5674216791989084641}
+        m_TargetAssemblyTypeName: App.Scripts.UI.SoundIcons, Assembly-CSharp
+        m_MethodName: OnMusicClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5944462732149095215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1545,7 +1531,7 @@ GameObject:
   - component: {fileID: 1865722819290085246}
   - component: {fileID: 5910223173687536967}
   - component: {fileID: 1169763134182038497}
-  - component: {fileID: 872618453970381389}
+  - component: {fileID: 4227005699393325613}
   m_Layer: 5
   m_Name: Levels
   m_TagString: Untagged
@@ -1611,7 +1597,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &872618453970381389
+--- !u!114 &4227005699393325613
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1620,41 +1606,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 7204243307084929821}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: f31924afd17b4ff0a9df9527c1d647b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1169763134182038497}
-  m_OnClick:
+  ScaleValue: 1.025
+  RectTransform: {fileID: 1865722819290085246}
+  TextureMouse: {fileID: 2800000, guid: 1ab7ae95a94ea924686f6d3167f5bc67, type: 3}
+  OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6449571926626414681}
+        m_TargetAssemblyTypeName: App.Scripts.UI.MenuManager, Assembly-CSharp
+        m_MethodName: OnLevelsToggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7347504332416926199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,7 +1638,7 @@ GameObject:
   - component: {fileID: 8348349933474761872}
   - component: {fileID: 3235717565910330089}
   - component: {fileID: 2594368464837794691}
-  - component: {fileID: 2002405661586873381}
+  - component: {fileID: 7452633712251224747}
   m_Layer: 5
   m_Name: Continue
   m_TagString: Untagged
@@ -1732,7 +1704,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2002405661586873381
+--- !u!114 &7452633712251224747
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1741,41 +1713,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 7347504332416926199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: f31924afd17b4ff0a9df9527c1d647b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 2594368464837794691}
-  m_OnClick:
+  ScaleValue: 1.025
+  RectTransform: {fileID: 8348349933474761872}
+  TextureMouse: {fileID: 2800000, guid: 1ab7ae95a94ea924686f6d3167f5bc67, type: 3}
+  OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6449571926626414681}
+        m_TargetAssemblyTypeName: App.Scripts.UI.MenuManager, Assembly-CSharp
+        m_MethodName: OnContinueClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8287737706285082843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,7 +1745,7 @@ GameObject:
   - component: {fileID: 1637993004821309649}
   - component: {fileID: 8084490688995488479}
   - component: {fileID: 8646815231839855341}
-  - component: {fileID: 217639968771980627}
+  - component: {fileID: 2645465420892252416}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -1853,7 +1811,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &217639968771980627
+--- !u!114 &2645465420892252416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1862,41 +1820,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 8287737706285082843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: f31924afd17b4ff0a9df9527c1d647b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 8646815231839855341}
-  m_OnClick:
+  ScaleValue: 1.025
+  RectTransform: {fileID: 1637993004821309649}
+  TextureMouse: {fileID: 2800000, guid: 1ab7ae95a94ea924686f6d3167f5bc67, type: 3}
+  OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6449571926626414681}
+        m_TargetAssemblyTypeName: App.Scripts.UI.MenuManager, Assembly-CSharp
+        m_MethodName: OnStartClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8311584846738985540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1983,7 +1927,7 @@ GameObject:
   - component: {fileID: 5576355574723289835}
   - component: {fileID: 8711725277790649867}
   - component: {fileID: 1709593640001207229}
-  - component: {fileID: 6681805883397903990}
+  - component: {fileID: 3542756759242904376}
   m_Layer: 5
   m_Name: Sound
   m_TagString: Untagged
@@ -2048,7 +1992,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6681805883397903990
+--- !u!114 &3542756759242904376
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2057,38 +2001,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 8365158676900030291}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: f31924afd17b4ff0a9df9527c1d647b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1709593640001207229}
-  m_OnClick:
+  ScaleValue: 1.1
+  RectTransform: {fileID: 5576355574723289835}
+  TextureMouse: {fileID: 2800000, guid: 1ab7ae95a94ea924686f6d3167f5bc67, type: 3}
+  OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5674216791989084641}
+        m_TargetAssemblyTypeName: App.Scripts.UI.SoundIcons, Assembly-CSharp
+        m_MethodName: OnSoundClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

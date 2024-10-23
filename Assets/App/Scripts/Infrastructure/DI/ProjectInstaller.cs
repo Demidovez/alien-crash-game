@@ -1,5 +1,6 @@
 using App.Scripts.Cameras;
 using App.Scripts.InputActions;
+using App.Scripts.Sound;
 using App.Scripts.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,9 +24,17 @@ namespace App.Scripts.Infrastructure.DI
             BindSceneLoader();
             BindGame();
             BindCamera();
+            BindSoundManager();
             BindPopupManager();
             BindMenuManager();
             BindPlayerInterfaceManager();
+        }
+
+        private void BindSoundManager()
+        {
+            Container
+                .Bind<SoundManager>()
+                .AsSingle();
         }
 
         private void BindMenuManager()
