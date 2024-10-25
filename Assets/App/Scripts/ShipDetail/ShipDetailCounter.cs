@@ -1,5 +1,4 @@
 ﻿using System;
-using App.Scripts.Infrastructure;
 using App.Scripts.UI;
 
 namespace App.Scripts.ShipDetail
@@ -8,13 +7,17 @@ namespace App.Scripts.ShipDetail
     {
         private int _countAllDetails;
         private int _countCollected;
-        private readonly Game _game;
-        private readonly PopupManager _popupManager;
 
-        public ShipDetailCounter(Game game, PopupManager popupManager)
+        private readonly PopupManager _popupManager;
+        private readonly PlayerInterfaceManager _playerInterfaceManager;
+
+        public ShipDetailCounter(
+            PopupManager popupManager,
+            PlayerInterfaceManager playerInterfaceManager
+        )
         {
-            _game = game;
             _popupManager = popupManager;
+            _playerInterfaceManager = playerInterfaceManager;
 
             ShipDetail.OnCollectedShipDetail += CollectedDetail;
         }
@@ -27,14 +30,14 @@ namespace App.Scripts.ShipDetail
         public void SetCountAll(int value)
         {
             _countAllDetails = value;
-            _game.UpdateShipDetailsUI(0, _countAllDetails);
+            _playerInterfaceManager.UpdateShipDetailsCounter(0, _countAllDetails);
         }
 
         private void CollectedDetail()
         {
             _countCollected++;
             
-            _game.UpdateShipDetailsUI(_countCollected, _countAllDetails);
+            _playerInterfaceManager.UpdateShipDetailsCounter(_countCollected, _countAllDetails);
 
             if (_countAllDetails == _countCollected)
             {

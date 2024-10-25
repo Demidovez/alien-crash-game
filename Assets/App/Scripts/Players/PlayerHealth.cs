@@ -13,22 +13,22 @@ namespace App.Scripts.Players
         public Action OnDeadEvent;
         
         public bool IsAlive => _health > 0;
-
-        private readonly Game _game;
+        
         private readonly PopupManager _popupManager;
         private readonly AsyncProcessor _asyncProcessor;
+        private readonly PlayerInterfaceManager _playerInterfaceManager;
         private const float DeathDelay = 2f;
         private float _health = 100;
 
         public PlayerHealth(
-            Game game,
             PopupManager popupManager,
-            AsyncProcessor asyncProcessor
+            AsyncProcessor asyncProcessor,
+            PlayerInterfaceManager playerInterfaceManager
         )
         {
-            _game = game;
             _popupManager = popupManager;
             _asyncProcessor = asyncProcessor;
+            _playerInterfaceManager = playerInterfaceManager;
 
             HealthPill.OnCollectedHealthPill += CollectedHealthPill;
         }
@@ -53,7 +53,7 @@ namespace App.Scripts.Players
             _health += value;
             _health = Mathf.Min(100, _health);
             
-            _game.UpdateHealthUI(_health);
+            _playerInterfaceManager.UpdateHealth(_health);
 
             if (_health <= 0)
             {

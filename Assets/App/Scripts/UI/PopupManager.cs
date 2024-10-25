@@ -48,8 +48,6 @@ namespace App.Scripts.UI
             
             Background.SetActive(false);
             GameOverPopup.SetActive(false);
-            
-            _game.RestartLevel();
         }
 
         public void ShowMenu()
