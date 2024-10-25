@@ -1,21 +1,30 @@
-﻿using App.Scripts.UI;
+﻿using System;
+using App.Scripts.Infrastructure.GameStateMachines;
+using App.Scripts.UI;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace App.Scripts.Infrastructure
 {
     public class Game
     {
-        private readonly GameStateMachine _stateMachine;
+        // public event Action OnStartedGame;
         private readonly PlayerInterfaceManager _playerInterfaceManager;
+        
+        public string CurrentLevelScene { get; private set; }
 
-        public Game(GameStateMachine stateMachine, PlayerInterfaceManager playerInterfaceManager)
+        public Game(PlayerInterfaceManager playerInterfaceManager)
         {
-            _stateMachine = stateMachine;
             _playerInterfaceManager = playerInterfaceManager;
             
-            stateMachine.Enter<BootstrapState>();
+            // _stateMachine.Enter<BootstrapState>();
         }
 
+        public void SetCurrentLevelScene(string name)
+        {
+            CurrentLevelScene = name;
+        }
+        
         public void UpdateHealthUI(float health)
         {
             _playerInterfaceManager.UpdateHealth(health);
@@ -26,14 +35,18 @@ namespace App.Scripts.Infrastructure
             _playerInterfaceManager.UpdateShipDetailsCounter(countCollected, countAllDetails);
         }
 
+        
+        // TODO: как будто это тут не нужно
         public void ToNextLevel(string nextScene)
         {
-            _stateMachine.Enter<LoadLevelState, string>(nextScene);
+            Debug.Log("ToNextLevel");
+            // _stateMachine.Enter<LoadLevelState, string>(nextScene);
         }
         
         public void RestartLevel()
         {
-            _stateMachine.Enter<LoadLevelState, string>(SceneManager.GetActiveScene().name);
+            Debug.Log("RestartLevel");
+            // _stateMachine.Enter<LoadLevelState, string>(SceneManager.GetActiveScene().name);
         }
     }
 }

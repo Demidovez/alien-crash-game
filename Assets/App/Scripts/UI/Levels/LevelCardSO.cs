@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace App.Scripts.Levels
+namespace App.Scripts.UI.Levels
 {
     [CreateAssetMenu(fileName = "Levels", menuName = "Levels/Card")]
     public class LevelCardSO: ScriptableObject

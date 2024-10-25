@@ -11,15 +11,16 @@ namespace App.Scripts.Infrastructure.DI
     public class ProjectInstaller : MonoInstaller
     {
         public PlayerInput PlayerInput;
+        public GameObject MenuPrefab;
         public GameObject CameraPrefab;
         public GameObject PopupsPrefab;
-        public GameObject MenuPrefab;
+        public GameObject LoadingScreenPrefab;
         public GameObject PlayerInterfacePrefab;
-        
+
         public override void InstallBindings()
         {
+            BindBoot();
             BindAsyncProcessor();
-            BindGameStateMachine();
             BindInputManager();
             BindSceneLoader();
             BindGame();
@@ -27,7 +28,23 @@ namespace App.Scripts.Infrastructure.DI
             BindSoundManager();
             BindPopupManager();
             BindMenuManager();
+            BindLoadingScreen();
             BindPlayerInterfaceManager();
+        }
+
+        private void BindBoot()
+        {
+            Container
+                .BindInterfacesTo<Boot>()
+                .AsSingle();
+        }
+
+        private void BindLoadingScreen()
+        {
+            Container
+                .Bind<LoadingScreen>()
+                .FromComponentInNewPrefab(LoadingScreenPrefab)
+                .AsSingle();
         }
 
         private void BindSoundManager()
@@ -63,7 +80,9 @@ namespace App.Scripts.Infrastructure.DI
 
         private void BindGame()
         {
-            Container.Bind<Game>().AsSingle().NonLazy();
+            Container
+                .Bind<Game>()
+                .AsSingle();
         }
         
         private void BindCamera()
@@ -76,25 +95,25 @@ namespace App.Scripts.Infrastructure.DI
 
         private void BindAsyncProcessor()
         {
-            Container.Bind<AsyncProcessor>().FromNewComponentOnNewGameObject().AsSingle();
+            Container
+                .Bind<AsyncProcessor>()
+                .FromNewComponentOnNewGameObject()
+                .AsSingle();
         }
 
         private void BindSceneLoader()
         {
-            Container.Bind<SceneLoader>().AsSingle();
-        }
-
-        private void BindGameStateMachine()
-        {
-            Container.Bind<GameStateMachine>().AsSingle();
+            Container
+                .Bind<SceneLoader>()
+                .AsSingle();
         }
 
         private void BindInputManager()
         {
-            Container.BindInterfacesAndSelfTo<InputActionsManager>()
+            Container
+                .BindInterfacesAndSelfTo<InputActionsManager>()
                 .AsSingle()
-                .WithArguments(PlayerInput)
-                .NonLazy();
+                .WithArguments(PlayerInput);
         }
     }
 }

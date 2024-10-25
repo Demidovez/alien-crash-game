@@ -1,4 +1,4 @@
-﻿namespace App.Scripts.Infrastructure
+﻿namespace App.Scripts.Infrastructure.GameStateMachines
 {
     public interface IExitableState
     {

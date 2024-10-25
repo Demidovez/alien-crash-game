@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using App.Scripts.Levels;
+using App.Scripts.UI.Levels;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +9,9 @@ namespace App.Scripts.UI
     public class MenuManager : MonoBehaviour
     {
         public event Action<string> OnLoadLevelEvent;
+        public event Action OnContinueLevelEvent;
+        public event Action OnStartLevelEvent;
+        public event Action OnExitGameEvent;
 
         [Header("Levels")] 
         public GridLayoutGroup LevelsGrid;
@@ -48,13 +51,11 @@ namespace App.Scripts.UI
 
         public void ShowMenu()
         {
-            Time.timeScale = 0;
             gameObject.SetActive(true);
         }
 
         public void HideMenu()
         {
-            Time.timeScale = 1;
             gameObject.SetActive(false);
         }
 
@@ -63,19 +64,19 @@ namespace App.Scripts.UI
             LevelsPopup.ToggleShow();
         }
 
-        public void OnExitClick()
+        public void OnContinueClick()
         {
-            Debug.Log("OnExitClick");
+            OnContinueLevelEvent?.Invoke();
         }
 
         public void OnStartClick()
         {
-            Debug.Log("OnStartClick");
+            OnStartLevelEvent?.Invoke();
         }
 
-        public void OnContinueClick()
+        public void OnExitClick()
         {
-            Debug.Log("OnContinueClick");
+            OnExitGameEvent?.Invoke();
         }
     }
 }

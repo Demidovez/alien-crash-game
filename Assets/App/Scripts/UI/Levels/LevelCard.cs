@@ -1,12 +1,11 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace App.Scripts.Levels
+namespace App.Scripts.UI.Levels
 {
     public class LevelCard: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {

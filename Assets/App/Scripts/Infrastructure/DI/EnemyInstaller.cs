@@ -34,7 +34,10 @@ namespace App.Scripts.Infrastructure.DI
 
         private void BindEnemyHealth()
         {
-            Container.Bind<EnemyHealth>().AsSingle().WithArguments(ConcussionEffect);
+            Container
+                .Bind<EnemyHealth>()
+                .AsSingle()
+                .WithArguments(ConcussionEffect);
         }
 
         private void BindEnemy()
@@ -54,7 +57,10 @@ namespace App.Scripts.Infrastructure.DI
 
         private void BindEnemyNavMeshAgent()
         {
-            Container.Bind<NavMeshAgent>().FromComponentInHierarchy().AsSingle();
+            Container
+                .Bind<NavMeshAgent>()
+                .FromComponentInHierarchy()
+                .AsSingle();
         }
 
         private void BindEnemyNavigation()
@@ -67,22 +73,32 @@ namespace App.Scripts.Infrastructure.DI
 
         private void BindEnemyAnimation()
         {
-            Container.BindInterfacesTo<EnemyAnimation>().AsSingle();
+            Container
+                .BindInterfacesTo<EnemyAnimation>()
+                .AsSingle();
         }
 
         private void BindEnemyAnimator()
         {
-            Container.Bind<Animator>().FromComponentInHierarchy().AsSingle();
+            Container
+                .Bind<Animator>()
+                .FromComponentInHierarchy()
+                .AsSingle();
         }
 
         private void BindFieldOfView()
         {
-            Container.Bind<IFieldOfView>().FromComponentInHierarchy().AsSingle();
+            Container
+                .Bind<IFieldOfView>()
+                .FromComponentInHierarchy()
+                .AsSingle();
         }
 
         private void BindEnemyChaseManager()
         {
-            Container.BindInterfacesAndSelfTo<EnemyChaseManager>().AsSingle();
+            Container
+                .BindInterfacesAndSelfTo<EnemyChaseManager>()
+                .AsSingle();
         }
     }
 }

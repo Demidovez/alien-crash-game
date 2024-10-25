@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.Levels
+namespace App.Scripts.UI.Levels
 {
     public class LevelsPopup: MonoBehaviour
     {

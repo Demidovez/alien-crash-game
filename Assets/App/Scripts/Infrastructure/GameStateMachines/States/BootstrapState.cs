@@ -1,4 +1,4 @@
-﻿namespace App.Scripts.Infrastructure
+﻿namespace App.Scripts.Infrastructure.GameStateMachines.States
 {
     public class BootstrapState : IState
     {
@@ -29,8 +29,6 @@
         {
             // Достаем сохранения и идем в меню
             _stateMachine.Enter<MenuState>();
-            
-            // _stateMachine.Enter<LoadLevelState, string>("Level_1");
         }
 
         public void Exit()

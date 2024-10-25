@@ -8,7 +8,7 @@ using Zenject;
 
 namespace App.Scripts.Infrastructure.DI
 {
-    public class Level3Installer : MonoInstaller
+    public class LevelInstaller : MonoInstaller
     {
         [Header("Player")]
         public Transform SpawnPlayerPoint;
