@@ -13,12 +13,18 @@ namespace App.Scripts.Infrastructure.DI
 
         private void BindGameStateMachine()
         {
-            Container.Bind<GameStateMachine>().AsSingle();
+            Container
+                .Bind<IGameStateMachine>()
+                .To<GameStateMachine>()
+                .AsSingle();
         }
         
         private void BindGameStateFactory()
         {
-            Container.Bind<GameStateFactory>().AsSingle();
+            Container
+                .Bind<IGameStateFactory>()
+                .To<GameStateFactory>()
+                .AsSingle();
         }
     }
 }

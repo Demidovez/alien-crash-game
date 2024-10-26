@@ -3,17 +3,15 @@ using UnityEngine;
 
 namespace App.Scripts.Bullets
 {
-    public class BulletsPool
+    public class BulletsPool: IBulletsPool
     {
-        private readonly BulletFactory _bulletFactory;
-        private const int InitPoolSize = 10;
-        
         private readonly List<GameObject> _poolObjects;
-        
-        public BulletsPool(BulletFactory bulletFactory)
+        private readonly IBulletFactory _bulletFactory;
+        private const int InitPoolSize = 10;
+
+        public BulletsPool(IBulletFactory bulletFactory)
         {
             _bulletFactory = bulletFactory;
-            
             _poolObjects = new List<GameObject>();
         }
 
@@ -27,14 +25,6 @@ namespace App.Scripts.Bullets
             }
         }
 
-        private GameObject CreateObject()
-        {
-            GameObject bullet = _bulletFactory.Create();
-            _poolObjects.Add(bullet);
-
-            return bullet;
-        }
-        
         public Bullet GetBullet()
         {
             foreach (var poolObject in _poolObjects)
@@ -46,6 +36,14 @@ namespace App.Scripts.Bullets
             }
 
             return CreateObject().GetComponent<Bullet>();
+        }
+        
+        private GameObject CreateObject()
+        {
+            GameObject bullet = _bulletFactory.Create();
+            _poolObjects.Add(bullet);
+
+            return bullet;
         }
     }
 }

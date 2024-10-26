@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace App.Scripts.Cameras
 {
-    public class CameraController : MonoBehaviour
+    public class CameraController : MonoBehaviour, ICameraController
     {
-        [SerializeField] private CinemachineVirtualCamera _fallowCamera;
+        public CinemachineVirtualCamera FallowCamera;
 
         public void SetTarget(Transform target)
         {
-            _fallowCamera.Follow = target;
-            _fallowCamera.LookAt = target;
+            FallowCamera.Follow = target;
+            FallowCamera.LookAt = target;
         }
 
         public Transform GetCameraTransform()
         {
-            return _fallowCamera.transform;
+            return FallowCamera.transform;
         }
     }  
 }

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8114198e8f7f8b3419bc95b4985fc5cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fallowCamera: {fileID: 1578954594447227955}
+  FallowCamera: {fileID: 1578954594447227955}
 --- !u!1 &5243212859160682929
 GameObject:
   m_ObjectHideFlags: 0

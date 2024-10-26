@@ -6,16 +6,16 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
 {
     public class MenuState : IState
     {
-        private readonly GameStateMachine _stateMachine;
-        private readonly Game _game;
-        private readonly MenuManager _menuManager;
-        private readonly InputActionsManager _inputActionsManager;
+        private readonly IGameStateMachine _stateMachine;
+        private readonly IGame _game;
+        private readonly IMenuManager _menuManager;
+        private readonly IInputActionsManager _inputActionsManager;
 
         public MenuState(
-            GameStateMachine stateMachine, 
-            Game game,
-            MenuManager menuManager,
-            InputActionsManager inputActionsManager
+            IGameStateMachine stateMachine, 
+            IGame game,
+            IMenuManager menuManager,
+            IInputActionsManager inputActionsManager
         )
         {
             _stateMachine = stateMachine;

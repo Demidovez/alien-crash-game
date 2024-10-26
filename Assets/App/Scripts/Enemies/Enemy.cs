@@ -7,19 +7,16 @@ namespace App.Scripts.Enemies
 {
     public class Enemy : MonoBehaviour, IEnemy, IDamageableWithAttacker
     {
-        private EnemyNavigation _enemyNavigation;
-        private EnemyAttack _enemyAttack;
-        private EnemyHealth _enemyHealth;
+        private IEnemyNavigation _enemyNavigation;
+        private IEnemyHealth _enemyHealth;
 
         [Inject]
         public void Construct(
-            EnemyNavigation enemyNavigation,
-            EnemyHealth enemyHealth,
-            EnemyAttack enemyAttack
+            IEnemyNavigation enemyNavigation,
+            IEnemyHealth enemyHealth
         )
         {
             _enemyNavigation = enemyNavigation;
-            _enemyAttack = enemyAttack;
             _enemyHealth = enemyHealth;
         }
         

@@ -4,10 +4,10 @@
     {
         private const string Initial = "Initial";
         
-        private readonly GameStateMachine _stateMachine;
-        private readonly SceneLoader _sceneLoader;
+        private readonly IGameStateMachine _stateMachine;
+        private readonly ISceneLoader _sceneLoader;
 
-        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader)
+        public BootstrapState(IGameStateMachine stateMachine, ISceneLoader sceneLoader)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;

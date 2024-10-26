@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 namespace App.Scripts.Enemies
 {
-    public class EnemyNavigation: IInitializable, ITickable, IDisposable
+    public class EnemyNavigation: IEnemyNavigation, IInitializable, ITickable, IDisposable
     {
         public bool IsReachedDestination { get; private set; }
         public bool IsMoving { get; private set; }
@@ -20,8 +20,8 @@ namespace App.Scripts.Enemies
         private const float DelayToSetTarget = 1.5f;
         
         private readonly NavMeshAgent _navMeshAgent;
-        private readonly EnemyHealth _enemyHealth;
-        private readonly AsyncProcessor _asyncProcessor;
+        private readonly IEnemyHealth _enemyHealth;
+        private readonly ICoroutineHolder _coroutineHolder;
         private readonly float _chaseSpeed;
         private readonly float _speed;
         private readonly float _initialStopDistance;
@@ -34,8 +34,8 @@ namespace App.Scripts.Enemies
 
         public EnemyNavigation(
             NavMeshAgent navMeshAgent, 
-            EnemyHealth enemyHealth,
-            AsyncProcessor asyncProcessor,
+            IEnemyHealth enemyHealth,
+            ICoroutineHolder coroutineHolder,
             float minMoveSpeed, 
             float maxMoveSpeed, 
             float chaseSpeed,
@@ -44,7 +44,7 @@ namespace App.Scripts.Enemies
         {
             _navMeshAgent = navMeshAgent;
             _enemyHealth = enemyHealth;
-            _asyncProcessor = asyncProcessor;
+            _coroutineHolder = coroutineHolder;
 
             _chaseSpeed = chaseSpeed;
             _speed = Random.Range(minMoveSpeed, maxMoveSpeed);
@@ -78,6 +78,40 @@ namespace App.Scripts.Enemies
             
             IsMoving = _navMeshAgent.velocity.magnitude >= 1f;
             IsRunning = IsMoving && Mathf.Approximately(_navMeshAgent.speed, _chaseSpeed);
+        }
+
+        public void Dispose()
+        {
+            _enemyHealth.OnTookDamageEvent -= OnTookDamage;
+            _enemyHealth.OnConcussionEvent -= OnConcussion;
+            _enemyHealth.OnOutFromConcussionEvent -= OnOutFromConcussion;
+        }
+
+        public void SetCurrentWayPoint(WayPoint wayPoint)
+        {
+            _currentWayPoint = wayPoint;
+        }
+
+        public void SetForceDestinationTarget(Transform target)
+        {
+            if (_enemyHealth.IsConcussion)
+            {
+                return;
+            }
+            
+            _forceDestinationTarget = target;
+            
+            if (target)
+            {
+                IsReachedDestination = false;
+                _defaultDestination = _navMeshAgent.destination;
+                _navMeshAgent.speed = _chaseSpeed;
+            }
+            else
+            {
+                _navMeshAgent.SetDestination(_defaultDestination);
+                _navMeshAgent.speed = _speed;
+            }
         }
 
         private void CheckReachedDestination()
@@ -151,43 +185,16 @@ namespace App.Scripts.Enemies
             SetDestination(_currentWayPoint);
         }
 
-        public void SetCurrentWayPoint(WayPoint wayPoint)
-        {
-            _currentWayPoint = wayPoint;
-        }
-
         private void SetDestination(WayPoint wayPoint)
         {
             _navMeshAgent.SetDestination(wayPoint.GetPosition());
             IsReachedDestination = false;
         }
 
-        public void SetForceDestinationTarget(Transform target)
-        {
-            if (_enemyHealth.IsConcussion)
-            {
-                return;
-            }
-            
-            _forceDestinationTarget = target;
-            
-            if (target)
-            {
-                IsReachedDestination = false;
-                _defaultDestination = _navMeshAgent.destination;
-                _navMeshAgent.speed = _chaseSpeed;
-            }
-            else
-            {
-                _navMeshAgent.SetDestination(_defaultDestination);
-                _navMeshAgent.speed = _speed;
-            }
-        }
-
         private void OnTookDamage(Transform attacker)
         {
             _navMeshAgent.speed = 0f;
-            _asyncProcessor.StartCoroutine(SetForceDestinationTargetWithDelay(attacker));
+            _coroutineHolder.StartCoroutine(SetForceDestinationTargetWithDelay(attacker));
         }
 
         private void OnConcussion()
@@ -208,13 +215,6 @@ namespace App.Scripts.Enemies
         {
             yield return new WaitForSeconds(DelayToSetTarget);
             SetForceDestinationTarget(attacker);
-        }
-
-        public void Dispose()
-        {
-            _enemyHealth.OnTookDamageEvent -= OnTookDamage;
-            _enemyHealth.OnConcussionEvent -= OnConcussion;
-            _enemyHealth.OnOutFromConcussionEvent -= OnOutFromConcussion;
         }
     }
 }

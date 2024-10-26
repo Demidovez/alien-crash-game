@@ -40,14 +40,16 @@ namespace App.Scripts.Infrastructure.DI
         private void BindBulletFactory()
         {
             Container
-                .Bind<BulletFactory>()
+                .Bind<IBulletFactory>()
+                .To<BulletFactory>()
                 .AsTransient();
         }
 
         private void BindBulletsPool()
         {
             Container
-                .Bind<BulletsPool>()
+                .Bind<IBulletsPool>()
+                .To<BulletsPool>()
                 .AsTransient();
         }
 
@@ -94,7 +96,7 @@ namespace App.Scripts.Infrastructure.DI
         private void BindShipDetailsCounter()
         {
             Container
-                .BindInterfacesAndSelfTo<ShipDetailCounter>()
+                .BindInterfacesTo<ShipDetailCounter>()
                 .AsSingle();
         }
 

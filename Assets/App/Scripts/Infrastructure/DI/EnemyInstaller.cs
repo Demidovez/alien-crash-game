@@ -35,7 +35,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemyHealth()
         {
             Container
-                .Bind<EnemyHealth>()
+                .Bind<IEnemyHealth>()
+                .To<EnemyHealth>()
                 .AsSingle()
                 .WithArguments(ConcussionEffect);
         }
@@ -51,7 +52,7 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemyAttack()
         {
             Container
-                .BindInterfacesAndSelfTo<EnemyAttack>()
+                .BindInterfacesTo<EnemyAttack>()
                 .AsSingle();
         }
 
@@ -66,7 +67,7 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemyNavigation()
         {
             Container
-                .BindInterfacesAndSelfTo<EnemyNavigation>()
+                .BindInterfacesTo<EnemyNavigation>()
                 .AsSingle()
                 .WithArguments(MinMoveSpeed, MaxMoveSpeed, ChaseSpeed, DeltaStopDistance);
         }
@@ -90,6 +91,7 @@ namespace App.Scripts.Infrastructure.DI
         {
             Container
                 .Bind<IFieldOfView>()
+                .To<FieldOfView>()
                 .FromComponentInHierarchy()
                 .AsSingle();
         }
@@ -97,7 +99,7 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemyChaseManager()
         {
             Container
-                .BindInterfacesAndSelfTo<EnemyChaseManager>()
+                .BindInterfacesTo<EnemyChaseManager>()
                 .AsSingle();
         }
     }

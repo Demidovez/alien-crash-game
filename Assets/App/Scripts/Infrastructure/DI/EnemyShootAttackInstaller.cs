@@ -15,7 +15,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemyPistol()
         {
             Container
-                .Bind<EnemyPistol>()
+                .Bind<IEnemyPistol>()
+                .To<EnemyPistol>()
                 .FromComponentInHierarchy()
                 .AsSingle();
         }

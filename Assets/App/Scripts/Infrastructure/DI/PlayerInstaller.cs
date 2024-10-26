@@ -19,7 +19,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindPlayer()
         {
             Container
-                .Bind<Player>()
+                .Bind<IPlayer>()
+                .To<Player>()
                 .FromComponentInHierarchy()
                 .AsSingle();
         }
@@ -27,7 +28,7 @@ namespace App.Scripts.Infrastructure.DI
         private void BindPlayerShooting()
         {
             Container
-                .BindInterfacesAndSelfTo<PlayerShooting>()
+                .BindInterfacesTo<PlayerShooting>()
                 .AsSingle()
                 .WithArguments(WeaponShootPosition);
         }
@@ -35,14 +36,15 @@ namespace App.Scripts.Infrastructure.DI
         private void BindPlayerHealth()
         {
             Container
-                .BindInterfacesAndSelfTo<PlayerHealth>()
+                .BindInterfacesTo<PlayerHealth>()
                 .AsSingle();
         }
 
         private void BindPlayerMovement()
         {
             Container
-                .Bind<PlayerMovement>()
+                .Bind<IPlayerMovement>()
+                .To<PlayerMovement>()
                 .FromComponentInHierarchy()
                 .AsSingle();
         }

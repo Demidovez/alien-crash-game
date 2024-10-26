@@ -3,7 +3,7 @@ using Zenject;
 
 namespace App.Scripts.Enemies
 {
-    public class EnemySpawner : IInitializable
+    public class EnemySpawner : IEnemySpawner, IInitializable
     {
         private readonly IEnemyFactory _enemyFactory;
         private readonly Transform _enemyMarkersContainer;

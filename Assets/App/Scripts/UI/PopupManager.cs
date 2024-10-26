@@ -1,22 +1,12 @@
-﻿using App.Scripts.Infrastructure;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
 namespace App.Scripts.UI
 {
-    public class PopupManager : MonoBehaviour
+    public class PopupManager : MonoBehaviour, IPopupManager
     {
-        [SerializeField] private GameObject Background;
-        [SerializeField] private GameObject CompleteCollectDetailsPopup;
-        [SerializeField] private GameObject GameOverPopup;
-
-        private Game _game; 
-
-        [Inject]
-        public void Construct(Game game)
-        {
-            _game = game;
-        }
+        public GameObject Background;
+        public GameObject CompleteCollectDetailsPopup;
+        public GameObject GameOverPopup;
         
         public void ShowCompleteCollectDetails()
         {

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace App.Scripts.UI
 {
-    public class PlayerInterfaceManager : MonoBehaviour
+    public class PlayerInterfaceManager : MonoBehaviour, IPlayerInterfaceManager
     {
         public Transform HealthLevel;
         public Transform ShipDetails;

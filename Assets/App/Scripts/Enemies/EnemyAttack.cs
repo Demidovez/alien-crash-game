@@ -2,17 +2,17 @@
 
 namespace App.Scripts.Enemies
 {
-    public class EnemyAttack: ITickable
+    public class EnemyAttack: IEnemyAttack, ITickable
     {
-        private readonly EnemyNavigation _enemyNavigation;
-        private readonly EnemyChaseManager _enemyChaseManager;
+        private readonly IEnemyNavigation _enemyNavigation;
+        private readonly IEnemyChaseManager _enemyChaseManager;
         private readonly IAttackMode _attackMode;
         
         public bool IsAttacking { get; private set; }
 
         public EnemyAttack(
-            EnemyNavigation enemyNavigation, 
-            EnemyChaseManager enemyChaseManager, 
+            IEnemyNavigation enemyNavigation, 
+            IEnemyChaseManager enemyChaseManager, 
             IAttackMode attackMode
         )
         {

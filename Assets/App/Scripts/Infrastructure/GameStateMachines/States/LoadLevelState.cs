@@ -5,16 +5,16 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
 {
     public class LoadLevelState : IPayloadedState<string>
     {
-        private readonly GameStateMachine _stateMachine;
-        private readonly SceneLoader _sceneLoader;
-        private readonly LoadingScreen _loadingScreen;
-        private readonly Game _game;
+        private readonly IGameStateMachine _stateMachine;
+        private readonly ISceneLoader _sceneLoader;
+        private readonly ILoadingScreen _loadingScreen;
+        private readonly IGame _game;
 
         public LoadLevelState(
-            GameStateMachine stateMachine, 
-            Game game,
-            SceneLoader sceneLoader,
-            LoadingScreen loadingScreen
+            IGameStateMachine stateMachine, 
+            IGame game,
+            ISceneLoader sceneLoader,
+            ILoadingScreen loadingScreen
         ) 
         {
             _stateMachine = stateMachine;

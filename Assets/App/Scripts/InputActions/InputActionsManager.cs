@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace App.Scripts.InputActions
 {
-    public class InputActionsManager: IDisposable
+    public class InputActionsManager: IInputActionsManager, IDisposable
     {
         private readonly InputAction _actionRun;
         private readonly InputAction _actionJump;

@@ -20,10 +20,10 @@ namespace App.Scripts.Infrastructure.DI
         public override void InstallBindings()
         {
             BindBoot();
-            BindAsyncProcessor();
+            BindGame();
+            BindCoroutineHolder();
             BindInputManager();
             BindSceneLoader();
-            BindGame();
             BindCamera();
             BindSoundManager();
             BindPopupManager();
@@ -39,10 +39,19 @@ namespace App.Scripts.Infrastructure.DI
                 .AsSingle();
         }
 
+        private void BindGame()
+        {
+            Container
+                .Bind<IGame>()
+                .To<Game>()
+                .AsSingle();
+        }
+
         private void BindLoadingScreen()
         {
             Container
-                .Bind<LoadingScreen>()
+                .Bind<ILoadingScreen>()
+                .To<LoadingScreen>()
                 .FromComponentInNewPrefab(LoadingScreenPrefab)
                 .AsSingle();
         }
@@ -50,14 +59,16 @@ namespace App.Scripts.Infrastructure.DI
         private void BindSoundManager()
         {
             Container
-                .Bind<SoundManager>()
+                .Bind<ISoundManager>()
+                .To<SoundManager>()
                 .AsSingle();
         }
 
         private void BindMenuManager()
         {
             Container
-                .Bind<MenuManager>()
+                .Bind<IMenuManager>()
+                .To<MenuManager>()
                 .FromComponentInNewPrefab(MenuPrefab)
                 .AsSingle();
         }
@@ -65,7 +76,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindPlayerInterfaceManager()
         {
             Container
-                .Bind<PlayerInterfaceManager>()
+                .Bind<IPlayerInterfaceManager>()
+                .To<PlayerInterfaceManager>()
                 .FromComponentInNewPrefab(PlayerInterfacePrefab)
                 .AsSingle();
         }
@@ -73,30 +85,26 @@ namespace App.Scripts.Infrastructure.DI
         private void BindPopupManager()
         {
             Container
-                .Bind<PopupManager>()
+                .Bind<IPopupManager>()
+                .To<PopupManager>()
                 .FromComponentInNewPrefab(PopupsPrefab)
                 .AsSingle();
         }
 
-        private void BindGame()
-        {
-            Container
-                .Bind<Game>()
-                .AsSingle();
-        }
-        
         private void BindCamera()
         {
             Container
-                .Bind<CameraController>()
+                .Bind<ICameraController>()
+                .To<CameraController>()
                 .FromComponentInNewPrefab(CameraPrefab)
                 .AsSingle();
         }
 
-        private void BindAsyncProcessor()
+        private void BindCoroutineHolder()
         {
             Container
-                .Bind<AsyncProcessor>()
+                .Bind<ICoroutineHolder>()
+                .To<CoroutineHolder>()
                 .FromNewComponentOnNewGameObject()
                 .AsSingle();
         }
@@ -104,14 +112,15 @@ namespace App.Scripts.Infrastructure.DI
         private void BindSceneLoader()
         {
             Container
-                .Bind<SceneLoader>()
+                .Bind<ISceneLoader>()
+                .To<SceneLoader>()
                 .AsSingle();
         }
 
         private void BindInputManager()
         {
             Container
-                .BindInterfacesAndSelfTo<InputActionsManager>()
+                .BindInterfacesTo<InputActionsManager>()
                 .AsSingle()
                 .WithArguments(PlayerInput);
         }

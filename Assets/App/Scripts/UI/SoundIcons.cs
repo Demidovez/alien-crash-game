@@ -1,5 +1,4 @@
-﻿using System;
-using App.Scripts.Sound;
+﻿using App.Scripts.Sound;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -18,12 +17,12 @@ namespace App.Scripts.UI
         public Sprite SoundOnIcon;
         public Sprite SoundOffIcon;
 
-        private SoundManager _soundManager;
+        private ISoundManager _soundManager;
         private bool _isActiveSounds;
         private bool _isActiveMusic;
 
         [Inject]
-        public void Construct(SoundManager soundManager)
+        public void Construct(ISoundManager soundManager)
         {
             _soundManager = soundManager;
         }

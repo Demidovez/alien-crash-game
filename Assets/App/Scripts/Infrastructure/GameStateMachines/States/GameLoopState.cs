@@ -6,14 +6,14 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
 {
     public class GameLoopState : IState
     {
-        private readonly GameStateMachine _stateMachine;
-        private readonly PlayerInterfaceManager _playerInterfaceManager;
-        private readonly InputActionsManager _inputActionsManager;
+        private readonly IGameStateMachine _stateMachine;
+        private readonly IPlayerInterfaceManager _playerInterfaceManager;
+        private readonly IInputActionsManager _inputActionsManager;
 
         public GameLoopState(
-            GameStateMachine stateMachine, 
-            PlayerInterfaceManager playerInterfaceManager,
-            InputActionsManager inputActionsManager
+            IGameStateMachine stateMachine, 
+            IPlayerInterfaceManager playerInterfaceManager,
+            IInputActionsManager inputActionsManager
         )
         {
             _stateMachine = stateMachine;

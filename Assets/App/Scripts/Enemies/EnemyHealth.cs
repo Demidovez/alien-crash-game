@@ -5,25 +5,25 @@ using UnityEngine;
 
 namespace App.Scripts.Enemies
 {
-    public class EnemyHealth
+    public class EnemyHealth: IEnemyHealth
     {
-        public Action<Transform> OnTookDamageEvent;
-        public Action OnConcussionEvent;
-        public Action OnOutFromConcussionEvent;
+        public event Action<Transform> OnTookDamageEvent;
+        public event Action OnConcussionEvent;
+        public event Action OnOutFromConcussionEvent;
         
         public bool IsConcussion => _health <= 0;
         
-        private readonly AsyncProcessor _asyncProcessor;
+        private readonly ICoroutineHolder _coroutineHolder;
         private readonly Transform _concussionEffectObj;
         private const float ConcussionDelay = 20f;
         private float _health = 100;
 
         public EnemyHealth(
-            AsyncProcessor asyncProcessor,
+            ICoroutineHolder coroutineHolder,
             Transform concussionEffectObj
         )
         {
-            _asyncProcessor = asyncProcessor;
+            _coroutineHolder = coroutineHolder;
             _concussionEffectObj = concussionEffectObj;
         }
 
@@ -50,7 +50,7 @@ namespace App.Scripts.Enemies
             if (_health <= 0)
             {
                 OnConcussionEvent?.Invoke();
-                _asyncProcessor.StartCoroutine(Concussion());
+                _coroutineHolder.StartCoroutine(Concussion());
             }
         }
         

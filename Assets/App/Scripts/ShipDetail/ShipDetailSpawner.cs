@@ -3,15 +3,15 @@ using Zenject;
 
 namespace App.Scripts.ShipDetail
 {
-    public class ShipDetailSpawner: IInitializable
+    public class ShipDetailSpawner: IShipDetailSpawner, IInitializable
     {
         private readonly IShipDetailFactory _shipDetailFactory;
-        private readonly ShipDetailCounter _shipDetailCounter;
+        private readonly IShipDetailCounter _shipDetailCounter;
         private readonly Transform _shipDetailMarkersContainer;
 
         public ShipDetailSpawner(
             IShipDetailFactory shipDetailFactory, 
-            ShipDetailCounter shipDetailCounter,
+            IShipDetailCounter shipDetailCounter,
             Transform shipDetailMarkersContainer
         )
         {

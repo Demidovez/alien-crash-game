@@ -5,10 +5,10 @@ namespace App.Scripts.Enemies
 {
     public class EnemyAnimationEventsListener : MonoBehaviour
     {
-        private EnemyAttack _enemyAttack;
+        private IEnemyAttack _enemyAttack;
         
         [Inject]
-        public void Construct(EnemyAttack enemyAttack)
+        public void Construct(IEnemyAttack enemyAttack)
         {
             _enemyAttack = enemyAttack;
         }

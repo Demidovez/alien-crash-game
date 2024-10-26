@@ -1,6 +1,6 @@
 ﻿namespace App.Scripts.Sound
 {
-    public class SoundManager
+    public class SoundManager: ISoundManager
     {
         public bool IsActiveSounds { get; private set; }
         public bool IsActiveMusic { get; private set; }

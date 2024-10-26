@@ -7,10 +7,10 @@ namespace App.Scripts.Enemies
     {
         public bool IsAttacking { get; set; }
         
-        private readonly EnemyChaseManager _enemyChaseManager;
+        private readonly IEnemyChaseManager _enemyChaseManager;
         private const float DamageValue = 10f;
 
-        public EnemyHitAttack(EnemyChaseManager enemyChaseManager)
+        public EnemyHitAttack(IEnemyChaseManager enemyChaseManager)
         {
             _enemyChaseManager = enemyChaseManager;
         }

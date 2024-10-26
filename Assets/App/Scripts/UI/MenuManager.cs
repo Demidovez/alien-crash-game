@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace App.Scripts.UI
 {
-    public class MenuManager : MonoBehaviour
+    public class MenuManager : MonoBehaviour, IMenuManager
     {
         public event Action<string> OnLoadLevelEvent;
         public event Action OnContinueLevelEvent;

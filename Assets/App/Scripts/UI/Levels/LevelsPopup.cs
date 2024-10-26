@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace App.Scripts.UI.Levels
 {
-    public class LevelsPopup: MonoBehaviour
+    public class LevelsPopup: MonoBehaviour, ILevelsPopup
     {
         public Image Background;
         public RectTransform Popup;

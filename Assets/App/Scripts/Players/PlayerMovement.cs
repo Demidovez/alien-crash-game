@@ -6,7 +6,7 @@ using Zenject;
 namespace App.Scripts.Players
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, IPlayerMovement
     {
         public bool IsGrounded { get; private set; }
         public bool IsMoving { get; private set; }
@@ -20,8 +20,8 @@ namespace App.Scripts.Players
         
         private Transform _cameraTransform;
         private CharacterController _characterController;
-        private InputActionsManager _inputActionsManager;
-        private PlayerShooting _playerShooting;
+        private IInputActionsManager _inputActionsManager;
+        private IPlayerShooting _playerShooting;
         private Vector3 _movement;
         private float _rotationX;
         private float _rotationY;
@@ -29,24 +29,24 @@ namespace App.Scripts.Players
 
         [Inject]
         public void Construct(
-            CameraController cameraController, 
-            InputActionsManager inputActionsManager,
-            PlayerShooting playerShooting
+            ICameraController cameraController, 
+            IInputActionsManager inputActionsManager,
+            IPlayerShooting playerShooting
         )
         {
             _cameraTransform = cameraController.GetCameraTransform();
             _inputActionsManager = inputActionsManager;
             _playerShooting = playerShooting;
-
-            _inputActionsManager.OnInputtedRun += SetMoveInput;
-            _inputActionsManager.OnInputtedJump += Jump;
-            _playerShooting.OnShootEvent += ApplyShootRotation;
         }
 
         private void Awake()
         {
             IsGrounded = true;
             _characterController = GetComponent<CharacterController>();
+            
+            _inputActionsManager.OnInputtedRun += SetMoveInput;
+            _inputActionsManager.OnInputtedJump += Jump;
+            _playerShooting.OnShootEvent += ApplyShootRotation;
         }
 
         private void Update()

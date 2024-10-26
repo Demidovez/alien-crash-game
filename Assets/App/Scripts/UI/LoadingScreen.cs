@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Scripts.UI
 {
-    public class LoadingScreen: MonoBehaviour
+    public class LoadingScreen: MonoBehaviour, ILoadingScreen
     {
         public CanvasGroup Screen;
         

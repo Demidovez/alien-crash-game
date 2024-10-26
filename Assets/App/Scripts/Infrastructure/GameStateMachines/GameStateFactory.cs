@@ -2,7 +2,7 @@
 
 namespace App.Scripts.Infrastructure.GameStateMachines
 {
-    public class GameStateFactory
+    public class GameStateFactory: IGameStateFactory
     {
         private readonly DiContainer _diContainer;
         

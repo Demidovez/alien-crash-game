@@ -6,12 +6,12 @@ namespace App.Scripts.Infrastructure
 {
     public class Boot: IInitializable
     {
-        private readonly GameStateMachine _gameStateMachine;
-        private readonly InputActionsManager _inputActionsManager;
+        private readonly IGameStateMachine _gameStateMachine;
+        private readonly IInputActionsManager _inputActionsManager;
 
         public Boot(
-            GameStateMachine gameStateMachine,
-            InputActionsManager inputActionsManager
+            IGameStateMachine gameStateMachine,
+            IInputActionsManager inputActionsManager
         )
         {
             _gameStateMachine = gameStateMachine;

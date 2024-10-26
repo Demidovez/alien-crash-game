@@ -5,12 +5,12 @@ using Zenject;
 
 namespace App.Scripts.Enemies
 {
-    public class EnemyChaseManager : ITickable, IDisposable
+    public class EnemyChaseManager : IEnemyChaseManager, ITickable, IDisposable
     {
         public bool IsChasing { get; private set; }
         public Transform Target { get; private set; }
         
-        private readonly EnemyNavigation _enemyNavigation;
+        private readonly IEnemyNavigation _enemyNavigation;
         private readonly IFieldOfView _fieldOfView;
 
         private const float FocusDistance = 2f;
@@ -20,7 +20,7 @@ namespace App.Scripts.Enemies
 
         public EnemyChaseManager(
             IFieldOfView fieldOfView,
-            EnemyNavigation enemyNavigation
+            IEnemyNavigation enemyNavigation
         )
         {
             _enemyNavigation = enemyNavigation;

@@ -1,20 +1,14 @@
-﻿using System;
-using App.Scripts.Helpers;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace App.Scripts.ShipDetail
 {
-    public class ShipDetail : MonoBehaviour
+    public class ShipDetail : MonoBehaviour, IShipDetail
     {
-        [SerializeField] private LayerMask _layerMaskAllowedEntities;
-
-        public static event Action OnCollectedShipDetail;
-        
         private void OnTriggerEnter(Collider other)
         {
-            if (Helper.ContainsLayer(other.gameObject.layer, _layerMaskAllowedEntities))
+            if (other.TryGetComponent(out IShipDetailCollector collector))
             {
-                OnCollectedShipDetail?.Invoke();
+                collector.ShipDetailCollect();
                 Destroy(gameObject.transform.parent.gameObject);
             }
         }

@@ -1,30 +1,22 @@
-﻿using System;
-using App.Scripts.UI;
+﻿using App.Scripts.UI;
 
 namespace App.Scripts.ShipDetail
 {
-    public class ShipDetailCounter : IDisposable
+    public class ShipDetailCounter : IShipDetailCounter
     {
         private int _countAllDetails;
         private int _countCollected;
 
-        private readonly PopupManager _popupManager;
-        private readonly PlayerInterfaceManager _playerInterfaceManager;
+        private readonly IPopupManager _popupManager;
+        private readonly IPlayerInterfaceManager _playerInterfaceManager;
 
         public ShipDetailCounter(
-            PopupManager popupManager,
-            PlayerInterfaceManager playerInterfaceManager
+            IPopupManager popupManager,
+            IPlayerInterfaceManager playerInterfaceManager
         )
         {
             _popupManager = popupManager;
             _playerInterfaceManager = playerInterfaceManager;
-
-            ShipDetail.OnCollectedShipDetail += CollectedDetail;
-        }
-        
-        public void Dispose()
-        {
-            ShipDetail.OnCollectedShipDetail -= CollectedDetail;
         }
 
         public void SetCountAll(int value)
@@ -33,7 +25,7 @@ namespace App.Scripts.ShipDetail
             _playerInterfaceManager.UpdateShipDetailsCounter(0, _countAllDetails);
         }
 
-        private void CollectedDetail()
+        public void CollectedDetail()
         {
             _countCollected++;
             

@@ -1,6 +1,6 @@
 ﻿namespace App.Scripts.Infrastructure
 {
-    public class Game
+    public class Game: IGame
     {
         public string CurrentLevelScene { get; private set; }
 

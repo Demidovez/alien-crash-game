@@ -5,18 +5,18 @@ using UnityEngine.SceneManagement;
 
 namespace App.Scripts.Infrastructure
 {
-    public class SceneLoader
+    public class SceneLoader: ISceneLoader
     {
-        private readonly AsyncProcessor _asyncProcessor;
+        private readonly ICoroutineHolder _coroutineHolder;
 
-        public SceneLoader(AsyncProcessor asyncProcessor)
+        public SceneLoader(ICoroutineHolder coroutineHolder)
         {
-            _asyncProcessor = asyncProcessor;
+            _coroutineHolder = coroutineHolder;
         }
         
         public void Load(string name, Action onLoaded = null)
         {
-            _asyncProcessor.StartCoroutine(LoadScene(name, onLoaded));
+            _coroutineHolder.StartCoroutine(LoadScene(name, onLoaded));
         }
 
         public string GetCurrentScene()

@@ -4,13 +4,13 @@ using App.Scripts.Infrastructure.GameStateMachines.States;
 
 namespace App.Scripts.Infrastructure.GameStateMachines
 {
-    public class GameStateMachine
+    public class GameStateMachine: IGameStateMachine
     {
-        private readonly GameStateFactory _gameStateFactory;
+        private readonly IGameStateFactory _gameStateFactory;
         private readonly Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;
 
-        public GameStateMachine(GameStateFactory gameStateFactory)
+        public GameStateMachine(IGameStateFactory gameStateFactory)
         {
             _gameStateFactory = gameStateFactory;
             _states = new Dictionary<Type, IExitableState>();
