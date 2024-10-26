@@ -11,7 +11,8 @@ namespace App.Scripts.UI
         
         public void ShowMenu();
         public void HideMenu();
-        public void OnLevelsToggle();
+        public void OnOpenLevelsClick();
+        public void OnCloseLevelsClick();
         public void OnContinueClick();
         public void OnStartClick();
         public void OnExitClick();

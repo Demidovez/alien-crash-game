@@ -10,18 +10,21 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         private readonly IGame _game;
         private readonly IMenuManager _menuManager;
         private readonly IInputActionsManager _inputActionsManager;
+        private readonly IPopupManager _popupManager;
 
         public MenuState(
             IGameStateMachine stateMachine, 
             IGame game,
             IMenuManager menuManager,
-            IInputActionsManager inputActionsManager
+            IInputActionsManager inputActionsManager,
+            IPopupManager popupManager
         )
         {
             _stateMachine = stateMachine;
             _game = game;
             _menuManager = menuManager;
             _inputActionsManager = inputActionsManager;
+            _popupManager = popupManager;
         }
 
         public void Enter()
@@ -52,12 +55,12 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         
         private void LoadLevel(string level)
         {
-            _stateMachine.Enter<LoadLevelState, string>("Level_1");
+            _stateMachine.Enter<LoadLevelState, string>(level);
         }
 
         private void ContinueLevel()
         {
-            if (_game.CurrentLevelScene != null)
+            if (_game.CurrentLevelScene != null && !_popupManager.IsActive)
             {
                 _stateMachine.Enter<GameLoopState>();
             }

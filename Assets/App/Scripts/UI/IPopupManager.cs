@@ -6,7 +6,7 @@
         public void HideCompleteCollectDetails();
         public void ShowGameOver();
         public void HideGameOver();
-        public void ShowMenu();
-        public void HideMenu();
+        
+        public bool IsActive { get; }
     }
 }

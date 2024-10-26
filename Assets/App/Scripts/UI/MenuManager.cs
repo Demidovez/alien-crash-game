@@ -59,9 +59,14 @@ namespace App.Scripts.UI
             gameObject.SetActive(false);
         }
 
-        public void OnLevelsToggle()
+        public void OnOpenLevelsClick()
         {
-            LevelsPopup.ToggleShow();
+            LevelsPopup.Show();
+        }
+        
+        public void OnCloseLevelsClick()
+        {
+            LevelsPopup.Hide();
         }
 
         public void OnContinueClick()

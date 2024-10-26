@@ -23,6 +23,8 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         
         public void Enter()
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            
             _playerInterfaceManager.SetVisible(true);
 
             _inputActionsManager.OnToggleMenu += ShowMenu;

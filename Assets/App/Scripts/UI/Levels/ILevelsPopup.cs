@@ -2,6 +2,7 @@
 {
     public interface ILevelsPopup
     {
-        public void ToggleShow();
+        public void Show();
+        public void Hide();
     }
 }

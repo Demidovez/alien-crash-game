@@ -414,7 +414,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6449571926626414681}
         m_TargetAssemblyTypeName: App.Scripts.UI.MenuManager, Assembly-CSharp
-        m_MethodName: OnLevelsToggle
+        m_MethodName: OnCloseLevelsClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1174,10 +1174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60376460c9714fc6a6228278a9fe978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ContinueButton: {fileID: 0}
-  StartButton: {fileID: 0}
-  LevelsButton: {fileID: 0}
-  ExitButton: {fileID: 0}
   LevelsGrid: {fileID: 563314351649276027}
   LevelCardPrefab: {fileID: 597405809377286729, guid: 1d29f2ca7fa450c409663d65954f2701,
     type: 3}
@@ -1617,7 +1613,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6449571926626414681}
         m_TargetAssemblyTypeName: App.Scripts.UI.MenuManager, Assembly-CSharp
-        m_MethodName: OnLevelsToggle
+        m_MethodName: OnOpenLevelsClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

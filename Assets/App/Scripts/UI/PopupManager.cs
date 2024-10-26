@@ -7,9 +7,14 @@ namespace App.Scripts.UI
         public GameObject Background;
         public GameObject CompleteCollectDetailsPopup;
         public GameObject GameOverPopup;
+
+        public bool IsActive => _countActivePopups != 0;
+
+        private float _countActivePopups;
         
         public void ShowCompleteCollectDetails()
         {
+            _countActivePopups++;
             Time.timeScale = 0;
             
             Background.SetActive(true);
@@ -18,6 +23,7 @@ namespace App.Scripts.UI
         
         public void HideCompleteCollectDetails()
         {
+            _countActivePopups--;
             Time.timeScale = 1;
             
             Background.SetActive(false);
@@ -26,6 +32,7 @@ namespace App.Scripts.UI
         
         public void ShowGameOver()
         {
+            _countActivePopups++;
             Time.timeScale = 0;
             
             Background.SetActive(true);
@@ -34,20 +41,11 @@ namespace App.Scripts.UI
         
         public void HideGameOver()
         {
+            _countActivePopups--;
             Time.timeScale = 1;
             
             Background.SetActive(false);
             GameOverPopup.SetActive(false);
-        }
-
-        public void ShowMenu()
-        {
-            Time.timeScale = 0;
-        }
-        
-        public void HideMenu()
-        {
-            Time.timeScale = 1;
         }
     }
 }
