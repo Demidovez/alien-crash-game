@@ -11,7 +11,7 @@ namespace App.Scripts.UI
         public CanvasGroup Screen;
 
         private IGame _game;
-        private const float DelayTime = 1.5f;
+        private const float DelayTime = 1f;
 
         private float _startLoadingTime;
 

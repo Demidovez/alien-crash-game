@@ -25,10 +25,10 @@ namespace App.Scripts.UI.Popups.Levels
             _initialColor = _background.color;
         }
 
-        private void OnEnable()
+        private void OnDestroy()
         {
-            _background.color = _initialColor;
-            _rectTransform.localScale = new Vector3(1f, 1f, 1f);
+            DOTween.Kill(_rectTransform);
+            DOTween.Kill(_background);
         }
 
         public void OnPointerEnter(PointerEventData eventData)

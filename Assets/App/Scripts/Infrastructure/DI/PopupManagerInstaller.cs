@@ -33,7 +33,7 @@ namespace App.Scripts.Infrastructure.DI
             Container
                 .Bind<IPopupsContainer>()
                 .To<PopupsContainer>()
-                .FromNewComponentOnNewPrefab(PopupContainerPrefab)
+                .FromComponentInNewPrefab(PopupContainerPrefab)
                 .AsSingle();
         }
 

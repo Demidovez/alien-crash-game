@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Infrastructure;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace App.Scripts.UI.Popups.Levels
 {
@@ -35,14 +36,16 @@ namespace App.Scripts.UI.Popups.Levels
         public void Show()
         {
             PopupWrapper popupWrapper = _popupManager.CreatePopupWrapper();
-            GameObject levels = _gameObjectHolder.InstantiateByPrefab(_popupLevelsPrefab, popupWrapper.Body.transform);
+            GameObject levelsBody = _gameObjectHolder.InstantiateByPrefab(_popupLevelsPrefab, popupWrapper.Body.transform, true);
+            
+            GridLayoutGroup gridLayout = levelsBody.GetComponentInChildren<GridLayoutGroup>();
             
             if (popupWrapper != null)
             {
-                InitLevelCards(levels, _levelCardPrefab, _levelsConfig);
+                InitLevelCards(gridLayout.gameObject, _levelCardPrefab, _levelsConfig);
             }
             
-            Debug.Log("Show levels");
+            popupWrapper.Show();
         }
         
         private void InitLevelCards(GameObject parent, GameObject levelCardPrefab, List<LevelCardSO> levelsConfig)
