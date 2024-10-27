@@ -49,7 +49,7 @@ namespace App.Scripts.Players
             _playerShooting.OnShootEvent += ApplyShootRotation;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             ApplyGravity();
             ApplyRotation();
