@@ -1,6 +1,6 @@
-﻿namespace App.Scripts.UI.Levels
+﻿namespace App.Scripts.UI.Popups
 {
-    public interface ILevelsPopup
+    public interface IPopup
     {
         public void Show();
         public void Hide();

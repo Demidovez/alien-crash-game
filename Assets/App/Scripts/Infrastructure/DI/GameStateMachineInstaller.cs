@@ -9,6 +9,7 @@ namespace App.Scripts.Infrastructure.DI
         {
             BindGameStateMachine();
             BindGameStateFactory();
+            BindLevelSwitch();
         }
 
         private void BindGameStateMachine()
@@ -18,12 +19,20 @@ namespace App.Scripts.Infrastructure.DI
                 .To<GameStateMachine>()
                 .AsSingle();
         }
-        
+
         private void BindGameStateFactory()
         {
             Container
                 .Bind<IGameStateFactory>()
                 .To<GameStateFactory>()
+                .AsSingle();
+        }
+
+        private void BindLevelSwitch()
+        {
+            Container
+                .Bind<ILevelSwitch>()
+                .To<LevelSwitch>()
                 .AsSingle();
         }
     }

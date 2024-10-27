@@ -6,11 +6,17 @@
         
         private readonly IGameStateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
+        private readonly IGame _game;
 
-        public BootstrapState(IGameStateMachine stateMachine, ISceneLoader sceneLoader)
+        public BootstrapState(
+            IGameStateMachine stateMachine, 
+            ISceneLoader sceneLoader,
+            IGame game
+        )
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
+            _game = game;
         }
 
         public void Enter()
@@ -24,15 +30,16 @@
                 EnterLoadLevel();
             }
         }
+        
+        public void Exit()
+        {
+            _game.Booted();
+        }
 
         private void EnterLoadLevel()
         {
             // Достаем сохранения и идем в меню
             _stateMachine.Enter<MenuState>();
-        }
-
-        public void Exit()
-        {
         }
     }
 }

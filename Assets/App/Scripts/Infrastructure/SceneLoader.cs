@@ -7,16 +7,16 @@ namespace App.Scripts.Infrastructure
 {
     public class SceneLoader: ISceneLoader
     {
-        private readonly ICoroutineHolder _coroutineHolder;
+        private readonly IGameObjectHolder _gameObjectHolder;
 
-        public SceneLoader(ICoroutineHolder coroutineHolder)
+        public SceneLoader(IGameObjectHolder gameObjectHolder)
         {
-            _coroutineHolder = coroutineHolder;
+            _gameObjectHolder = gameObjectHolder;
         }
         
         public void Load(string name, Action onLoaded = null)
         {
-            _coroutineHolder.StartCoroutine(LoadScene(name, onLoaded));
+            _gameObjectHolder.StartCoroutine(LoadScene(name, onLoaded));
         }
 
         public string GetCurrentScene()

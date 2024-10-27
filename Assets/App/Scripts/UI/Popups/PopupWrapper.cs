@@ -2,26 +2,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.UI.Levels
+namespace App.Scripts.UI.Popups
 {
-    public class LevelsPopup: MonoBehaviour, ILevelsPopup
+    public class PopupWrapper: MonoBehaviour
     {
         public Image Background;
         public RectTransform Popup;
+        public RectTransform Body;
+        public Image CloseIcon;
 
         private const float InitPopupYPosition = 950f;
 
         private void OnEnable()
         {
             ResetState();
-        }
-
-        private void LateUpdate()
-        {
-            if (Input.GetKey(KeyCode.Escape))
-            {
-                Hide();
-            }
         }
 
         public void Show()

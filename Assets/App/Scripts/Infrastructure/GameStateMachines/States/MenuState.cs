@@ -1,5 +1,7 @@
 ﻿using App.Scripts.InputActions;
 using App.Scripts.UI;
+using App.Scripts.UI.Popups;
+using App.Scripts.UI.Popups.Levels;
 using UnityEngine;
 
 namespace App.Scripts.Infrastructure.GameStateMachines.States
@@ -11,13 +13,15 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         private readonly IMenuManager _menuManager;
         private readonly IInputActionsManager _inputActionsManager;
         private readonly IPopupManager _popupManager;
+        private readonly ILevelsPopup _levelsPopup;
 
         public MenuState(
             IGameStateMachine stateMachine, 
             IGame game,
             IMenuManager menuManager,
             IInputActionsManager inputActionsManager,
-            IPopupManager popupManager
+            IPopupManager popupManager,
+            ILevelsPopup levelsPopup
         )
         {
             _stateMachine = stateMachine;
@@ -25,37 +29,31 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
             _menuManager = menuManager;
             _inputActionsManager = inputActionsManager;
             _popupManager = popupManager;
+            _levelsPopup = levelsPopup;
         }
 
         public void Enter()
         {
-            Time.timeScale = 0;
             _menuManager.ShowMenu();
             
-            _menuManager.OnLoadLevelEvent += LoadLevel;
             _menuManager.OnContinueLevelEvent += ContinueLevel;
             _menuManager.OnStartLevelEvent += StartLevel;
+            _menuManager.OnLevelsShowEvent += LevelsShow;
             _menuManager.OnExitGameEvent += ExitGame;
             
-            _inputActionsManager.OnToggleMenu += ContinueLevel;
+            _inputActionsManager.OnCancelKeyPressed += ContinueLevel;
         }
 
         public void Exit()
         {
-            Time.timeScale = 1;
             _menuManager.HideMenu();
             
-            _menuManager.OnLoadLevelEvent -= LoadLevel;
             _menuManager.OnContinueLevelEvent -= ContinueLevel;
             _menuManager.OnStartLevelEvent -= StartLevel;
+            _menuManager.OnLevelsShowEvent -= LevelsShow;
             _menuManager.OnExitGameEvent -= ExitGame;
             
-            _inputActionsManager.OnToggleMenu -= ContinueLevel;
-        }
-        
-        private void LoadLevel(string level)
-        {
-            _stateMachine.Enter<LoadLevelState, string>(level);
+            _inputActionsManager.OnCancelKeyPressed -= ContinueLevel;
         }
 
         private void ContinueLevel()
@@ -68,7 +66,13 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         
         private void StartLevel()
         {
+            // TODO: доработать
             _stateMachine.Enter<LoadLevelState, string>("Level_1");
+        }
+        
+        private void LevelsShow()
+        {
+            _levelsPopup.Show();
         }
         
         private void ExitGame()

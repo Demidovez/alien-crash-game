@@ -6,6 +6,8 @@ namespace App.Scripts.UI
     public class LoadingScreen: MonoBehaviour, ILoadingScreen
     {
         public CanvasGroup Screen;
+
+        public bool IsActive => gameObject.activeSelf;
         
         private void Awake()
         {

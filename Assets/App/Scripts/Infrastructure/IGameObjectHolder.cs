@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace App.Scripts.Infrastructure
 {
-    public interface ICoroutineHolder
+    public interface IGameObjectHolder
     {
         public Coroutine StartCoroutine(IEnumerator routine);
+        public GameObject InstantiateByPrefab(GameObject prefab, Transform parent);
     }
 }

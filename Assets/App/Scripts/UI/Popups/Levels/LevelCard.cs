@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace App.Scripts.UI.Levels
+namespace App.Scripts.UI.Popups.Levels
 {
     public class LevelCard: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {

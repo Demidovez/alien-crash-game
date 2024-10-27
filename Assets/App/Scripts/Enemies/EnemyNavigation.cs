@@ -21,7 +21,7 @@ namespace App.Scripts.Enemies
         
         private readonly NavMeshAgent _navMeshAgent;
         private readonly IEnemyHealth _enemyHealth;
-        private readonly ICoroutineHolder _coroutineHolder;
+        private readonly IGameObjectHolder _gameObjectHolder;
         private readonly float _chaseSpeed;
         private readonly float _speed;
         private readonly float _initialStopDistance;
@@ -35,7 +35,7 @@ namespace App.Scripts.Enemies
         public EnemyNavigation(
             NavMeshAgent navMeshAgent, 
             IEnemyHealth enemyHealth,
-            ICoroutineHolder coroutineHolder,
+            IGameObjectHolder gameObjectHolder,
             float minMoveSpeed, 
             float maxMoveSpeed, 
             float chaseSpeed,
@@ -44,7 +44,7 @@ namespace App.Scripts.Enemies
         {
             _navMeshAgent = navMeshAgent;
             _enemyHealth = enemyHealth;
-            _coroutineHolder = coroutineHolder;
+            _gameObjectHolder = gameObjectHolder;
 
             _chaseSpeed = chaseSpeed;
             _speed = Random.Range(minMoveSpeed, maxMoveSpeed);
@@ -194,7 +194,7 @@ namespace App.Scripts.Enemies
         private void OnTookDamage(Transform attacker)
         {
             _navMeshAgent.speed = 0f;
-            _coroutineHolder.StartCoroutine(SetForceDestinationTargetWithDelay(attacker));
+            _gameObjectHolder.StartCoroutine(SetForceDestinationTargetWithDelay(attacker));
         }
 
         private void OnConcussion()

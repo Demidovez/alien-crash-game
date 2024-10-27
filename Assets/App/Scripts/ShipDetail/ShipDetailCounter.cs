@@ -1,4 +1,6 @@
 ﻿using App.Scripts.UI;
+using App.Scripts.UI.Popups;
+using UnityEngine;
 
 namespace App.Scripts.ShipDetail
 {
@@ -33,7 +35,8 @@ namespace App.Scripts.ShipDetail
 
             if (_countAllDetails == _countCollected)
             {
-                _popupManager.ShowCompleteCollectDetails();
+                // _popupManager.ShowCompleteCollectDetails();
+                Debug.Log("CollectedDetail");
             }
         }
     }

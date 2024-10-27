@@ -13,7 +13,6 @@ namespace App.Scripts.Infrastructure.DI
         public PlayerInput PlayerInput;
         public GameObject MenuPrefab;
         public GameObject CameraPrefab;
-        public GameObject PopupsPrefab;
         public GameObject LoadingScreenPrefab;
         public GameObject PlayerInterfacePrefab;
 
@@ -26,7 +25,6 @@ namespace App.Scripts.Infrastructure.DI
             BindSceneLoader();
             BindCamera();
             BindSoundManager();
-            BindPopupManager();
             BindMenuManager();
             BindLoadingScreen();
             BindPlayerInterfaceManager();
@@ -82,15 +80,6 @@ namespace App.Scripts.Infrastructure.DI
                 .AsSingle();
         }
 
-        private void BindPopupManager()
-        {
-            Container
-                .Bind<IPopupManager>()
-                .To<PopupManager>()
-                .FromComponentInNewPrefab(PopupsPrefab)
-                .AsSingle();
-        }
-
         private void BindCamera()
         {
             Container
@@ -103,8 +92,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindCoroutineHolder()
         {
             Container
-                .Bind<ICoroutineHolder>()
-                .To<CoroutineHolder>()
+                .Bind<IGameObjectHolder>()
+                .To<GameObjectHolder>()
                 .FromNewComponentOnNewGameObject()
                 .AsSingle();
         }

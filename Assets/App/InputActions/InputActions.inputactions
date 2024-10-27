@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ShowMenu",
+                    "name": "CancelKey",
                     "type": "Button",
                     "id": "b2195bc3-f102-4a14-a530-731ec944a730",
                     "expectedControlType": "Button",
@@ -147,7 +147,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ShowMenu",
+                    "action": "CancelKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

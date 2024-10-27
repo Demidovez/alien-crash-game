@@ -13,17 +13,17 @@ namespace App.Scripts.Enemies
         
         public bool IsConcussion => _health <= 0;
         
-        private readonly ICoroutineHolder _coroutineHolder;
+        private readonly IGameObjectHolder _gameObjectHolder;
         private readonly Transform _concussionEffectObj;
         private const float ConcussionDelay = 20f;
         private float _health = 100;
 
         public EnemyHealth(
-            ICoroutineHolder coroutineHolder,
+            IGameObjectHolder gameObjectHolder,
             Transform concussionEffectObj
         )
         {
-            _coroutineHolder = coroutineHolder;
+            _gameObjectHolder = gameObjectHolder;
             _concussionEffectObj = concussionEffectObj;
         }
 
@@ -50,7 +50,7 @@ namespace App.Scripts.Enemies
             if (_health <= 0)
             {
                 OnConcussionEvent?.Invoke();
-                _coroutineHolder.StartCoroutine(Concussion());
+                _gameObjectHolder.StartCoroutine(Concussion());
             }
         }
         

@@ -8,7 +8,7 @@ namespace App.Scripts.InputActions
         public event Action<Vector2> OnInputtedRun; 
         public event Action OnInputtedJump;
         public event Action OnInputtedShoot;
-        public event Action OnToggleMenu;
+        public event Action OnCancelKeyPressed;
 
         public void Boot();
     }

@@ -23,23 +23,25 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         
         public void Enter()
         {
+            Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
             
             _playerInterfaceManager.SetVisible(true);
 
-            _inputActionsManager.OnToggleMenu += ShowMenu;
+            _inputActionsManager.OnCancelKeyPressed += CancelKeyPressed;
         }
 
         public void Exit()
         {
+            Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             
             _playerInterfaceManager.SetVisible(false);
             
-            _inputActionsManager.OnToggleMenu -= ShowMenu;
+            _inputActionsManager.OnCancelKeyPressed -= CancelKeyPressed;
         }
 
-        private void ShowMenu()
+        private void CancelKeyPressed()
         {
             _stateMachine.Enter<MenuState>();
         }

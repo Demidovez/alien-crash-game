@@ -1,4 +1,5 @@
 using System;
+using App.Scripts.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,22 +7,25 @@ namespace App.Scripts.InputActions
 {
     public class InputActionsManager: IInputActionsManager, IDisposable
     {
+        private readonly ILoadingScreen _loadingScreen;
         private readonly InputAction _actionRun;
         private readonly InputAction _actionJump;
         private readonly InputAction _actionShoot;
-        private readonly InputAction _actionShowMenu;
+        private readonly InputAction _actionCancelKey;
 
         public event Action<Vector2> OnInputtedRun; 
         public event Action OnInputtedJump;
         public event Action OnInputtedShoot;
-        public event Action OnToggleMenu;
+        public event Action OnCancelKeyPressed;
 
-        public InputActionsManager(PlayerInput playerInput)
+        public InputActionsManager(PlayerInput playerInput, ILoadingScreen loadingScreen)
         {
+            _loadingScreen = loadingScreen;
+            
             _actionRun = playerInput.actions["Run"];
             _actionJump = playerInput.actions["Jump"];
             _actionShoot = playerInput.actions["Shoot"];
-            _actionShowMenu = playerInput.actions["ShowMenu"];
+            _actionCancelKey = playerInput.actions["CancelKey"];
         }
 
         public void Boot()
@@ -30,12 +34,17 @@ namespace App.Scripts.InputActions
             _actionRun.canceled += Run;
             _actionJump.performed += Jump;
             _actionShoot.performed += Shoot;
-            _actionShowMenu.performed += ToggleMenu;
+            _actionCancelKey.performed += CancelKeyPressed;
         }
 
-        private void ToggleMenu(InputAction.CallbackContext obj)
+        private void CancelKeyPressed(InputAction.CallbackContext obj)
         {
-            OnToggleMenu?.Invoke();
+            if (_loadingScreen.IsActive)
+            {
+                return;
+            }
+            
+            OnCancelKeyPressed?.Invoke();
         }
 
         private void Shoot(InputAction.CallbackContext obj)
@@ -59,7 +68,7 @@ namespace App.Scripts.InputActions
             _actionRun.canceled -= Run;
             _actionJump.performed -= Jump;
             _actionShoot.performed -= Shoot;
-            _actionShowMenu.performed -= ToggleMenu;
+            _actionCancelKey.performed -= CancelKeyPressed;
         }
     }
 }

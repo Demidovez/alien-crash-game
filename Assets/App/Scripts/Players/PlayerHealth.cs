@@ -2,6 +2,7 @@
 using System.Collections;
 using App.Scripts.Infrastructure;
 using App.Scripts.UI;
+using App.Scripts.UI.Popups;
 using UnityEngine;
 
 namespace App.Scripts.Players
@@ -14,19 +15,19 @@ namespace App.Scripts.Players
         public bool IsAlive => _health > 0;
         
         private readonly IPopupManager _popupManager;
-        private readonly ICoroutineHolder _coroutineHolder;
+        private readonly IGameObjectHolder _gameObjectHolder;
         private readonly IPlayerInterfaceManager _playerInterfaceManager;
         private const float DeathDelay = 2f;
         private float _health = 100;
 
         public PlayerHealth(
             IPopupManager popupManager,
-            ICoroutineHolder coroutineHolder,
+            IGameObjectHolder gameObjectHolder,
             IPlayerInterfaceManager playerInterfaceManager
         )
         {
             _popupManager = popupManager;
-            _coroutineHolder = coroutineHolder;
+            _gameObjectHolder = gameObjectHolder;
             _playerInterfaceManager = playerInterfaceManager;
         }
 
@@ -55,7 +56,7 @@ namespace App.Scripts.Players
             if (_health <= 0)
             {
                 OnDeadEvent?.Invoke();
-                _coroutineHolder.StartCoroutine(Death());
+                _gameObjectHolder.StartCoroutine(Death());
             }
             else if(value < -0.1f)
             {
@@ -66,7 +67,8 @@ namespace App.Scripts.Players
         private IEnumerator Death()
         {
             yield return new WaitForSeconds(DeathDelay);
-            _popupManager.ShowGameOver();
+            // _popupManager.ShowGameOver();
+            Debug.Log("Death");
         }
     }
 }
