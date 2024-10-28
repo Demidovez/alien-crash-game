@@ -2,7 +2,7 @@
 {
     public interface IPopupManager
     {
-        public PopupWrapper CreatePopupWrapper();
+        public PopupWrapper CreatePopupWrapper(bool canClose = true);
         public bool IsActive { get; }
     }
 }

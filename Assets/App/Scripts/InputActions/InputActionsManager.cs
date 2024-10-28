@@ -1,4 +1,5 @@
 using System;
+using App.Scripts.Infrastructure;
 using App.Scripts.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,6 +9,7 @@ namespace App.Scripts.InputActions
     public class InputActionsManager: IInputActionsManager, IDisposable
     {
         private readonly ILoadingScreen _loadingScreen;
+        private readonly IGame _game;
         private readonly InputAction _actionRun;
         private readonly InputAction _actionJump;
         private readonly InputAction _actionShoot;
@@ -18,10 +20,15 @@ namespace App.Scripts.InputActions
         public event Action OnInputtedShoot;
         public event Action OnCancelKeyPressed;
 
-        public InputActionsManager(PlayerInput playerInput, ILoadingScreen loadingScreen)
+        public InputActionsManager(
+            PlayerInput playerInput, 
+            ILoadingScreen loadingScreen,
+            IGame game
+        )
         {
             _loadingScreen = loadingScreen;
-            
+            _game = game;
+
             _actionRun = playerInput.actions["Run"];
             _actionJump = playerInput.actions["Jump"];
             _actionShoot = playerInput.actions["Shoot"];
@@ -49,6 +56,11 @@ namespace App.Scripts.InputActions
 
         private void Shoot(InputAction.CallbackContext obj)
         {
+            if (!_game.IsGameState)
+            {
+                return;
+            }
+            
             OnInputtedShoot?.Invoke();
         }
 

@@ -2,6 +2,7 @@
 using App.Scripts.UI;
 using App.Scripts.UI.Popups;
 using App.Scripts.UI.Popups.Levels;
+using App.Scripts.UI.Popups.YouSure;
 using UnityEngine;
 using Zenject;
 
@@ -26,6 +27,7 @@ namespace App.Scripts.Infrastructure.DI
             BindPopupsContainer();
             BindPopupManager();
             BindLevelsPopup();
+            BindYouSurePopup();
         }
 
         private void BindPopupsContainer()
@@ -60,7 +62,7 @@ namespace App.Scripts.Infrastructure.DI
             Container
                 .Bind<IYouSurePopup>()
                 .To<YouSurePopup>()
-                .AsTransient()
+                .AsSingle()
                 .WithArguments(PopupYouSurePrefab);
         }
     }

@@ -16,7 +16,7 @@ namespace App.Scripts.UI.Popups
 
         public bool IsActive => _activePopups.Count > 0;
 
-        private readonly List<PopupWrapper> _activePopups = new();
+        private readonly Dictionary<float, PopupWrapper> _activePopups = new();
 
         public PopupManager(
             IInputActionsManager inputActionsManager, 
@@ -30,33 +30,43 @@ namespace App.Scripts.UI.Popups
             _popupsContainer = popupsContainer;
             _popupWrapperPrefab = popupWrapperPrefab;
 
-            _inputActionsManager.OnCancelKeyPressed += ClosePopup;
+            _inputActionsManager.OnCancelKeyPressed += CloseLastPopup;
         }
 
         public void Dispose()
         {
-            _inputActionsManager.OnCancelKeyPressed -= ClosePopup;
+            _inputActionsManager.OnCancelKeyPressed -= CloseLastPopup;
         }
 
-        public PopupWrapper CreatePopupWrapper()
+        public PopupWrapper CreatePopupWrapper(bool canClose = true)
         {
             GameObject wrapper = _gameObjectHolder.InstantiateByPrefab(_popupWrapperPrefab, _popupsContainer.transform);
 
             if (wrapper.TryGetComponent(out PopupWrapper popupWrapper))
             {
-                _activePopups.Add(popupWrapper);
+                if (canClose)
+                {
+                    popupWrapper.OnClose = (id) => _activePopups.Remove(id);
+                }
+                
+                _activePopups.Add(popupWrapper.Id, popupWrapper);
+                
                 return popupWrapper;
             }
 
             return null;
         }
 
-        private void ClosePopup()
+        private void CloseLastPopup()
         {
             if (_activePopups.Count > 0)
             {
-                PopupWrapper popup = _activePopups.Last();
-                popup.Hide();
+                PopupWrapper popup = _activePopups.Last().Value;
+
+                if (popup.CanClose)
+                {
+                    popup.Hide();
+                }
             }
         }
     }

@@ -37,13 +37,14 @@ namespace App.Scripts.UI.Popups.Levels
         {
             PopupWrapper popupWrapper = _popupManager.CreatePopupWrapper();
             GameObject levelsBody = _gameObjectHolder.InstantiateByPrefab(_popupLevelsPrefab, popupWrapper.Body.transform, true);
-            
             GridLayoutGroup gridLayout = levelsBody.GetComponentInChildren<GridLayoutGroup>();
-            
-            if (popupWrapper != null)
+
+            if (levelsBody.TryGetComponent(out RectTransform rectTransform))
             {
-                InitLevelCards(gridLayout.gameObject, _levelCardPrefab, _levelsConfig);
+                popupWrapper.SetBodySize(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y);
             }
+            
+            InitLevelCards(gridLayout.gameObject, _levelCardPrefab, _levelsConfig);
             
             popupWrapper.Show();
         }

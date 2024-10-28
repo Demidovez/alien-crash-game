@@ -25,6 +25,11 @@ namespace App.Scripts.Components
             }
         }
 
+        private void OnDestroy()
+        {
+            DOTween.Kill(RectTransform);
+        }
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             _isEntered = true;

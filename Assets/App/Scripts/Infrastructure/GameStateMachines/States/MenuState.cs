@@ -2,6 +2,7 @@
 using App.Scripts.UI;
 using App.Scripts.UI.Popups;
 using App.Scripts.UI.Popups.Levels;
+using App.Scripts.UI.Popups.YouSure;
 using UnityEngine;
 
 namespace App.Scripts.Infrastructure.GameStateMachines.States
@@ -14,6 +15,7 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         private readonly IInputActionsManager _inputActionsManager;
         private readonly IPopupManager _popupManager;
         private readonly ILevelsPopup _levelsPopup;
+        private readonly IYouSurePopup _youSurePopup;
 
         public MenuState(
             IGameStateMachine stateMachine, 
@@ -21,7 +23,8 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
             IMenuManager menuManager,
             IInputActionsManager inputActionsManager,
             IPopupManager popupManager,
-            ILevelsPopup levelsPopup
+            ILevelsPopup levelsPopup,
+            IYouSurePopup youSurePopup
         )
         {
             _stateMachine = stateMachine;
@@ -30,6 +33,7 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
             _inputActionsManager = inputActionsManager;
             _popupManager = popupManager;
             _levelsPopup = levelsPopup;
+            _youSurePopup = youSurePopup;
         }
 
         public void Enter()
@@ -77,7 +81,7 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         
         private void ExitGame()
         {
-            Debug.Log("ExitGame");
+            _youSurePopup.Show("You are sure?");
         }
     }
 }

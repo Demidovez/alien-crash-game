@@ -9,22 +9,26 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         private readonly IGameStateMachine _stateMachine;
         private readonly IPlayerInterfaceManager _playerInterfaceManager;
         private readonly IInputActionsManager _inputActionsManager;
+        private readonly IGame _game;
 
         public GameLoopState(
             IGameStateMachine stateMachine, 
             IPlayerInterfaceManager playerInterfaceManager,
-            IInputActionsManager inputActionsManager
+            IInputActionsManager inputActionsManager,
+            IGame game
         )
         {
             _stateMachine = stateMachine;
             _playerInterfaceManager = playerInterfaceManager;
             _inputActionsManager = inputActionsManager;
+            _game = game;
         }
         
         public void Enter()
         {
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
+            _game.SetIsGameState(true);
             
             _playerInterfaceManager.SetVisible(true);
 
@@ -35,6 +39,7 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         {
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
+            _game.SetIsGameState(false);
             
             _playerInterfaceManager.SetVisible(false);
             
