@@ -1,6 +1,5 @@
 ﻿using App.Scripts.UI;
-using App.Scripts.UI.Popups;
-using UnityEngine;
+using App.Scripts.UI.Popups.ShipDetailsCollected;
 
 namespace App.Scripts.ShipDetail
 {
@@ -8,17 +7,17 @@ namespace App.Scripts.ShipDetail
     {
         private int _countAllDetails;
         private int _countCollected;
-
-        private readonly IPopupManager _popupManager;
+        
         private readonly IPlayerInterfaceManager _playerInterfaceManager;
+        private readonly IShipDetailsCollectedPopup _shipDetailsCollectedPopup;
 
         public ShipDetailCounter(
-            IPopupManager popupManager,
-            IPlayerInterfaceManager playerInterfaceManager
+            IPlayerInterfaceManager playerInterfaceManager,
+            IShipDetailsCollectedPopup shipDetailsCollectedPopup
         )
         {
-            _popupManager = popupManager;
             _playerInterfaceManager = playerInterfaceManager;
+            _shipDetailsCollectedPopup = shipDetailsCollectedPopup;
         }
 
         public void SetCountAll(int value)
@@ -35,8 +34,7 @@ namespace App.Scripts.ShipDetail
 
             if (_countAllDetails == _countCollected)
             {
-                // _popupManager.ShowCompleteCollectDetails();
-                Debug.Log("CollectedDetail");
+                _shipDetailsCollectedPopup.Show("Вы уверены?","Прогресс игры не сохранится!", "Выйти", () => { });
             }
         }
     }

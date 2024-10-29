@@ -4739,6 +4739,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5363,6 +5368,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5524,6 +5534,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11802,6 +11817,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11887,6 +11907,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12024,6 +12049,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16342,6 +16372,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23031,6 +23066,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23497,6 +23537,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23770,6 +23815,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23849,6 +23899,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24196,6 +24251,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26999,6 +27059,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29104,6 +29169,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29171,6 +29241,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31602,6 +31677,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31764,6 +31844,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34302,6 +34387,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36860,6 +36950,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38244,6 +38339,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38572,6 +38672,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -39079,6 +39184,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -42400,6 +42510,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -45079,6 +45194,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -54590,6 +54710,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -56998,6 +57123,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -59356,6 +59486,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -60287,6 +60422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62452,6 +62592,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -64131,6 +64276,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -64928,6 +65078,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -65615,6 +65770,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -67550,6 +67710,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -69556,6 +69721,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -71063,6 +71233,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -76043,6 +76218,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipDetailMarker (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -78539,6 +78719,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipDetailMarker
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440167550433536487, guid: 0594e0e583efa8744b98015fa1646adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

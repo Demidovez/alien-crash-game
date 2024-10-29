@@ -2,15 +2,15 @@
 using App.Scripts.Infrastructure;
 using UnityEngine;
 
-namespace App.Scripts.UI.Popups.YouSure
+namespace App.Scripts.UI.Popups.ShipDetailsCollected
 {
-    public class YouSurePopup: IYouSurePopup
+    public class ShipDetailsCollectedPopup: IShipDetailsCollectedPopup
     {
         private readonly IPopupManager _popupManager;
         private readonly IGameObjectHolder _gameObjectHolder;
         private readonly GameObject _popupBodyPrefab;
 
-        public YouSurePopup(
+        public ShipDetailsCollectedPopup(
             IPopupManager popupManager,
             IGameObjectHolder gameObjectHolder,
             GameObject popupBodyPrefab
@@ -21,7 +21,7 @@ namespace App.Scripts.UI.Popups.YouSure
             _popupBodyPrefab = popupBodyPrefab;
         }
         
-        public void Show(string text, string okLabel, Action onOkClick, string cancelLabel = null, Action onCancelClick = null)
+        public void Show(string title, string text, string okLabel, Action onOkClick, string cancelLabel = null, Action onCancelClick = null)
         {
             PopupWrapper popupWrapper = _popupManager.CreatePopupWrapper(false);
             GameObject body = _gameObjectHolder.InstantiateByPrefab(_popupBodyPrefab, popupWrapper.Body.transform, true);
@@ -31,9 +31,9 @@ namespace App.Scripts.UI.Popups.YouSure
                 popupWrapper.SetBodySize(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y);
             }
 
-            if (body.TryGetComponent(out SimplePopupContent simplePopupContent))
+            if (body.TryGetComponent(out ShipDetailsCollectedLayout simplePopupContent))
             {
-                simplePopupContent.Title = "Вы уверены?";
+                simplePopupContent.Title = title;
                 simplePopupContent.Text = text;
 
                 simplePopupContent.OnOkClick = () => popupWrapper.HideImmediately(onOkClick);

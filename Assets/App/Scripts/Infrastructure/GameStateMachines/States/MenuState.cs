@@ -3,7 +3,7 @@ using App.Scripts.InputActions;
 using App.Scripts.UI;
 using App.Scripts.UI.Popups;
 using App.Scripts.UI.Popups.Levels;
-using App.Scripts.UI.Popups.YouSure;
+using App.Scripts.UI.Popups.Questions;
 using UnityEngine;
 
 namespace App.Scripts.Infrastructure.GameStateMachines.States
@@ -16,7 +16,7 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         private readonly IInputActionsManager _inputActionsManager;
         private readonly IPopupManager _popupManager;
         private readonly ILevelsPopup _levelsPopup;
-        private readonly IYouSurePopup _youSurePopup;
+        private readonly IQuestionPopup _questionPopup;
 
         public MenuState(
             IGameStateMachine stateMachine, 
@@ -25,7 +25,7 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
             IInputActionsManager inputActionsManager,
             IPopupManager popupManager,
             ILevelsPopup levelsPopup,
-            IYouSurePopup youSurePopup
+            IQuestionPopup questionPopup
         )
         {
             _stateMachine = stateMachine;
@@ -34,7 +34,7 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
             _inputActionsManager = inputActionsManager;
             _popupManager = popupManager;
             _levelsPopup = levelsPopup;
-            _youSurePopup = youSurePopup;
+            _questionPopup = questionPopup;
         }
 
         public void Enter()
@@ -88,7 +88,7 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
                 exitAction = () => UnityEditor.EditorApplication.isPlaying = false;
             #endif
             
-            _youSurePopup.Show("Прогресс игры не сохраниться!", "Выйти", exitAction);
+            _questionPopup.Show("Вы уверены?","Прогресс игры не сохранится!", "Выйти", exitAction);
         }
     }
 }

@@ -2,9 +2,9 @@
 using TMPro;
 using UnityEngine;
 
-namespace App.Scripts.UI.Popups
+namespace App.Scripts.UI.Popups.Questions
 {
-    public class SimplePopupContent: MonoBehaviour
+    public class QuestionPopupLayout: MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _title;
         [SerializeField] private TextMeshProUGUI _text;

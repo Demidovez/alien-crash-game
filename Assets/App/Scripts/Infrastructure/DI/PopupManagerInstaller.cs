@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using App.Scripts.UI;
 using App.Scripts.UI.Popups;
 using App.Scripts.UI.Popups.Levels;
-using App.Scripts.UI.Popups.YouSure;
+using App.Scripts.UI.Popups.Questions;
+using App.Scripts.UI.Popups.ShipDetailsCollected;
 using UnityEngine;
 using Zenject;
 
@@ -16,7 +16,8 @@ namespace App.Scripts.Infrastructure.DI
         
         [Header("Popups Content")]
         public GameObject PopupLevelsPrefab;
-        public GameObject PopupYouSurePrefab;
+        public GameObject PopupQuestionPrefab;
+        public GameObject PopupShipDetailsCollectedPrefab;
         
         [Header("Levels")]
         public GameObject LevelCardPrefab;
@@ -27,9 +28,10 @@ namespace App.Scripts.Infrastructure.DI
             BindPopupsContainer();
             BindPopupManager();
             BindLevelsPopup();
-            BindYouSurePopup();
+            BindQuestionPopup();
+            BindShipDetailsCollectedPopup();
         }
-
+        
         private void BindPopupsContainer()
         {
             Container
@@ -57,13 +59,22 @@ namespace App.Scripts.Infrastructure.DI
                 .WithArguments(LevelsConfig, PopupLevelsPrefab, LevelCardPrefab);
         }
         
-        private void BindYouSurePopup()
+        private void BindQuestionPopup()
         {
             Container
-                .Bind<IYouSurePopup>()
-                .To<YouSurePopup>()
+                .Bind<IQuestionPopup>()
+                .To<QuestionPopup>()
                 .AsSingle()
-                .WithArguments(PopupYouSurePrefab);
+                .WithArguments(PopupQuestionPrefab);
+        }
+        
+        private void BindShipDetailsCollectedPopup()
+        {
+            Container
+                .Bind<IShipDetailsCollectedPopup>()
+                .To<ShipDetailsCollectedPopup>()
+                .AsSingle()
+                .WithArguments(PopupShipDetailsCollectedPrefab);
         }
     }
 }
