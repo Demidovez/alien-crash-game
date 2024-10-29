@@ -40,11 +40,13 @@ namespace App.Scripts.UI.Popups
 
         public PopupWrapper CreatePopupWrapper(bool canClose = true)
         {
+            CreatedNewPopup();
+            
             GameObject wrapper = _gameObjectHolder.InstantiateByPrefab(_popupWrapperPrefab, _popupsContainer.transform);
 
             if (wrapper.TryGetComponent(out PopupWrapper popupWrapper))
             {
-                popupWrapper.OnClose = (id) => _activePopups.Remove(id);
+                popupWrapper.OnClose = RemovePopup;
                 popupWrapper.Closable = canClose;
                 
                 _activePopups.Add(popupWrapper.Id, popupWrapper);
@@ -53,6 +55,26 @@ namespace App.Scripts.UI.Popups
             }
 
             return null;
+        }
+
+        private void RemovePopup(float id)
+        {
+            _activePopups.Remove(id);
+            
+            if (_activePopups.Count == 0)
+            {
+                Time.timeScale = 1;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
+
+        private void CreatedNewPopup()
+        {
+            if (_activePopups.Count == 0)
+            {
+                Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
 
         private void CloseLastPopup()

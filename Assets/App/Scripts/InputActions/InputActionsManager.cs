@@ -1,6 +1,7 @@
 using System;
 using App.Scripts.Infrastructure;
 using App.Scripts.UI;
+using App.Scripts.UI.Popups;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -56,7 +57,7 @@ namespace App.Scripts.InputActions
 
         private void Shoot(InputAction.CallbackContext obj)
         {
-            if (!_game.IsGameState)
+            if (!_game.IsGameState || Time.timeScale == 0)
             {
                 return;
             }

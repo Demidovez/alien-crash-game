@@ -1,5 +1,4 @@
-﻿using System;
-using App.Scripts.Infrastructure;
+﻿using App.Scripts.Infrastructure;
 using UnityEngine;
 
 namespace App.Scripts.UI.Popups.ShipDetailsCollected
@@ -21,7 +20,7 @@ namespace App.Scripts.UI.Popups.ShipDetailsCollected
             _popupBodyPrefab = popupBodyPrefab;
         }
         
-        public void Show(string title, string text, string okLabel, Action onOkClick, string cancelLabel = null, Action onCancelClick = null)
+        public void Show()
         {
             PopupWrapper popupWrapper = _popupManager.CreatePopupWrapper(false);
             GameObject body = _gameObjectHolder.InstantiateByPrefab(_popupBodyPrefab, popupWrapper.Body.transform, true);
@@ -30,17 +29,10 @@ namespace App.Scripts.UI.Popups.ShipDetailsCollected
             {
                 popupWrapper.SetBodySize(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y);
             }
-
-            if (body.TryGetComponent(out ShipDetailsCollectedLayout simplePopupContent))
+            
+            if (body.TryGetComponent(out ShipDetailsCollectedLayout questionPopup))
             {
-                simplePopupContent.Title = title;
-                simplePopupContent.Text = text;
-
-                simplePopupContent.OnOkClick = () => popupWrapper.HideImmediately(onOkClick);
-                simplePopupContent.OkButtonLabel = okLabel;
-                
-                simplePopupContent.OnCancelClick = onCancelClick ?? popupWrapper.Hide;
-                simplePopupContent.CancelButtonLabel = cancelLabel ?? "Отмена";
+                questionPopup.OnOkClick = popupWrapper.Hide;
             }
             
             popupWrapper.Show();

@@ -48,15 +48,19 @@ namespace App.Scripts.Players
             _inputActionsManager.OnInputtedJump += Jump;
             _playerShooting.OnShootEvent += ApplyShootRotation;
         }
-
-        private void FixedUpdate()
+        
+        private void Update()
         {
             ApplyGravity();
             ApplyRotation();
             ApplyMovement();
-
-            IsGrounded = _characterController.isGrounded;
+            
             IsMoving = _characterController.velocity != Vector3.zero;
+        }
+
+        private void FixedUpdate()
+        {
+            IsGrounded = _characterController.isGrounded;
         }
 
         private void OnDestroy()

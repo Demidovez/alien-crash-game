@@ -34,7 +34,7 @@ namespace App.Scripts.ShipDetail
 
             if (_countAllDetails == _countCollected)
             {
-                _shipDetailsCollectedPopup.Show("Вы уверены?","Прогресс игры не сохранится!", "Выйти", () => { });
+                _shipDetailsCollectedPopup.Show();
             }
         }
     }
