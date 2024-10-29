@@ -1,21 +1,67 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 namespace App.Scripts.UI.Popups
 {
     public class SimplePopupContent: MonoBehaviour
     {
-        public TextMeshProUGUI Title;
-        public TextMeshProUGUI Text;
+        [SerializeField] private TextMeshProUGUI _title;
+        [SerializeField] private TextMeshProUGUI _text;
+        
+        [Header("Buttons")]
+        [SerializeField] private TextMeshProUGUI _okText;
+        [SerializeField] private TextMeshProUGUI _cancelText;
 
-        public void SetTitle(string title)
+        public Action OnOkClick;
+        public Action OnCancelClick;
+        
+        public string Title
         {
-            Title.SetText(title);
+            get => _title.text;
+            set => SetTextFor(_title, value);
         }
         
-        public void SetText(string text)
+        public string Text
         {
-            Text.SetText(text);
+            get => _text.text;
+            set => SetTextFor(_text, value);
+        }
+        
+        public string OkButtonLabel
+        {
+            get => _okText.text;
+            set => _okText.SetText(value);
+        }
+        
+        public string CancelButtonLabel
+        {
+            get => _cancelText.text;
+            set => _cancelText.SetText(value);
+        }
+
+        private void LateUpdate()
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                OnOkClick?.Invoke();
+            }
+        }
+
+        public void OnOkClickListener()
+        {
+            OnOkClick?.Invoke();
+        }
+        
+        public void OnCancelClickListener()
+        {
+            OnCancelClick?.Invoke();
+        }
+
+        private void SetTextFor(TextMeshProUGUI textPro, string text)
+        {
+            textPro.gameObject.SetActive(true);
+            textPro.SetText(text);
         }
     }
 }

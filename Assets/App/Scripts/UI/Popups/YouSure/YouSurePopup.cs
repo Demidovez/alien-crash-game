@@ -1,4 +1,5 @@
-﻿using App.Scripts.Infrastructure;
+﻿using System;
+using App.Scripts.Infrastructure;
 using UnityEngine;
 
 namespace App.Scripts.UI.Popups.YouSure
@@ -20,7 +21,7 @@ namespace App.Scripts.UI.Popups.YouSure
             _popupBodyPrefab = popupBodyPrefab;
         }
         
-        public void Show(string text)
+        public void Show(string text, string okLabel, Action onOkClick, string cancelLabel = null, Action onCancelClick = null)
         {
             PopupWrapper popupWrapper = _popupManager.CreatePopupWrapper(false);
             GameObject body = _gameObjectHolder.InstantiateByPrefab(_popupBodyPrefab, popupWrapper.Body.transform, true);
@@ -32,8 +33,14 @@ namespace App.Scripts.UI.Popups.YouSure
 
             if (body.TryGetComponent(out SimplePopupContent simplePopupContent))
             {
-                simplePopupContent.SetTitle("Вы уверены?");
-                simplePopupContent.SetText(text);
+                simplePopupContent.Title = "Вы уверены?";
+                simplePopupContent.Text = text;
+
+                simplePopupContent.OnOkClick = () => popupWrapper.HideImmediately(onOkClick);
+                simplePopupContent.OkButtonLabel = okLabel;
+                
+                simplePopupContent.OnCancelClick = onCancelClick ?? popupWrapper.Hide;
+                simplePopupContent.CancelButtonLabel = cancelLabel ?? "Отмена";
             }
             
             popupWrapper.Show();

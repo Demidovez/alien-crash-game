@@ -9,7 +9,7 @@ namespace App.Scripts.UI.Popups
     {
         public float Id { get; private set; }
         public Action<float> OnClose;
-        public bool CanClose => OnClose != null;
+        public bool Closable;
         
         public Image Background;
         public RectTransform Body;
@@ -48,12 +48,12 @@ namespace App.Scripts.UI.Popups
         {
             gameObject.SetActive(true);
 
-            if (!CanClose)
+            if (!Closable)
             {
                 CloseIcon.gameObject.SetActive(false);
             }
             
-            Background.DOFade(0.8f, 0.25f).SetUpdate(true);
+            Background.DOFade(0.95f, 0.25f).SetUpdate(true);
             Body.DOLocalMoveY(0, 0.25f).SetUpdate(true);
         }
 
@@ -68,6 +68,12 @@ namespace App.Scripts.UI.Popups
                     Destroy(gameObject);
                 })
                 .SetUpdate(true);
+        }
+
+        public void HideImmediately(Action callback = null)
+        {
+            Destroy(gameObject);
+            callback?.Invoke();
         }
     }
 }

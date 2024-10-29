@@ -1,4 +1,5 @@
-﻿using App.Scripts.InputActions;
+﻿using System;
+using App.Scripts.InputActions;
 using App.Scripts.UI;
 using App.Scripts.UI.Popups;
 using App.Scripts.UI.Popups.Levels;
@@ -81,7 +82,13 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         
         private void ExitGame()
         {
-            _youSurePopup.Show("You are sure?");
+            Action exitAction = Application.Quit;
+            
+            #if UNITY_EDITOR
+                exitAction = () => UnityEditor.EditorApplication.isPlaying = false;
+            #endif
+            
+            _youSurePopup.Show("Прогресс игры не сохраниться!", "Выйти", exitAction);
         }
     }
 }

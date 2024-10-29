@@ -44,10 +44,8 @@ namespace App.Scripts.UI.Popups
 
             if (wrapper.TryGetComponent(out PopupWrapper popupWrapper))
             {
-                if (canClose)
-                {
-                    popupWrapper.OnClose = (id) => _activePopups.Remove(id);
-                }
+                popupWrapper.OnClose = (id) => _activePopups.Remove(id);
+                popupWrapper.Closable = canClose;
                 
                 _activePopups.Add(popupWrapper.Id, popupWrapper);
                 
@@ -63,7 +61,7 @@ namespace App.Scripts.UI.Popups
             {
                 PopupWrapper popup = _activePopups.Last().Value;
 
-                if (popup.CanClose)
+                if (popup.Closable)
                 {
                     popup.Hide();
                 }
