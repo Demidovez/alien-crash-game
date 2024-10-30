@@ -13,6 +13,7 @@ namespace App.Scripts.UI.Popups
         private readonly IGameObjectHolder _gameObjectHolder;
         private readonly IPopupsContainer _popupsContainer;
         private readonly GameObject _popupWrapperPrefab;
+        private readonly IGame _game;
 
         public bool IsActive => _activePopups.Count > 0;
 
@@ -22,13 +23,15 @@ namespace App.Scripts.UI.Popups
             IInputActionsManager inputActionsManager, 
             IGameObjectHolder gameObjectHolder,
             IPopupsContainer popupsContainer,
-            GameObject popupWrapperPrefab
+            GameObject popupWrapperPrefab,
+            IGame game
         )
         {
             _inputActionsManager = inputActionsManager;
             _gameObjectHolder = gameObjectHolder;
             _popupsContainer = popupsContainer;
             _popupWrapperPrefab = popupWrapperPrefab;
+            _game = game;
 
             _inputActionsManager.OnCancelKeyPressed += CloseLastPopup;
         }
@@ -56,24 +59,24 @@ namespace App.Scripts.UI.Popups
 
             return null;
         }
+        
+        private void CreatedNewPopup()
+        {
+            if (_game.IsGameState && _activePopups.Count == 0)
+            {
+                Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.None;
+            }
+        }
 
         private void RemovePopup(float id)
         {
             _activePopups.Remove(id);
             
-            if (_activePopups.Count == 0)
+            if (_game.IsGameState && _activePopups.Count == 0)
             {
                 Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Locked;
-            }
-        }
-
-        private void CreatedNewPopup()
-        {
-            if (_activePopups.Count == 0)
-            {
-                Time.timeScale = 0;
-                Cursor.lockState = CursorLockMode.None;
             }
         }
 

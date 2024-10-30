@@ -1,7 +1,6 @@
 using System;
 using App.Scripts.Infrastructure;
 using App.Scripts.UI;
-using App.Scripts.UI.Popups;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

@@ -58,7 +58,7 @@ namespace App.Scripts.Players
             IsMoving = _characterController.velocity != Vector3.zero;
         }
 
-        private void FixedUpdate()
+        private void LateUpdate()
         {
             IsGrounded = _characterController.isGrounded;
         }
