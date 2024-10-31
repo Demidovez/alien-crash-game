@@ -1110,7 +1110,7 @@ GameObject:
   m_Layer: 0
   m_Name: PlayerSpawnPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1122,13 +1122,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29425654}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.99973357, z: -0, w: 0.023083823}
-  m_LocalPosition: {x: 49.6, y: 0.81, z: 43.81}
+  m_LocalRotation: {x: -0, y: -0.81550735, z: -0, w: -0.57874674}
+  m_LocalPosition: {x: 51.29, y: 0.81, z: 83.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -177.355, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -250.725, z: 0}
 --- !u!1001 &30560004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11263,6 +11263,7 @@ MonoBehaviour:
   EnemyMarkersContainer: {fileID: 278676419}
   ShipDetailMarkersContainer: {fileID: 896614976}
   HealthPillMarkersContainer: {fileID: 928749706}
+  Teleport: {fileID: 1037121771}
 --- !u!1001 &348220439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31793,17 +31794,17 @@ PrefabInstance:
     - target: {fileID: 315905336341507687, guid: 0594e0e583efa8744b98015fa1646adc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.9
+      value: 23.33
       objectReference: {fileID: 0}
     - target: {fileID: 315905336341507687, guid: 0594e0e583efa8744b98015fa1646adc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.21
+      value: -6.98
       objectReference: {fileID: 0}
     - target: {fileID: 315905336341507687, guid: 0594e0e583efa8744b98015fa1646adc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 26.3
+      value: 45.82
       objectReference: {fileID: 0}
     - target: {fileID: 315905336341507687, guid: 0594e0e583efa8744b98015fa1646adc,
         type: 3}
@@ -35788,6 +35789,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 494790920}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1037121771 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 257246702164896825, guid: 768b939effe3a9a4ca0e4e05916b115f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1365513099154529068}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bef5d7b39e24e9999592bf9acedcd3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1038248578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78650,11 +78663,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 243837245565405741, guid: 768b939effe3a9a4ca0e4e05916b115f,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2311607985300136674, guid: 768b939effe3a9a4ca0e4e05916b115f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -78708,22 +78716,7 @@ PrefabInstance:
     - target: {fileID: 8105358390732559599, guid: 768b939effe3a9a4ca0e4e05916b115f,
         type: 3}
       propertyPath: m_Name
-      value: Portal
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731722409211408615, guid: 768b939effe3a9a4ca0e4e05916b115f,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.23683852
-      objectReference: {fileID: 0}
-    - target: {fileID: 8731722409211408615, guid: 768b939effe3a9a4ca0e4e05916b115f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 9041311568069453619, guid: 768b939effe3a9a4ca0e4e05916b115f,
-        type: 3}
-      propertyPath: m_Convex
-      value: 0
+      value: Teleport
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

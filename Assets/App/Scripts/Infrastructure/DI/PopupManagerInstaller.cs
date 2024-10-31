@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.UI.Popups;
+using App.Scripts.UI.Popups.LevelComplete;
 using App.Scripts.UI.Popups.Levels;
 using App.Scripts.UI.Popups.Questions;
 using App.Scripts.UI.Popups.ShipDetailsCollected;
@@ -18,6 +20,7 @@ namespace App.Scripts.Infrastructure.DI
         public GameObject PopupLevelsPrefab;
         public GameObject PopupQuestionPrefab;
         public GameObject PopupShipDetailsCollectedPrefab;
+        public GameObject PopupLevelCompletePrefab;
         
         [Header("Levels")]
         public GameObject LevelCardPrefab;
@@ -30,6 +33,7 @@ namespace App.Scripts.Infrastructure.DI
             BindLevelsPopup();
             BindQuestionPopup();
             BindShipDetailsCollectedPopup();
+            BindLevelCompletePopup();
         }
         
         private void BindPopupsContainer()
@@ -44,7 +48,7 @@ namespace App.Scripts.Infrastructure.DI
         private void BindPopupManager()
         {
             Container
-                .Bind<IPopupManager>()
+                .Bind(typeof(IPopupManager), typeof(IDisposable))
                 .To<PopupManager>()
                 .AsSingle()
                 .WithArguments(PopupWrapperPrefab);
@@ -75,6 +79,15 @@ namespace App.Scripts.Infrastructure.DI
                 .To<ShipDetailsCollectedPopup>()
                 .AsSingle()
                 .WithArguments(PopupShipDetailsCollectedPrefab);
+        }
+        
+        private void BindLevelCompletePopup()
+        {
+            Container
+                .Bind<ILevelCompletePopup>()
+                .To<LevelCompletePopup>()
+                .AsSingle()
+                .WithArguments(PopupLevelCompletePrefab);
         }
     }
 }

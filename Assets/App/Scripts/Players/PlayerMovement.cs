@@ -48,21 +48,16 @@ namespace App.Scripts.Players
             _inputActionsManager.OnInputtedJump += Jump;
             _playerShooting.OnShootEvent += ApplyShootRotation;
         }
-        
-        private void Update()
+
+        private void FixedUpdate()
         {
             ApplyGravity();
             ApplyRotation();
             ApplyMovement();
-            
-            IsMoving = _characterController.velocity != Vector3.zero;
-        }
 
-        private void LateUpdate()
-        {
-            IsGrounded = _characterController.isGrounded;
+            ValidateState();
         }
-
+        
         private void OnDestroy()
         {
             _inputActionsManager.OnInputtedRun -= SetMoveInput;
@@ -70,6 +65,12 @@ namespace App.Scripts.Players
             _playerShooting.OnShootEvent -= ApplyShootRotation;
         }
 
+        private void ValidateState()
+        {
+            IsMoving = _characterController.velocity != Vector3.zero;
+            IsGrounded = _characterController.isGrounded;
+        }
+        
         private void SetMoveInput(Vector2 moveInput)
         {
             MoveInput = moveInput;
@@ -83,8 +84,8 @@ namespace App.Scripts.Players
             }
             else
             {
-                _verticalVelocity += _gravity * Time.deltaTime;
-                _characterController.Move(Vector3.up * (_verticalVelocity * Time.deltaTime * _gravityForce));
+                _verticalVelocity += _gravity * Time.fixedDeltaTime;
+                _characterController.Move(Vector3.up * (_verticalVelocity * Time.fixedDeltaTime * _gravityForce));
             }
         }
 
@@ -96,7 +97,7 @@ namespace App.Scripts.Players
             }
             
             Quaternion rotation = Quaternion.Euler(0f, _cameraTransform.eulerAngles.y, 0f);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, _rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, _rotationSpeed * Time.fixedDeltaTime);
         }
         
         private void ApplyShootRotation()
@@ -121,7 +122,7 @@ namespace App.Scripts.Players
 
             float resultSpeed = _speed * (MoveInput.y < 0 ? 0.5f : 1f);
             
-            _characterController.Move(_movement * (resultSpeed * Time.deltaTime));
+            _characterController.Move(_movement * (resultSpeed * Time.fixedDeltaTime));
         }
         
         private void Jump()

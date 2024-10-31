@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using App.Scripts.Infrastructure.GameStateMachines.States;
+using Zenject;
 
 namespace App.Scripts.Infrastructure.GameStateMachines
 {
-    public class GameStateMachine: IGameStateMachine
+    public class GameStateMachine: IGameStateMachine, IInitializable
     {
         private readonly IGameStateFactory _gameStateFactory;
         private readonly Dictionary<Type, IExitableState> _states;
@@ -15,8 +16,8 @@ namespace App.Scripts.Infrastructure.GameStateMachines
             _gameStateFactory = gameStateFactory;
             _states = new Dictionary<Type, IExitableState>();
         }
-
-        public void Boot()
+        
+        public void Initialize()
         {
             Enter<BootstrapState>();
         }

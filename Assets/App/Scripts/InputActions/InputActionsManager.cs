@@ -3,10 +3,11 @@ using App.Scripts.Infrastructure;
 using App.Scripts.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 namespace App.Scripts.InputActions
 {
-    public class InputActionsManager: IInputActionsManager, IDisposable
+    public class InputActionsManager: IInputActionsManager, IDisposable, IInitializable
     {
         private readonly ILoadingScreen _loadingScreen;
         private readonly IGame _game;
@@ -35,13 +36,22 @@ namespace App.Scripts.InputActions
             _actionCancelKey = playerInput.actions["CancelKey"];
         }
 
-        public void Boot()
+        public void Initialize()
         {
             _actionRun.performed += Run;
             _actionRun.canceled += Run;
             _actionJump.performed += Jump;
             _actionShoot.performed += Shoot;
             _actionCancelKey.performed += CancelKeyPressed;
+        }
+
+        public void Dispose()
+        {
+            _actionRun.performed -= Run;
+            _actionRun.canceled -= Run;
+            _actionJump.performed -= Jump;
+            _actionShoot.performed -= Shoot;
+            _actionCancelKey.performed -= CancelKeyPressed;
         }
 
         private void CancelKeyPressed(InputAction.CallbackContext obj)
@@ -72,15 +82,6 @@ namespace App.Scripts.InputActions
         private void Jump(InputAction.CallbackContext obj)
         {
             OnInputtedJump?.Invoke();
-        }
-
-        public void Dispose()
-        {
-            _actionRun.performed -= Run;
-            _actionRun.canceled -= Run;
-            _actionJump.performed -= Jump;
-            _actionShoot.performed -= Shoot;
-            _actionCancelKey.performed -= CancelKeyPressed;
         }
     }
 }

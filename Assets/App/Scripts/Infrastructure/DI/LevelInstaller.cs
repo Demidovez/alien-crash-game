@@ -1,8 +1,11 @@
+using System;
 using App.Scripts.Bullets;
 using App.Scripts.Enemies;
 using App.Scripts.HealthPills;
+using App.Scripts.LevelControllers;
 using App.Scripts.Players;
 using App.Scripts.ShipDetail;
+using App.Scripts.Teleports;
 using UnityEngine;
 using Zenject;
 
@@ -22,8 +25,12 @@ namespace App.Scripts.Infrastructure.DI
         [Header("Health Pills")]
         public Transform HealthPillMarkersContainer;
         
+        [Header("Teleports")]
+        public Teleport Teleport;
+        
         public override void InstallBindings()
         {
+            BindLevelController();
             BindPlayerFactory();
             BindEnemyFactory();
             BindEnemiesSpawner();
@@ -35,6 +42,15 @@ namespace App.Scripts.Infrastructure.DI
             BindPlayerSpawner();
             BindBulletFactory();
             BindBulletsPool();
+            BindTeleport();
+        }
+
+        private void BindLevelController()
+        {
+            Container
+                .Bind(typeof(ILevelController), typeof(IInitializable), typeof(IDisposable))
+                .To<LevelController>()
+                .AsSingle();
         }
 
         private void BindBulletFactory()
@@ -64,7 +80,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindHealthPillsSpawner()
         {
             Container
-                .BindInterfacesTo<HealthPillsSpawner>()
+                .Bind(typeof(IHealthPillsSpawner), typeof(IInitializable))
+                .To<HealthPillsSpawner>()
                 .AsSingle()
                 .WithArguments(HealthPillMarkersContainer);
         }
@@ -72,7 +89,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindPlayerSpawner()
         {
             Container
-                .BindInterfacesTo<PlayerSpawner>()
+                .Bind(typeof(IPlayerSpawner), typeof(IInitializable))
+                .To<PlayerSpawner>()
                 .AsSingle()
                 .WithArguments(SpawnPlayerPoint);
         }
@@ -80,7 +98,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindShipDetailsSpawner()
         {
             Container
-                .BindInterfacesTo<ShipDetailSpawner>()
+                .Bind(typeof(IShipDetailSpawner), typeof(IInitializable))
+                .To<ShipDetailSpawner>()
                 .AsSingle()
                 .WithArguments(ShipDetailMarkersContainer);
         }
@@ -88,7 +107,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemiesSpawner()
         {
             Container
-                .BindInterfacesTo<EnemySpawner>()
+                .Bind(typeof(IEnemySpawner), typeof(IInitializable))
+                .To<EnemySpawner>()
                 .AsSingle()
                 .WithArguments(EnemyMarkersContainer);
         }
@@ -96,7 +116,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindShipDetailsCounter()
         {
             Container
-                .BindInterfacesTo<ShipDetailCounter>()
+                .Bind<IShipDetailCounter>()
+                .To<ShipDetailCounter>()
                 .AsSingle();
         }
 
@@ -121,6 +142,14 @@ namespace App.Scripts.Infrastructure.DI
             Container
                 .Bind<IShipDetailFactory>()
                 .To<ShipDetailFactory>()
+                .AsSingle();
+        }
+        
+        private void BindTeleport()
+        {
+            Container
+                .Bind<ITeleport>()
+                .FromInstance(Teleport)
                 .AsSingle();
         }
     }

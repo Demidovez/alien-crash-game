@@ -15,7 +15,7 @@ namespace App.Scripts.Infrastructure.DI
         private void BindGameStateMachine()
         {
             Container
-                .Bind<IGameStateMachine>()
+                .Bind(typeof(IGameStateMachine), typeof(IInitializable))
                 .To<GameStateMachine>()
                 .AsSingle();
         }

@@ -1,23 +1,22 @@
-﻿using App.Scripts.UI;
-using App.Scripts.UI.Popups.ShipDetailsCollected;
+﻿using System;
+using App.Scripts.UI;
 
 namespace App.Scripts.ShipDetail
 {
     public class ShipDetailCounter : IShipDetailCounter
     {
+        public event Action OnShipDetailsCollectedEvent; 
+        
         private int _countAllDetails;
         private int _countCollected;
         
         private readonly IPlayerInterfaceManager _playerInterfaceManager;
-        private readonly IShipDetailsCollectedPopup _shipDetailsCollectedPopup;
 
         public ShipDetailCounter(
-            IPlayerInterfaceManager playerInterfaceManager,
-            IShipDetailsCollectedPopup shipDetailsCollectedPopup
+            IPlayerInterfaceManager playerInterfaceManager
         )
         {
             _playerInterfaceManager = playerInterfaceManager;
-            _shipDetailsCollectedPopup = shipDetailsCollectedPopup;
         }
 
         public void SetCountAll(int value)
@@ -34,7 +33,7 @@ namespace App.Scripts.ShipDetail
 
             if (_countAllDetails == _countCollected)
             {
-                _shipDetailsCollectedPopup.Show();
+                OnShipDetailsCollectedEvent?.Invoke();
             }
         }
     }

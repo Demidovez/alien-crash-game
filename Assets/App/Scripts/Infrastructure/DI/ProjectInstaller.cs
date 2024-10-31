@@ -1,3 +1,4 @@
+using System;
 using App.Scripts.Cameras;
 using App.Scripts.InputActions;
 using App.Scripts.Sound;
@@ -18,7 +19,6 @@ namespace App.Scripts.Infrastructure.DI
 
         public override void InstallBindings()
         {
-            BindBoot();
             BindGame();
             BindCoroutineHolder();
             BindInputManager();
@@ -28,13 +28,6 @@ namespace App.Scripts.Infrastructure.DI
             BindMenuManager();
             BindLoadingScreen();
             BindPlayerInterfaceManager();
-        }
-
-        private void BindBoot()
-        {
-            Container
-                .BindInterfacesTo<Boot>()
-                .AsSingle();
         }
 
         private void BindGame()
@@ -109,7 +102,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindInputManager()
         {
             Container
-                .BindInterfacesTo<InputActionsManager>()
+                .Bind(typeof(IInputActionsManager), typeof(IInitializable), typeof(IDisposable))
+                .To<InputActionsManager>()
                 .AsSingle()
                 .WithArguments(PlayerInput);
         }

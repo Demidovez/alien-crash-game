@@ -24,7 +24,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemySprayAttack()
         {
             Container
-                .BindInterfacesTo<EnemySprayAttack>()
+                .Bind(typeof(IAttackMode), typeof(ITickable))
+                .To<EnemySprayAttack>()
                 .AsSingle();
         }
     }

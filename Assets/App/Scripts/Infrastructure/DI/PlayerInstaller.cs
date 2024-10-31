@@ -1,4 +1,5 @@
-﻿using App.Scripts.Players;
+﻿using System;
+using App.Scripts.Players;
 using UnityEngine;
 using Zenject;
 
@@ -28,7 +29,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindPlayerShooting()
         {
             Container
-                .BindInterfacesTo<PlayerShooting>()
+                .Bind(typeof(IPlayerShooting), typeof(IDisposable))
+                .To<PlayerShooting>()
                 .AsSingle()
                 .WithArguments(WeaponShootPosition);
         }
@@ -36,7 +38,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindPlayerHealth()
         {
             Container
-                .BindInterfacesTo<PlayerHealth>()
+                .Bind<IPlayerHealth>()
+                .To<PlayerHealth>()
                 .AsSingle();
         }
 

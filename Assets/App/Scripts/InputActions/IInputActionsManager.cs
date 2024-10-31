@@ -9,7 +9,5 @@ namespace App.Scripts.InputActions
         public event Action OnInputtedJump;
         public event Action OnInputtedShoot;
         public event Action OnCancelKeyPressed;
-
-        public void Boot();
     }
 }

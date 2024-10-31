@@ -1,4 +1,6 @@
-﻿using App.Scripts.Components;
+﻿using System;
+using App.Scripts.Common;
+using App.Scripts.Components;
 using App.Scripts.Enemies;
 using UnityEngine;
 using UnityEngine.AI;
@@ -44,7 +46,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemy()
         {
             Container
-                .BindInterfacesTo<Enemy>()
+                .Bind(typeof(IEnemy), typeof(IDamageableWithAttacker))
+                .To<Enemy>()
                 .FromComponentInHierarchy()
                 .AsSingle();
         }
@@ -52,7 +55,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemyAttack()
         {
             Container
-                .BindInterfacesTo<EnemyAttack>()
+                .Bind(typeof(IEnemyAttack), typeof(ITickable))
+                .To<EnemyAttack>()
                 .AsSingle();
         }
 
@@ -67,7 +71,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemyNavigation()
         {
             Container
-                .BindInterfacesTo<EnemyNavigation>()
+                .Bind(typeof(IEnemyNavigation), typeof(IInitializable) , typeof(ITickable), typeof(IDisposable))
+                .To<EnemyNavigation>()
                 .AsSingle()
                 .WithArguments(MinMoveSpeed, MaxMoveSpeed, ChaseSpeed, DeltaStopDistance);
         }
@@ -75,7 +80,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemyAnimation()
         {
             Container
-                .BindInterfacesTo<EnemyAnimation>()
+                .Bind(typeof(IEnemyAnimation), typeof(ITickable), typeof(IDisposable))
+                .To<EnemyAnimation>()
                 .AsSingle();
         }
 
@@ -99,7 +105,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemyChaseManager()
         {
             Container
-                .BindInterfacesTo<EnemyChaseManager>()
+                .Bind(typeof(IEnemyChaseManager), typeof(ITickable), typeof(IDisposable))
+                .To<EnemyChaseManager>()
                 .AsSingle();
         }
     }
