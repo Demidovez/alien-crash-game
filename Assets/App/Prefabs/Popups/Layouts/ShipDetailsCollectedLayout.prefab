@@ -526,7 +526,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0423\u0440\u0430!\n\u0422\u044B \u0432\u0441\u0435 \u043D\u0430\u0448\u0435\u043B!"
+  m_text: "\u041E\u0442\u043B\u0438\u0447\u043D\u043E!\n\u0422\u044B \u0432\u0441\u0435
+    \u043D\u0430\u0448\u0435\u043B!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cdb05063671be98459733f6557d77e09, type: 2}
   m_sharedMaterial: {fileID: -8641552555672319003, guid: cdb05063671be98459733f6557d77e09,

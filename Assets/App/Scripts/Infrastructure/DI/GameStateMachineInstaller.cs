@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Infrastructure.GameStateMachines;
+using App.Scripts.Levels;
 using Zenject;
 
 namespace App.Scripts.Infrastructure.DI
@@ -31,8 +32,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindLevelSwitch()
         {
             Container
-                .Bind<ILevelSwitch>()
-                .To<LevelSwitch>()
+                .Bind<ILevelsManager>()
+                .To<LevelsManager>()
                 .AsSingle();
         }
     }

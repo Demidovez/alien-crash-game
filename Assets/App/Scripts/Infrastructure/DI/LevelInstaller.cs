@@ -2,7 +2,7 @@ using System;
 using App.Scripts.Bullets;
 using App.Scripts.Enemies;
 using App.Scripts.HealthPills;
-using App.Scripts.LevelControllers;
+using App.Scripts.Levels;
 using App.Scripts.Players;
 using App.Scripts.ShipDetail;
 using App.Scripts.Teleports;

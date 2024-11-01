@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using App.Scripts.Cameras;
 using App.Scripts.InputActions;
+using App.Scripts.Levels;
+using App.Scripts.Saving;
 using App.Scripts.Sound;
 using App.Scripts.UI;
 using UnityEngine;
@@ -12,13 +15,19 @@ namespace App.Scripts.Infrastructure.DI
     public class ProjectInstaller : MonoInstaller
     {
         public PlayerInput PlayerInput;
+        
+        [Header("Prefabs")]
         public GameObject MenuPrefab;
         public GameObject CameraPrefab;
         public GameObject LoadingScreenPrefab;
         public GameObject PlayerInterfacePrefab;
+        
+        [Header("Levels")]
+        public List<LevelSO> LevelsConfig;
 
         public override void InstallBindings()
         {
+            BindSavedData();
             BindGame();
             BindCoroutineHolder();
             BindInputManager();
@@ -28,6 +37,15 @@ namespace App.Scripts.Infrastructure.DI
             BindMenuManager();
             BindLoadingScreen();
             BindPlayerInterfaceManager();
+            BindLevelsData();
+        }
+
+        private void BindSavedData()
+        {
+            Container
+                .Bind<ISavedData>()
+                .To<SavedData>()
+                .AsSingle();
         }
 
         private void BindGame()
@@ -106,6 +124,15 @@ namespace App.Scripts.Infrastructure.DI
                 .To<InputActionsManager>()
                 .AsSingle()
                 .WithArguments(PlayerInput);
+        }
+        
+        private void BindLevelsData()
+        {
+            Container
+                .Bind<ILevelsData>()
+                .To<LevelsData>()
+                .AsSingle()
+                .WithArguments(LevelsConfig);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using App.Scripts.InputActions;
+using App.Scripts.Levels;
 using App.Scripts.UI;
 using App.Scripts.UI.Popups;
 using App.Scripts.UI.Popups.Levels;
@@ -17,6 +18,7 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         private readonly IPopupManager _popupManager;
         private readonly ILevelsPopup _levelsPopup;
         private readonly IQuestionPopup _questionPopup;
+        private readonly ILevelsManager _levelsManager;
 
         public MenuState(
             IGameStateMachine stateMachine, 
@@ -25,7 +27,8 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
             IInputActionsManager inputActionsManager,
             IPopupManager popupManager,
             ILevelsPopup levelsPopup,
-            IQuestionPopup questionPopup
+            IQuestionPopup questionPopup,
+            ILevelsManager levelsManager
         )
         {
             _stateMachine = stateMachine;
@@ -35,6 +38,7 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
             _popupManager = popupManager;
             _levelsPopup = levelsPopup;
             _questionPopup = questionPopup;
+            _levelsManager = levelsManager;
         }
 
         public void Enter()
@@ -63,7 +67,7 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
 
         private void ContinueLevel()
         {
-            if (_game.CurrentLevelScene != null && !_popupManager.IsActive)
+            if (_levelsManager.CurrentLevel != null && !_popupManager.IsActive)
             {
                 _stateMachine.Enter<GameLoopState>();
             }
@@ -71,8 +75,7 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         
         private void StartLevel()
         {
-            // TODO: доработать
-            _stateMachine.Enter<LoadLevelState, string>("Level_1");
+            _levelsManager.GoToCurrentLevel();
         }
         
         private void LevelsShow()

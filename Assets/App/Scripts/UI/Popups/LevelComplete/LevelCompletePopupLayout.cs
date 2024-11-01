@@ -5,19 +5,28 @@ namespace App.Scripts.UI.Popups.LevelComplete
 {
     public class LevelCompletePopupLayout: MonoBehaviour
     {
-        public Action OnOkClick;
+        public Action OnMenuClick;
+        public Action OnNextClick;
+
+        private bool _isWaiting = true;
         
         private void LateUpdate()
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return) && _isWaiting)
             {
-                OnOkClick?.Invoke();
+                _isWaiting = false;
+                OnNextClick?.Invoke();
             }
         }
-
-        public void OnOkClickListener()
+        
+        public void OnMenuClickListener()
         {
-            OnOkClick?.Invoke();
+            OnMenuClick?.Invoke();
+        }
+
+        public void OnNextClickListener()
+        {
+            OnNextClick?.Invoke();
         }
     }
 }

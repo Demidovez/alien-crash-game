@@ -1,4 +1,6 @@
-﻿namespace App.Scripts.Infrastructure.GameStateMachines.States
+﻿using App.Scripts.Saving;
+
+namespace App.Scripts.Infrastructure.GameStateMachines.States
 {
     public class BootstrapState : IState
     {
@@ -7,20 +9,25 @@
         private readonly IGameStateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
         private readonly IGame _game;
+        private readonly ISavedData _savedData;
 
         public BootstrapState(
             IGameStateMachine stateMachine, 
             ISceneLoader sceneLoader,
-            IGame game
+            IGame game,
+            ISavedData savedData
         )
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _game = game;
+            _savedData = savedData;
         }
 
         public void Enter()
         {
+            _savedData.Restore();
+            
             if (_sceneLoader.GetCurrentScene() != Initial)
             {
                 _sceneLoader.Load(Initial, EnterLoadLevel);
@@ -38,7 +45,6 @@
 
         private void EnterLoadLevel()
         {
-            // Достаем сохранения и идем в меню
             _stateMachine.Enter<MenuState>();
         }
     }

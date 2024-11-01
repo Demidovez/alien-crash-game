@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace App.Scripts.Infrastructure
 {
@@ -6,13 +7,7 @@ namespace App.Scripts.Infrastructure
     {
         public event Action OnBootedEvent; 
         
-        public string CurrentLevelScene { get; private set; }
         public bool IsGameState { get; private set; }
-
-        public void SetCurrentLevelScene(string name)
-        {
-            CurrentLevelScene = name;
-        }
         
         public void SetIsGameState(bool isGameState)
         {
@@ -22,6 +17,11 @@ namespace App.Scripts.Infrastructure
         public void Booted()
         {
             OnBootedEvent?.Invoke();
+        }
+
+        public void LevelComplete()
+        {
+            Debug.Log("LevelComplete");
         }
     }
 }

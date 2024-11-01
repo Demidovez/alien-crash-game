@@ -119,6 +119,12 @@ MonoBehaviour:
     type: 3}
   PlayerInterfacePrefab: {fileID: 9087244476181352734, guid: 9ee3d8dc4a47f2c4b9826950d20e74ed,
     type: 3}
+  LevelsConfig:
+  - {fileID: 11400000, guid: c306518b72d96474fa318f5bfef18308, type: 2}
+  - {fileID: 11400000, guid: 294674a8e6d8a0343badfd6c229177be, type: 2}
+  - {fileID: 11400000, guid: 48173c73a2c7b014da806f4556382bf4, type: 2}
+  - {fileID: 11400000, guid: 3f0ae2399ed4ccf45bb62f514353d69c, type: 2}
+  - {fileID: 11400000, guid: 0888dc6e162221a43b23c7846a510077, type: 2}
 --- !u!114 &-8159888806758062004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,9 +163,3 @@ MonoBehaviour:
     type: 3}
   LevelCardPrefab: {fileID: 597405809377286729, guid: 1d29f2ca7fa450c409663d65954f2701,
     type: 3}
-  LevelsConfig:
-  - {fileID: 11400000, guid: 0888dc6e162221a43b23c7846a510077, type: 2}
-  - {fileID: 11400000, guid: 48173c73a2c7b014da806f4556382bf4, type: 2}
-  - {fileID: 11400000, guid: c306518b72d96474fa318f5bfef18308, type: 2}
-  - {fileID: 11400000, guid: 3f0ae2399ed4ccf45bb62f514353d69c, type: 2}
-  - {fileID: 11400000, guid: 294674a8e6d8a0343badfd6c229177be, type: 2}

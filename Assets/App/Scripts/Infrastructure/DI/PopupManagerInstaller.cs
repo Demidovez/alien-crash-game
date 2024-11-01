@@ -24,7 +24,6 @@ namespace App.Scripts.Infrastructure.DI
         
         [Header("Levels")]
         public GameObject LevelCardPrefab;
-        public List<LevelCardSO> LevelsConfig;
         
         public override void InstallBindings()
         {
@@ -60,7 +59,7 @@ namespace App.Scripts.Infrastructure.DI
                 .Bind<ILevelsPopup>()
                 .To<LevelsPopup>()
                 .AsSingle()
-                .WithArguments(LevelsConfig, PopupLevelsPrefab, LevelCardPrefab);
+                .WithArguments(PopupLevelsPrefab, LevelCardPrefab);
         }
         
         private void BindQuestionPopup()

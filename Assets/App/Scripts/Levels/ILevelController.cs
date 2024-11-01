@@ -1,4 +1,4 @@
-﻿namespace App.Scripts.LevelControllers
+﻿namespace App.Scripts.Levels
 {
     public interface ILevelController
     {

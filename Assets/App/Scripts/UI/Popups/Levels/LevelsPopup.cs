@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Infrastructure;
+using App.Scripts.Levels;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +9,9 @@ namespace App.Scripts.UI.Popups.Levels
     public class LevelsPopup: ILevelsPopup
     {
         private readonly IGameObjectHolder _gameObjectHolder;
-        private readonly ILevelSwitch _levelSwitch;
+        private readonly ILevelsManager _levelsManager;
         private readonly IPopupManager _popupManager;
-        private readonly List<LevelCardSO> _levelsConfig;
+        private readonly ILevelsData _levelsData;
         private readonly GameObject _popupLevelsPrefab;
         private readonly GameObject _levelCardPrefab;
 
@@ -18,17 +19,17 @@ namespace App.Scripts.UI.Popups.Levels
 
         public LevelsPopup(
             IGameObjectHolder gameObjectHolder, 
-            ILevelSwitch levelSwitch, 
+            ILevelsManager levelsManager, 
             IPopupManager popupManager,
-            List<LevelCardSO> levelsConfig, 
+            ILevelsData levelsData,
             GameObject popupLevelsPrefab,
             GameObject levelCardPrefab
         )
         {
             _gameObjectHolder = gameObjectHolder;
-            _levelSwitch = levelSwitch;
+            _levelsManager = levelsManager;
             _popupManager = popupManager;
-            _levelsConfig = levelsConfig;
+            _levelsData = levelsData;
             _popupLevelsPrefab = popupLevelsPrefab;
             _levelCardPrefab = levelCardPrefab;
         }
@@ -44,14 +45,14 @@ namespace App.Scripts.UI.Popups.Levels
                 popupWrapper.SetBodySize(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y);
             }
             
-            InitLevelCards(gridLayout.gameObject, _levelCardPrefab, _levelsConfig);
+            InitLevelCards(gridLayout.gameObject, _levelCardPrefab);
             
             popupWrapper.Show();
         }
         
-        private void InitLevelCards(GameObject parent, GameObject levelCardPrefab, List<LevelCardSO> levelsConfig)
+        private void InitLevelCards(GameObject parent, GameObject levelCardPrefab)
         {
-            foreach (var level in levelsConfig)
+            foreach (var level in _levelsData.Levels)
             {
                 GameObject levelObj = _gameObjectHolder.InstantiateByPrefab(levelCardPrefab, parent.transform);
 
@@ -59,7 +60,7 @@ namespace App.Scripts.UI.Popups.Levels
                 {
                     card.Title.SetText(level.Name);
                     card.Icon.sprite = level.Icon;
-                    card.OnClick = () => _levelSwitch.GoToLevel(level.Scene.name);
+                    card.OnClick = () => _levelsManager.GoToLevel(level);
                 }
             }
         }
