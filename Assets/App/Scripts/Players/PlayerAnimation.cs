@@ -8,9 +8,9 @@ namespace App.Scripts.Players
     {
         [SerializeField] private float _animSmoothTime = 1f;
 
-        private PlayerMovement _playerMovement;
-        private PlayerHealth _playerHealth;
-        private PlayerShooting _playerShooting;
+        private IPlayerMovement _playerMovement;
+        private IPlayerHealth _playerHealth;
+        private IPlayerShooting _playerShooting;
         private Animator _animator;
         private Vector2 _targetAnimPosition;
         private Vector2 _currentBlendAnim;
@@ -26,15 +26,18 @@ namespace App.Scripts.Players
 
         [Inject]
         public void Construct(
-            PlayerMovement playerMovement,
-            PlayerHealth playerHealth,
-            PlayerShooting playerShooting
+            IPlayerMovement playerMovement,
+            IPlayerHealth playerHealth,
+            IPlayerShooting playerShooting
         )
         {
             _playerMovement = playerMovement;
             _playerHealth = playerHealth;
             _playerShooting = playerShooting;
-            
+        }
+
+        private void Awake()
+        {
             _playerHealth.OnTookDamageEvent += OnTookDamage;
             _playerHealth.OnDeadEvent += OnDead;
             _playerShooting.OnShootEvent += OnShoot;

@@ -15,7 +15,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemySpray()
         {
             Container
-                .Bind<EnemySpray>()
+                .Bind<IEnemySpray>()
+                .To<EnemySpray>()
                 .FromComponentInHierarchy()
                 .AsSingle();
         }
@@ -23,7 +24,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemySprayAttack()
         {
             Container
-                .BindInterfacesTo<EnemySprayAttack>()
+                .Bind(typeof(IAttackMode), typeof(ITickable))
+                .To<EnemySprayAttack>()
                 .AsSingle();
         }
     }

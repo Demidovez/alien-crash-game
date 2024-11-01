@@ -6,24 +6,24 @@ using UnityEngine;
 
 namespace App.Scripts.Players
 {
-    public class PlayerShooting : IDisposable
+    public class PlayerShooting : IPlayerShooting, IDisposable
     {
-        public Action OnShootEvent;
+        public event Action OnShootEvent;
 
-        private readonly Player _player;
-        private readonly PlayerHealth _playerHealth;
-        private readonly InputActionsManager _inputActionsManager;
-        private readonly BulletsPool _bulletsPool;
+        private readonly IPlayer _player;
+        private readonly IPlayerHealth _playerHealth;
+        private readonly IInputActionsManager _inputActionsManager;
+        private readonly IBulletsPool _bulletsPool;
         private readonly Transform _weaponShootPoint;
         private readonly Transform _weaponAimPoint;
 
         public PlayerShooting(
-            Player player, 
-            PlayerHealth playerHealth, 
-            InputActionsManager inputActionsManager,
-            BulletsPool bulletsPool,
+            IPlayer player, 
+            IPlayerHealth playerHealth, 
+            IInputActionsManager inputActionsManager,
+            IBulletsPool bulletsPool,
             Transform weaponShootPoint,
-            CameraController cameraController
+            ICameraController cameraController
         )
         {
             _player = player;
@@ -35,7 +35,6 @@ namespace App.Scripts.Players
             
             _bulletsPool.FillBy("BulletPlasma");
             _inputActionsManager.OnInputtedShoot += Shoot;
-            
         }
 
         private void Shoot()

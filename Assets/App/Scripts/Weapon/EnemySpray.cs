@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace App.Scripts.Weapon
 {
-    public class EnemySpray : MonoBehaviour
+    public class EnemySpray : MonoBehaviour, IEnemySpray
     {
         public Transform SprayPoint;
         public LayerMask TargetLayerMask;

@@ -1,44 +1,39 @@
 ﻿using System;
-using App.Scripts.Infrastructure;
 using App.Scripts.UI;
 
 namespace App.Scripts.ShipDetail
 {
-    public class ShipDetailCounter : IDisposable
+    public class ShipDetailCounter : IShipDetailCounter
     {
+        public event Action OnShipDetailsCollectedEvent; 
+        
         private int _countAllDetails;
         private int _countCollected;
-        private readonly Game _game;
-        private readonly PopupManager _popupManager;
-
-        public ShipDetailCounter(Game game, PopupManager popupManager)
-        {
-            _game = game;
-            _popupManager = popupManager;
-
-            ShipDetail.OnCollectedShipDetail += CollectedDetail;
-        }
         
-        public void Dispose()
+        private readonly IPlayerInterfaceManager _playerInterfaceManager;
+
+        public ShipDetailCounter(
+            IPlayerInterfaceManager playerInterfaceManager
+        )
         {
-            ShipDetail.OnCollectedShipDetail -= CollectedDetail;
+            _playerInterfaceManager = playerInterfaceManager;
         }
 
         public void SetCountAll(int value)
         {
             _countAllDetails = value;
-            _game.UpdateShipDetailsUI(0, _countAllDetails);
+            _playerInterfaceManager.UpdateShipDetailsCounter(0, _countAllDetails);
         }
 
-        private void CollectedDetail()
+        public void CollectedDetail()
         {
             _countCollected++;
             
-            _game.UpdateShipDetailsUI(_countCollected, _countAllDetails);
+            _playerInterfaceManager.UpdateShipDetailsCounter(_countCollected, _countAllDetails);
 
             if (_countAllDetails == _countCollected)
             {
-                _popupManager.ShowCompleteCollectDetails();
+                OnShipDetailsCollectedEvent?.Invoke();
             }
         }
     }

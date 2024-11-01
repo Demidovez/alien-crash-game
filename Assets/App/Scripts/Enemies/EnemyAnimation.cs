@@ -4,13 +4,8 @@ using Zenject;
 
 namespace App.Scripts.Enemies
 {
-    public class EnemyAnimation : ITickable, IDisposable
+    public class EnemyAnimation : IEnemyAnimation, ITickable, IDisposable
     {
-        private readonly Animator _animator;
-        private readonly EnemyNavigation _enemyNavigation;
-        private readonly EnemyAttack _enemyAttack;
-        private readonly EnemyHealth _enemyHealth;
-
         private static readonly int IsWalking = Animator.StringToHash("IsWalking");
         private static readonly int IsRunning = Animator.StringToHash("IsRunning");
         private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
@@ -18,11 +13,16 @@ namespace App.Scripts.Enemies
         private static readonly int ConcussionTrigger = Animator.StringToHash("ConcussionTrigger");
         private static readonly int UnderAttackTrigger = Animator.StringToHash("UnderAttackTrigger");
         
+        private readonly Animator _animator;
+        private readonly IEnemyNavigation _enemyNavigation;
+        private readonly IEnemyAttack _enemyAttack;
+        private readonly IEnemyHealth _enemyHealth;
+
         public EnemyAnimation(
             Animator animator, 
-            EnemyNavigation enemyNavigation,
-            EnemyAttack enemyAttack,
-            EnemyHealth enemyHealth
+            IEnemyNavigation enemyNavigation,
+            IEnemyAttack enemyAttack,
+            IEnemyHealth enemyHealth
         )
         {
             _animator = animator;

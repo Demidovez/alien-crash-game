@@ -5,12 +5,12 @@ namespace App.Scripts.Enemies
 {
     public class EnemySprayAttack: IAttackMode, ITickable
     {
-        public bool IsAttacking { get; set; }
+        public bool IsAttacking { get; private set; }
         
-        private readonly EnemyChaseManager _enemyChaseManager;
-        private readonly EnemySpray _enemySpray;
+        private readonly IEnemyChaseManager _enemyChaseManager;
+        private readonly IEnemySpray _enemySpray;
 
-        public EnemySprayAttack(EnemyChaseManager enemyChaseManager, EnemySpray enemySpray)
+        public EnemySprayAttack(IEnemyChaseManager enemyChaseManager, IEnemySpray enemySpray)
         {
             _enemyChaseManager = enemyChaseManager;
             _enemySpray = enemySpray;

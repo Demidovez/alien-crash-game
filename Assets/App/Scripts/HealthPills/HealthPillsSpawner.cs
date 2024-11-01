@@ -3,7 +3,7 @@ using Zenject;
 
 namespace App.Scripts.HealthPills
 {
-    public class HealthPillsSpawner: IInitializable
+    public class HealthPillsSpawner: IHealthPillsSpawner, IInitializable
     {
         private readonly IHealthPillFactory _healthPillFactory;
         private readonly Transform _healthPillMarkersContainer;

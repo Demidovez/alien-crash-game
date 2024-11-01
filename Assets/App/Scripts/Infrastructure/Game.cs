@@ -1,38 +1,27 @@
-﻿using UnityEngine.SceneManagement;
+﻿using System;
+using UnityEngine;
 
 namespace App.Scripts.Infrastructure
 {
-    public class Game
+    public class Game: IGame
     {
-        private readonly GameStateMachine _stateMachine;
-        private readonly UIManager _uiManager;
-
-        public Game(GameStateMachine stateMachine, UIManager uiManager)
-        {
-            _stateMachine = stateMachine;
-            _uiManager = uiManager;
-            
-            stateMachine.Enter<BootstrapState>();
-        }
-
-        public void UpdateHealthUI(float health)
-        {
-            _uiManager.UpdateHealth(health);
-        }
+        public event Action OnBootedEvent; 
         
-        public void UpdateShipDetailsUI(int countCollected, int countAllDetails)
+        public bool IsGameState { get; private set; }
+        
+        public void SetIsGameState(bool isGameState)
         {
-            _uiManager.UpdateShipDetailsCounter(countCollected, countAllDetails);
+            IsGameState = isGameState;
         }
 
-        public void ToNextLevel(string nextScene)
+        public void Booted()
         {
-            _stateMachine.Enter<LoadLevelState, string>(nextScene);
+            OnBootedEvent?.Invoke();
         }
-        
-        public void RestartLevel()
+
+        public void LevelComplete()
         {
-            _stateMachine.Enter<LoadLevelState, string>(SceneManager.GetActiveScene().name);
+            Debug.Log("LevelComplete");
         }
     }
 }

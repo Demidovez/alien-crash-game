@@ -3,7 +3,7 @@ using Zenject;
 
 namespace App.Scripts.Bullets
 {
-    public class BulletFactory
+    public class BulletFactory: IBulletFactory
     {
         private readonly DiContainer _diContainer;
         private Transform _bulletsContainer;

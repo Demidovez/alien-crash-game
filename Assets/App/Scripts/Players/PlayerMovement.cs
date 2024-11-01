@@ -6,7 +6,7 @@ using Zenject;
 namespace App.Scripts.Players
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, IPlayerMovement
     {
         public bool IsGrounded { get; private set; }
         public bool IsMoving { get; private set; }
@@ -20,8 +20,8 @@ namespace App.Scripts.Players
         
         private Transform _cameraTransform;
         private CharacterController _characterController;
-        private InputActionsManager _inputActionsManager;
-        private PlayerShooting _playerShooting;
+        private IInputActionsManager _inputActionsManager;
+        private IPlayerShooting _playerShooting;
         private Vector3 _movement;
         private float _rotationX;
         private float _rotationY;
@@ -29,36 +29,35 @@ namespace App.Scripts.Players
 
         [Inject]
         public void Construct(
-            CameraController cameraController, 
-            InputActionsManager inputActionsManager,
-            PlayerShooting playerShooting
+            ICameraController cameraController, 
+            IInputActionsManager inputActionsManager,
+            IPlayerShooting playerShooting
         )
         {
             _cameraTransform = cameraController.GetCameraTransform();
             _inputActionsManager = inputActionsManager;
             _playerShooting = playerShooting;
-
-            _inputActionsManager.OnInputtedRun += SetMoveInput;
-            _inputActionsManager.OnInputtedJump += Jump;
-            _playerShooting.OnShootEvent += ApplyShootRotation;
         }
 
         private void Awake()
         {
             IsGrounded = true;
             _characterController = GetComponent<CharacterController>();
+            
+            _inputActionsManager.OnInputtedRun += SetMoveInput;
+            _inputActionsManager.OnInputtedJump += Jump;
+            _playerShooting.OnShootEvent += ApplyShootRotation;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             ApplyGravity();
             ApplyRotation();
             ApplyMovement();
 
-            IsGrounded = _characterController.isGrounded;
-            IsMoving = _characterController.velocity != Vector3.zero;
+            ValidateState();
         }
-
+        
         private void OnDestroy()
         {
             _inputActionsManager.OnInputtedRun -= SetMoveInput;
@@ -66,6 +65,12 @@ namespace App.Scripts.Players
             _playerShooting.OnShootEvent -= ApplyShootRotation;
         }
 
+        private void ValidateState()
+        {
+            IsMoving = _characterController.velocity != Vector3.zero;
+            IsGrounded = _characterController.isGrounded;
+        }
+        
         private void SetMoveInput(Vector2 moveInput)
         {
             MoveInput = moveInput;
@@ -79,8 +84,8 @@ namespace App.Scripts.Players
             }
             else
             {
-                _verticalVelocity += _gravity * Time.deltaTime;
-                _characterController.Move(Vector3.up * (_verticalVelocity * Time.deltaTime * _gravityForce));
+                _verticalVelocity += _gravity * Time.fixedDeltaTime;
+                _characterController.Move(Vector3.up * (_verticalVelocity * Time.fixedDeltaTime * _gravityForce));
             }
         }
 
@@ -92,7 +97,7 @@ namespace App.Scripts.Players
             }
             
             Quaternion rotation = Quaternion.Euler(0f, _cameraTransform.eulerAngles.y, 0f);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, _rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, _rotationSpeed * Time.fixedDeltaTime);
         }
         
         private void ApplyShootRotation()
@@ -117,7 +122,7 @@ namespace App.Scripts.Players
 
             float resultSpeed = _speed * (MoveInput.y < 0 ? 0.5f : 1f);
             
-            _characterController.Move(_movement * (resultSpeed * Time.deltaTime));
+            _characterController.Move(_movement * (resultSpeed * Time.fixedDeltaTime));
         }
         
         private void Jump()

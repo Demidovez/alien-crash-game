@@ -4,12 +4,12 @@ namespace App.Scripts.Enemies
 {
     public class EnemyShootAttack: IAttackMode
     {
-        public bool IsAttacking { get; set; }
+        public bool IsAttacking { get; private set; }
         
-        private readonly EnemyChaseManager _enemyChaseManager;
-        private readonly EnemyPistol _enemyPistol;
+        private readonly IEnemyChaseManager _enemyChaseManager;
+        private readonly IEnemyPistol _enemyPistol;
 
-        public EnemyShootAttack(EnemyChaseManager enemyChaseManager, EnemyPistol enemyPistol)
+        public EnemyShootAttack(IEnemyChaseManager enemyChaseManager, IEnemyPistol enemyPistol)
         {
             _enemyChaseManager = enemyChaseManager;
             _enemyPistol = enemyPistol;

@@ -24,6 +24,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "CancelKey",
+                    "type": "Button",
+                    "id": "b2195bc3-f102-4a14-a530-731ec944a730",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "MouseLook",
                     "type": "PassThrough",
                     "id": "0bd53a11-b46c-487f-b22f-87ee1f9f97b2",
@@ -128,6 +137,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f0b0965f-f3bc-4117-ade2-0e54caae61d3",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CancelKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

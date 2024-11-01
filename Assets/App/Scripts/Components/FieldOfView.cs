@@ -24,6 +24,16 @@ namespace App.Scripts.Components
             StartCoroutine(FindVisible());
         }
         
+        public Vector3 DirectionFromAngle(float angleDegrees, bool isAngleGlobal)
+        {
+            if (!isAngleGlobal)
+            {
+                angleDegrees += transform.eulerAngles.y;
+            }
+
+            return new Vector3(Mathf.Sin(angleDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleDegrees * Mathf.Deg2Rad));
+        }
+        
         private IEnumerator FindVisible()
         {
             while (enabled)
@@ -94,16 +104,6 @@ namespace App.Scripts.Components
         private bool IsCurrentVisibleInSensitiveArea(Transform target)
         {
             return (target.position - transform.position).sqrMagnitude <= (ViewRadius * ViewRadius);
-        }
-        
-        public Vector3 DirectionFromAngle(float angleDegrees, bool isAngleGlobal)
-        {
-            if (!isAngleGlobal)
-            {
-                angleDegrees += transform.eulerAngles.y;
-            }
-
-            return new Vector3(Mathf.Sin(angleDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleDegrees * Mathf.Deg2Rad));
         }
     }
 }

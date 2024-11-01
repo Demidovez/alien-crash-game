@@ -4,7 +4,7 @@ namespace App.Scripts.HealthPills
 {
     public interface IHealthPillFactory
     {
-        void Load();
-        void Create(Vector3 spawnPoint);
+        public void Load();
+        public void Create(Vector3 spawnPoint);
     }
 }

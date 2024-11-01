@@ -1,46 +1,44 @@
 ﻿using System;
 using System.Collections;
-using App.Scripts.HealthPills;
 using App.Scripts.Infrastructure;
 using App.Scripts.UI;
+using App.Scripts.UI.Popups;
 using UnityEngine;
 
 namespace App.Scripts.Players
 {
-    public class PlayerHealth: IDisposable
+    public class PlayerHealth: IPlayerHealth
     {
-        public Action OnTookDamageEvent;
-        public Action OnDeadEvent;
+        public event Action OnTookDamageEvent;
+        public event Action OnDeadEvent;
         
         public bool IsAlive => _health > 0;
-
-        private readonly Game _game;
-        private readonly PopupManager _popupManager;
-        private readonly AsyncProcessor _asyncProcessor;
+        
+        private readonly IPopupManager _popupManager;
+        private readonly IGameObjectHolder _gameObjectHolder;
+        private readonly IPlayerInterfaceManager _playerInterfaceManager;
         private const float DeathDelay = 2f;
         private float _health = 100;
 
         public PlayerHealth(
-            Game game,
-            PopupManager popupManager,
-            AsyncProcessor asyncProcessor
+            IPopupManager popupManager,
+            IGameObjectHolder gameObjectHolder,
+            IPlayerInterfaceManager playerInterfaceManager
         )
         {
-            _game = game;
             _popupManager = popupManager;
-            _asyncProcessor = asyncProcessor;
-
-            HealthPill.OnCollectedHealthPill += CollectedHealthPill;
-        }
-
-        private void CollectedHealthPill()
-        {
-            UpdateHealth(10);
+            _gameObjectHolder = gameObjectHolder;
+            _playerInterfaceManager = playerInterfaceManager;
         }
 
         public void TryTakeDamage(float value)
         {
             UpdateHealth(-value);
+        }
+        
+        public void TryRegenerate(float value)
+        {
+            UpdateHealth(value);
         }
 
         private void UpdateHealth(float value)
@@ -53,12 +51,12 @@ namespace App.Scripts.Players
             _health += value;
             _health = Mathf.Min(100, _health);
             
-            _game.UpdateHealthUI(_health);
+            _playerInterfaceManager.UpdateHealth(_health);
 
             if (_health <= 0)
             {
                 OnDeadEvent?.Invoke();
-                _asyncProcessor.StartCoroutine(Death());
+                _gameObjectHolder.StartCoroutine(Death());
             }
             else if(value < -0.1f)
             {
@@ -66,15 +64,11 @@ namespace App.Scripts.Players
             }
         }
         
-        IEnumerator Death()
+        private IEnumerator Death()
         {
             yield return new WaitForSeconds(DeathDelay);
-            _popupManager.ShowGameOver();
-        }
-
-        public void Dispose()
-        {
-            HealthPill.OnCollectedHealthPill -= CollectedHealthPill;
+            // _popupManager.ShowGameOver();
+            Debug.Log("Death");
         }
     }
 }

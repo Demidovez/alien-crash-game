@@ -3,7 +3,7 @@ using Zenject;
 
 namespace App.Scripts.Players
 {
-    public class PlayerSpawner: IInitializable
+    public class PlayerSpawner: IPlayerSpawner, IInitializable
     {
         private readonly IPlayerFactory _playerFactory;
         private readonly Transform _spawnPoint;

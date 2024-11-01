@@ -5,7 +5,7 @@ namespace App.Scripts.Enemies
 {
     public interface IEnemyFactory
     {
-        void Load();
-        void Create(int index, EEnemyType enemyType, WayPoint initialWayPoint, Vector3 spawnPoint);
+        public void Load();
+        public void Create(int index, EEnemyType enemyType, WayPoint initialWayPoint, Vector3 spawnPoint);
     }
 }

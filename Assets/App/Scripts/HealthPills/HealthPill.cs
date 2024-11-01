@@ -1,20 +1,17 @@
-﻿using System;
-using App.Scripts.Helpers;
+﻿using App.Scripts.Players;
 using UnityEngine;
 
 namespace App.Scripts.HealthPills
 {
-    public class HealthPill : MonoBehaviour
+    public class HealthPill : MonoBehaviour, IHealthPill
     {
-        [SerializeField] private LayerMask _layerMaskAllowedEntities;
-
-        public static event Action OnCollectedHealthPill;
+        private const float RegenerateValue = 10f;
         
         private void OnTriggerEnter(Collider other)
         {
-            if (Helper.ContainsLayer(other.gameObject.layer, _layerMaskAllowedEntities))
+            if (other.TryGetComponent(out IHealthRegenerable healthRegenerable))
             {
-                OnCollectedHealthPill?.Invoke();
+                healthRegenerable.HealthRegenerate(RegenerateValue);
                 Destroy(gameObject.transform.parent.parent.gameObject);
             }
         }
