@@ -3,6 +3,7 @@ using System.Collections;
 using App.Scripts.Infrastructure;
 using App.Scripts.UI;
 using App.Scripts.UI.Popups;
+using App.Scripts.UI.Popups.GameOver;
 using UnityEngine;
 
 namespace App.Scripts.Players
@@ -16,6 +17,7 @@ namespace App.Scripts.Players
         
         private readonly IPopupManager _popupManager;
         private readonly IGameObjectHolder _gameObjectHolder;
+        private readonly IGameOverPopup _gameOverPopup;
         private readonly IPlayerInterfaceManager _playerInterfaceManager;
         private const float DeathDelay = 2f;
         private float _health = 100;
@@ -23,11 +25,13 @@ namespace App.Scripts.Players
         public PlayerHealth(
             IPopupManager popupManager,
             IGameObjectHolder gameObjectHolder,
+            IGameOverPopup gameOverPopup,
             IPlayerInterfaceManager playerInterfaceManager
         )
         {
             _popupManager = popupManager;
             _gameObjectHolder = gameObjectHolder;
+            _gameOverPopup = gameOverPopup;
             _playerInterfaceManager = playerInterfaceManager;
         }
 
@@ -67,8 +71,7 @@ namespace App.Scripts.Players
         private IEnumerator Death()
         {
             yield return new WaitForSeconds(DeathDelay);
-            // _popupManager.ShowGameOver();
-            Debug.Log("Death");
+            _gameOverPopup.Show();
         }
     }
 }

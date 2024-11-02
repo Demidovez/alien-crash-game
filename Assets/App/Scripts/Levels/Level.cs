@@ -4,6 +4,7 @@ namespace App.Scripts.Levels
 {
     public class Level
     {
+        public int Id { get; private set; }
         public Sprite Icon { get; private set; }
         public string Name { get; private set; }
         public Object Scene { get; private set; }
@@ -14,19 +15,14 @@ namespace App.Scripts.Levels
         public bool IsFirstLevel { get; private set; }
         public bool IsLastLevel { get; private set; }
 
-        private LevelSO _levelSo;
-
         public Level(LevelSO levelSo, bool isFirstLevel, bool isLastLevel)
         {
-            _levelSo = levelSo;
-            
+            Id = levelSo.Id;
             Icon = levelSo.Icon;
             Name = levelSo.Name;
             Scene = levelSo.Scene;
-
-            IsCompleted = levelSo.IsCompleted;
+            
             IsStarted = false;
-            IsUnlocked = levelSo.IsUnlocked;
             IsFirstLevel = isFirstLevel;
             IsLastLevel = isLastLevel;
         }
@@ -38,7 +34,6 @@ namespace App.Scripts.Levels
         
         public void SetCompleteStatus(bool state)
         {
-            _levelSo.IsCompleted = state;
             IsCompleted = state;
         }
         
@@ -49,7 +44,6 @@ namespace App.Scripts.Levels
         
         public void SetUnlockStatus(bool state)
         {
-            _levelSo.IsUnlocked = state;
             IsUnlocked = state;
         }
     }

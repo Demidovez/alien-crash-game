@@ -5,5 +5,6 @@
         public void SetVisible(bool isVisible);
         public void UpdateHealth(float value);
         public void UpdateShipDetailsCounter(int countCollected, int countAllDetails);
+        public void Reset();
     }
 }

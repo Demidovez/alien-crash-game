@@ -15,6 +15,8 @@ namespace App.Scripts.Levels
         private readonly ITeleport _teleport;
         private readonly ILevelsManager _levelsManager;
 
+        private bool _isNextLevelLast;
+
         public LevelController(
             IShipDetailCounter shipDetailCounter,
             IShipDetailsCollectedPopup shipDetailsCollectedPopup,
@@ -28,6 +30,8 @@ namespace App.Scripts.Levels
             _levelCompletePopup = levelCompletePopup;
             _teleport = teleport;
             _levelsManager = levelsManager;
+            
+            _isNextLevelLast = _levelsManager.CurrentLevel?.Next?.IsLastLevel ?? false;
         }
         
         public void Initialize()
@@ -45,13 +49,15 @@ namespace App.Scripts.Levels
         private void CollectedDetails()
         {
             _teleport.SetActiveStatus(true);
-            _shipDetailsCollectedPopup.Show();
+            
+            _shipDetailsCollectedPopup.Show(_isNextLevelLast);
         }
         
         private void EnteredTeleport()
         {
             _levelsManager.CompleteLevel();
-            _levelCompletePopup.Show();
+            
+            _levelCompletePopup.Show(_isNextLevelLast);
         }
     }
 }

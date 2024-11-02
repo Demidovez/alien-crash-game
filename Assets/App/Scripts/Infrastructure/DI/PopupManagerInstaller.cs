@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using App.Scripts.UI.Popups;
+using App.Scripts.UI.Popups.GameOver;
 using App.Scripts.UI.Popups.LevelComplete;
 using App.Scripts.UI.Popups.Levels;
 using App.Scripts.UI.Popups.Questions;
@@ -21,6 +22,7 @@ namespace App.Scripts.Infrastructure.DI
         public GameObject PopupQuestionPrefab;
         public GameObject PopupShipDetailsCollectedPrefab;
         public GameObject PopupLevelCompletePrefab;
+        public GameObject PopupGameOverPrefab;
         
         [Header("Levels")]
         public GameObject LevelCardPrefab;
@@ -33,8 +35,9 @@ namespace App.Scripts.Infrastructure.DI
             BindQuestionPopup();
             BindShipDetailsCollectedPopup();
             BindLevelCompletePopup();
+            BindGameOverPopup();
         }
-        
+
         private void BindPopupsContainer()
         {
             Container
@@ -87,6 +90,15 @@ namespace App.Scripts.Infrastructure.DI
                 .To<LevelCompletePopup>()
                 .AsSingle()
                 .WithArguments(PopupLevelCompletePrefab);
+        }
+        
+        private void BindGameOverPopup()
+        {
+            Container
+                .Bind<IGameOverPopup>()
+                .To<GameOverPopup>()
+                .AsSingle()
+                .WithArguments(PopupGameOverPrefab);
         }
     }
 }

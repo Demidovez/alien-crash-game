@@ -24,7 +24,7 @@ namespace App.Scripts.UI.Popups.LevelComplete
             _popupBodyPrefab = popupBodyPrefab;
         }
         
-        public void Show()
+        public void Show(bool isNextLevelLast)
         {
             PopupWrapper popupWrapper = _popupManager.CreatePopupWrapper(false);
             GameObject body = _gameObjectHolder.InstantiateByPrefab(_popupBodyPrefab, popupWrapper.Body.transform, true);
@@ -36,6 +36,15 @@ namespace App.Scripts.UI.Popups.LevelComplete
             
             if (body.TryGetComponent(out LevelCompletePopupLayout questionPopup))
             {
+                if (isNextLevelLast)
+                {
+                    questionPopup.Text = "Фуух... Успели, вроде жив!\nЭто были последние детали. \n\nОсталось вернуться к кораблю и починить его.\nСтартуем?";
+                }
+                else
+                {
+                    questionPopup.Text = "Фуух... Успели, вроде жив!\nТеперь нужно идти искать детали дальше. \n\nДанные новой местности загружены в телепорт.\nСтартуем?";
+                }
+                
                 questionPopup.OnMenuClick = () =>
                 {
                     popupWrapper.HideImmediately();

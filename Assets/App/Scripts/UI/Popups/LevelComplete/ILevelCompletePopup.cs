@@ -2,6 +2,6 @@
 {
     public interface ILevelCompletePopup
     {
-        public void Show();
+        public void Show(bool isNextLast = false);
     }
 }

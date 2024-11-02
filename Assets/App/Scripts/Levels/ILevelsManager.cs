@@ -1,7 +1,10 @@
-﻿namespace App.Scripts.Levels
+﻿using System;
+
+namespace App.Scripts.Levels
 {
     public interface ILevelsManager
     {
+        public event Action<int> OnUnlockedLevelEvent;
         public Level CurrentLevel { get; }
         public bool CanBackToLevel { get; }
         public bool IsFirstLevel { get; }

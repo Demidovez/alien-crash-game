@@ -2,6 +2,6 @@
 {
     public interface IShipDetailsCollectedPopup
     {
-        public void Show();
+        public void Show(bool isNextLevelLast = false);
     }
 }

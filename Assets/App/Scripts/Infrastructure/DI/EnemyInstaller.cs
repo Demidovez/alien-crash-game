@@ -37,7 +37,7 @@ namespace App.Scripts.Infrastructure.DI
         private void BindEnemyHealth()
         {
             Container
-                .Bind<IEnemyHealth>()
+                .Bind(typeof(IEnemyHealth), typeof(IDisposable))
                 .To<EnemyHealth>()
                 .AsSingle()
                 .WithArguments(ConcussionEffect);

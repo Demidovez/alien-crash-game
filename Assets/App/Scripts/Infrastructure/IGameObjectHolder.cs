@@ -8,6 +8,7 @@ namespace App.Scripts.Infrastructure
         // ReSharper disable once InconsistentNaming
         public GameObject gameObject { get; }
         public Coroutine StartCoroutine(IEnumerator routine);
+        public void StopCoroutine(Coroutine coroutine);
         public GameObject InstantiateByPrefab(GameObject prefab, Transform parent, bool inFirstIndex = false);
     }
 }

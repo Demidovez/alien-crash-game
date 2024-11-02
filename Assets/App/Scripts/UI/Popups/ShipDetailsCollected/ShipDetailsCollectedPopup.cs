@@ -20,7 +20,7 @@ namespace App.Scripts.UI.Popups.ShipDetailsCollected
             _popupBodyPrefab = popupBodyPrefab;
         }
         
-        public void Show()
+        public void Show(bool isNextLevelLast)
         {
             PopupWrapper popupWrapper = _popupManager.CreatePopupWrapper(false);
             GameObject body = _gameObjectHolder.InstantiateByPrefab(_popupBodyPrefab, popupWrapper.Body.transform, true);
@@ -32,6 +32,17 @@ namespace App.Scripts.UI.Popups.ShipDetailsCollected
             
             if (body.TryGetComponent(out ShipDetailsCollectedLayout questionPopup))
             {
+                if (isNextLevelLast)
+                {
+                    questionPopup.Text =
+                        "Круто, ты собрал все нужные детали корабля. Но это еще не все — нужно их доставить обратно.\n\nИди обратно к телепорту, и мы перенесем тебя к кораблю.\nТак держать!";
+                }
+                else
+                {
+                    questionPopup.Text =
+                        "Круто, ты собрал нужные детали корабля. Но это еще не все — есть еще потерянные части.\n\nИди обратно к телепорту, и мы перенесем тебя на следующее место.\nТак держать!";
+                }
+                
                 questionPopup.OnOkClick = popupWrapper.Hide;
             }
             

@@ -2,14 +2,12 @@
 
 namespace App.Scripts.Levels
 {
-    [CreateAssetMenu(fileName = "Levels", menuName = "Levels/Card")]
+    [CreateAssetMenu(fileName = "Levels", menuName = "Levels/Level")]
     public class LevelSO: ScriptableObject
     {
+        public int Id;
         public Sprite Icon;
         public string Name;
         public Object Scene;
-        public int Order;
-        public bool IsCompleted;
-        public bool IsUnlocked;
     }
 }

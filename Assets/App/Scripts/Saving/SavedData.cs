@@ -7,6 +7,7 @@ namespace App.Scripts.Saving
 {
     public class SavedData: ISavedData, IDisposable
     {
+        private const string LevelIdKey = "level_id";
         private const string MusicKey = "music";
         private const string SoundsKey = "sounds";
         private const string ActiveStatus = "active";
@@ -28,12 +29,14 @@ namespace App.Scripts.Saving
 
             _soundManager.OnToggleSoundsEvent += SaveSoundsState;
             _soundManager.OnToggleMusicEvent += SaveMusicState;
+            _levelsManager.OnUnlockedLevelEvent += SaveUnlockedLevelId;
         }
         
         public void Dispose()
         {
             _soundManager.OnToggleSoundsEvent -= SaveSoundsState;
             _soundManager.OnToggleMusicEvent -= SaveMusicState;
+            _levelsManager.OnUnlockedLevelEvent -= SaveUnlockedLevelId;
         }
 
         public void Restore()
@@ -44,8 +47,32 @@ namespace App.Scripts.Saving
 
         private void RestoreCurrentLevel()
         {
-            var level = _levelsData.LastUnlocked ?? _levelsData.Levels[0];
-            _levelsManager.SetCurrentLevel(level);
+            var levelId = 0;
+
+            if (PlayerPrefs.HasKey(LevelIdKey))
+            {
+                levelId = PlayerPrefs.GetInt(LevelIdKey);
+            }
+
+            Level currentLevel = null;
+            
+            foreach (var level in _levelsData.Levels)
+            {
+                if (level.Id == levelId)
+                {
+                    currentLevel = level;
+                }
+
+                if (level.Id <= levelId)
+                {
+                    level.SetUnlockStatus(true);
+                }
+            }
+
+            if (currentLevel != null)
+            {
+                _levelsManager.SetCurrentLevel(currentLevel);
+            }
         }
 
         private void RestoreAudioState()
@@ -76,6 +103,22 @@ namespace App.Scripts.Saving
         {
             PlayerPrefs.SetString(MusicKey, isActive ? ActiveStatus : InactiveStatus);
             PlayerPrefs.Save();
+        }
+        
+        private void SaveUnlockedLevelId(int id)
+        {
+            var currentLevelId = 0;
+            
+            if (PlayerPrefs.HasKey(LevelIdKey))
+            {
+                currentLevelId = PlayerPrefs.GetInt(LevelIdKey);
+            }
+
+            if (currentLevelId < id)
+            {
+                PlayerPrefs.SetInt(LevelIdKey, id);
+                PlayerPrefs.Save();
+            }
         }
     }
 }
