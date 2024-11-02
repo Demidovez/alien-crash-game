@@ -6,11 +6,10 @@ namespace App.Scripts.Levels
     public class LevelsData: ILevelsData
     {
         public List<Level> Levels { get; private set; }
-        public Level LastUnlocked { get; private set; }
 
         public LevelsData(List<LevelSO> levelsSo)
         {
-            var levels = levelsSo.OrderBy(level => level.Order).ToArray();
+            var levels = levelsSo.OrderBy(level => level.Id).ToArray();
 
             Levels = new List<Level>();
 
@@ -25,11 +24,6 @@ namespace App.Scripts.Levels
                 if (i != 0)
                 {
                     Levels[i - 1].SetNext(level);
-                }
-
-                if (level.IsUnlocked)
-                {
-                    LastUnlocked = level;
                 }
                 
                 Levels.Add(level);

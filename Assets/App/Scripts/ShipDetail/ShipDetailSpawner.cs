@@ -25,15 +25,18 @@ namespace App.Scripts.ShipDetail
             _shipDetailFactory.Load();
 
             int countMarkers = 0;
-            
-            for (var i = 0; i < _shipDetailMarkersContainer.childCount; i++)
-            {
-                Transform marker = _shipDetailMarkersContainer.GetChild(i);
 
-                if (marker.gameObject.activeSelf)
+            if (_shipDetailMarkersContainer != null)
+            {
+                for (var i = 0; i < _shipDetailMarkersContainer.childCount; i++)
                 {
-                    countMarkers++;
-                    _shipDetailFactory.Create(i, marker.position);
+                    Transform marker = _shipDetailMarkersContainer.GetChild(i);
+
+                    if (marker.gameObject.activeSelf)
+                    {
+                        countMarkers++;
+                        _shipDetailFactory.Create(i, marker.position);
+                    }
                 }
             }
             

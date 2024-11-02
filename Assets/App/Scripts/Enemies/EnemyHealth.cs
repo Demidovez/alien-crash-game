@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace App.Scripts.Enemies
 {
-    public class EnemyHealth: IEnemyHealth
+    public class EnemyHealth: IEnemyHealth, IDisposable
     {
         public event Action<Transform> OnTookDamageEvent;
         public event Action OnConcussionEvent;
@@ -18,6 +18,8 @@ namespace App.Scripts.Enemies
         private const float ConcussionDelay = 20f;
         private float _health = 100;
 
+        private Coroutine _concussionCoroutine;
+
         public EnemyHealth(
             IGameObjectHolder gameObjectHolder,
             Transform concussionEffectObj
@@ -25,6 +27,14 @@ namespace App.Scripts.Enemies
         {
             _gameObjectHolder = gameObjectHolder;
             _concussionEffectObj = concussionEffectObj;
+        }
+        
+        public void Dispose()
+        {
+            if (_concussionCoroutine != null)
+            {
+                _gameObjectHolder.StopCoroutine(_concussionCoroutine);
+            }
         }
 
         public void TryTakeDamage(float value, Transform attacker)
@@ -44,22 +54,27 @@ namespace App.Scripts.Enemies
 
         private void UpdateHealth(float value)
         {
+            if (_health <= 0)
+            {
+                return;
+            }
+            
             _health += value;
             _health = Mathf.Min(100, _health);
 
             if (_health <= 0)
             {
                 OnConcussionEvent?.Invoke();
-                _gameObjectHolder.StartCoroutine(Concussion());
+                _concussionCoroutine = _gameObjectHolder.StartCoroutine(Concussion());
             }
         }
         
         IEnumerator Concussion()
         {
-            _concussionEffectObj.gameObject.SetActive(true);
+            _concussionEffectObj?.gameObject.SetActive(true);
             yield return new WaitForSeconds(ConcussionDelay);
             _health = 100f;
-            _concussionEffectObj.gameObject.SetActive(false);
+            _concussionEffectObj?.gameObject.SetActive(false);
             
             OnOutFromConcussionEvent?.Invoke();
         }

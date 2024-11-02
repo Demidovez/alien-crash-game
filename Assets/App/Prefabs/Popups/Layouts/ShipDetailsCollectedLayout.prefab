@@ -122,14 +122,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041A\u0440\u0443\u0442\u043E, \u0442\u044B \u0441\u043E\u0431\u0440\u0430\u043B
-    \u043D\u0443\u0436\u043D\u044B\u0435 \u0434\u0435\u0442\u0430\u043B\u0438 \u043A\u043E\u0440\u0430\u0431\u043B\u044F.
-    \u041D\u043E \u044D\u0442\u043E \u0435\u0449\u0435 \u043D\u0435 \u0432\u0441\u0435
-    \u2014 \u0435\u0441\u0442\u044C \u0435\u0449\u0435 \u043F\u043E\u0442\u0435\u0440\u044F\u043D\u043D\u044B\u0435
-    \u0447\u0430\u0441\u0442\u0438.\n\n\u0418\u0434\u0438 \u043E\u0431\u0440\u0430\u0442\u043D\u043E
-    \u043A \u043F\u043E\u0440\u0442\u0430\u043B\u0443, \u0438 \u043C\u044B \u043F\u0435\u0440\u0435\u043D\u0435\u0441\u0435\u043C
-    \u0442\u0435\u0431\u044F \u043D\u0430 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0435\u0435
-    \u043C\u0435\u0441\u0442\u043E.\n\u0422\u0430\u043A \u0434\u0435\u0440\u0436\u0430\u0442\u044C!"
+  m_text: "\u041D\u0435\u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u0442\u0435\u043A\u0441\u0442"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1ba18a8eda5a99b4eb16dbe5d5ea8365, type: 2}
   m_sharedMaterial: {fileID: -3241025578269644537, guid: 1ba18a8eda5a99b4eb16dbe5d5ea8365,
@@ -169,7 +162,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -10
+  m_lineSpacing: -5
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -461,6 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56e7de6811d4199b45550506c592ae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TextMeshPro: {fileID: 1215902581474899033}
 --- !u!1 &5511123490012502954
 GameObject:
   m_ObjectHideFlags: 0

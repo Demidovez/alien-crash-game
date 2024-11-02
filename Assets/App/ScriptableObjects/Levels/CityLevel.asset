@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1732cf1ab6324a58831cc1331499c242, type: 3}
   m_Name: CityLevel
   m_EditorClassIdentifier: 
+  Id: 2
   Icon: {fileID: 21300000, guid: f08f9f34f49d54e44974583bb66047d1, type: 3}
   Name: "\u0413\u043E\u0440\u043E\u0434"
   Scene: {fileID: 102900000, guid: 24c8b7b01a131c648813853dcaf5149f, type: 3}
-  Order: 2
-  IsCompleted: 0
-  IsUnlocked: 0

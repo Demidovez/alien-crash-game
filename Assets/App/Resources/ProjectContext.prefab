@@ -161,5 +161,7 @@ MonoBehaviour:
     type: 3}
   PopupLevelCompletePrefab: {fileID: 4738774442233306157, guid: 240c710379ad859499081ea89cb451cb,
     type: 3}
+  PopupGameOverPrefab: {fileID: 4738774442233306157, guid: 43e4b969efe1ba447b818ead67472ac2,
+    type: 3}
   LevelCardPrefab: {fileID: 597405809377286729, guid: 1d29f2ca7fa450c409663d65954f2701,
     type: 3}

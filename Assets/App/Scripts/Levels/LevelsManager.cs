@@ -1,10 +1,13 @@
-﻿using App.Scripts.Infrastructure.GameStateMachines;
+﻿using System;
+using App.Scripts.Infrastructure.GameStateMachines;
 using App.Scripts.Infrastructure.GameStateMachines.States;
 
 namespace App.Scripts.Levels
 {
     public class LevelsManager: ILevelsManager
     {
+        public event Action<int> OnUnlockedLevelEvent;
+        
         private readonly IGameStateMachine _gameStateMachine;
 
         public Level CurrentLevel { get; private set; }
@@ -40,11 +43,23 @@ namespace App.Scripts.Levels
         
         public void CompleteLevel()
         {
-            CurrentLevel?.SetCompleteStatus(true);
-            CurrentLevel?.SetStartStatus(false);
-            CurrentLevel?.Next?.SetUnlockStatus(true);
+            if (CurrentLevel == null)
+            {
+                return;
+            }
             
-            SetCurrentLevel(CurrentLevel?.Next);
+            CurrentLevel.SetCompleteStatus(true);
+            CurrentLevel.SetStartStatus(false);
+            
+            var nextLevel = CurrentLevel.Next;
+
+            if (nextLevel != null)
+            {
+                nextLevel.SetUnlockStatus(true);
+                OnUnlockedLevelEvent?.Invoke(nextLevel.Id);
+                
+                SetCurrentLevel(nextLevel);
+            }
         }
 
         public void ExitLevel()
