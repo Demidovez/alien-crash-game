@@ -1,7 +1,9 @@
 ﻿using System;
 using App.Scripts.Levels;
+using ModestTree;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace App.Scripts.UI
@@ -16,6 +18,11 @@ namespace App.Scripts.UI
         [Header("Menu Items")]
         public GameObject BackItem;
         public TextMeshProUGUI StartItemLabel;
+        
+        [Header("Level Info")]
+        public GameObject LevelInfo;
+        public Image LevelIcon;
+        public TextMeshProUGUI LevelName;
 
         private ILevelsManager _levelsManager;
 
@@ -29,6 +36,7 @@ namespace App.Scripts.UI
         {
             gameObject.SetActive(false);
             BackItem.SetActive(false);
+            LevelInfo.SetActive(false);
         }
 
         private void OnEnable()
@@ -39,12 +47,14 @@ namespace App.Scripts.UI
             }
 
             UpdateStartItemLabel();
+            UpdateLevelInfo();
         }
-
+        
         private void OnDisable()
         {
             BackItem.SetActive(false);
             StartItemLabel.SetText("Начать");
+            LevelInfo.SetActive(false);
         }
 
         public void ShowMenu()
@@ -104,6 +114,19 @@ namespace App.Scripts.UI
             }
             
             StartItemLabel.SetText("Начать");
+        }
+        
+        private void UpdateLevelInfo()
+        {
+            bool hasCurrentLevel = _levelsManager.CurrentLevel != null;
+            bool isFirstUnStartedLevel = hasCurrentLevel && _levelsManager.IsFirstLevel && !_levelsManager.CurrentLevel.IsStarted;
+            
+            if (hasCurrentLevel && !isFirstUnStartedLevel)
+            {
+                LevelInfo.SetActive(true);
+                LevelIcon.sprite = _levelsManager.CurrentLevel.Icon;
+                LevelName.SetText(_levelsManager.CurrentLevel.Name);
+            }
         }
     }
 }

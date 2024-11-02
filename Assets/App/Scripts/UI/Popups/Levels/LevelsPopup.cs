@@ -45,12 +45,12 @@ namespace App.Scripts.UI.Popups.Levels
                 popupWrapper.SetBodySize(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y);
             }
             
-            InitLevelCards(gridLayout.gameObject, _levelCardPrefab);
+            InitLevelCards(popupWrapper, gridLayout.gameObject, _levelCardPrefab);
             
             popupWrapper.Show();
         }
         
-        private void InitLevelCards(GameObject parent, GameObject levelCardPrefab)
+        private void InitLevelCards(PopupWrapper popupWrapper, GameObject parent, GameObject levelCardPrefab)
         {
             foreach (var level in _levelsData.Levels)
             {
@@ -60,7 +60,12 @@ namespace App.Scripts.UI.Popups.Levels
                 {
                     card.Title.SetText(level.Name);
                     card.Icon.sprite = level.Icon;
-                    card.OnClick = () => _levelsManager.GoToLevel(level);
+                    card.IsUnlocked = level.IsUnlocked;
+                    card.OnClick = () =>
+                    {
+                        popupWrapper.HideImmediately();
+                        _levelsManager.GoToLevel(level);
+                    };
                 }
             }
         }
