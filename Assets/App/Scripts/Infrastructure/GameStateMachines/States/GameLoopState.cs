@@ -1,5 +1,6 @@
 ﻿using App.Scripts.InputActions;
 using App.Scripts.UI;
+using App.Scripts.UI.Popups;
 using UnityEngine;
 
 namespace App.Scripts.Infrastructure.GameStateMachines.States
@@ -9,18 +10,21 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         private readonly IGameStateMachine _stateMachine;
         private readonly IPlayerInterfaceManager _playerInterfaceManager;
         private readonly IInputActionsManager _inputActionsManager;
+        private readonly IPopupManager _popupManager;
         private readonly IGame _game;
 
         public GameLoopState(
             IGameStateMachine stateMachine, 
             IPlayerInterfaceManager playerInterfaceManager,
             IInputActionsManager inputActionsManager,
+            IPopupManager popupManager,
             IGame game
         )
         {
             _stateMachine = stateMachine;
             _playerInterfaceManager = playerInterfaceManager;
             _inputActionsManager = inputActionsManager;
+            _popupManager = popupManager;
             _game = game;
         }
         
@@ -48,7 +52,10 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
 
         private void CancelKeyPressed()
         {
-            _stateMachine.Enter<MenuState>();
+            if (!_popupManager.IsActive)
+            {
+                _stateMachine.Enter<MenuState>();
+            }
         }
     }
 }

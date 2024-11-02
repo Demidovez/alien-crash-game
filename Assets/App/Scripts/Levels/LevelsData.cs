@@ -6,6 +6,7 @@ namespace App.Scripts.Levels
     public class LevelsData: ILevelsData
     {
         public List<Level> Levels { get; private set; }
+        public Level LastUnlocked { get; private set; }
 
         public LevelsData(List<LevelSO> levelsSo)
         {
@@ -16,11 +17,19 @@ namespace App.Scripts.Levels
             for (int i = 0; i < levels.Length; i++)
             {
                 var levelSo = levels[i];
-                var level = new Level(levelSo.Icon, levelSo.Name, levelSo.Scene);
+                var isFirst = i == 0;
+                var isLast = i == levels.Length - 1;
+                
+                var level = new Level(levelSo, isFirst, isLast);
                 
                 if (i != 0)
                 {
                     Levels[i - 1].SetNext(level);
+                }
+
+                if (level.IsUnlocked)
+                {
+                    LastUnlocked = level;
                 }
                 
                 Levels.Add(level);

@@ -43,7 +43,7 @@ namespace App.Scripts.Infrastructure.DI
         private void BindSavedData()
         {
             Container
-                .Bind<ISavedData>()
+                .Bind(typeof(ISavedData), typeof(IDisposable))
                 .To<SavedData>()
                 .AsSingle();
         }

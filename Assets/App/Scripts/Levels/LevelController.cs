@@ -1,5 +1,4 @@
 ﻿using System;
-using App.Scripts.Infrastructure;
 using App.Scripts.ShipDetail;
 using App.Scripts.Teleports;
 using App.Scripts.UI.Popups.LevelComplete;
@@ -14,21 +13,21 @@ namespace App.Scripts.Levels
         private readonly IShipDetailsCollectedPopup _shipDetailsCollectedPopup;
         private readonly ILevelCompletePopup _levelCompletePopup;
         private readonly ITeleport _teleport;
-        private readonly IGame _game;
+        private readonly ILevelsManager _levelsManager;
 
         public LevelController(
             IShipDetailCounter shipDetailCounter,
             IShipDetailsCollectedPopup shipDetailsCollectedPopup,
             ILevelCompletePopup levelCompletePopup,
             ITeleport teleport,
-            IGame game
+            ILevelsManager levelsManager
         )
         {
             _shipDetailCounter = shipDetailCounter;
             _shipDetailsCollectedPopup = shipDetailsCollectedPopup;
             _levelCompletePopup = levelCompletePopup;
             _teleport = teleport;
-            _game = game;
+            _levelsManager = levelsManager;
         }
         
         public void Initialize()
@@ -51,7 +50,7 @@ namespace App.Scripts.Levels
         
         private void EnteredTeleport()
         {
-            _game.LevelComplete();
+            _levelsManager.CompleteLevel();
             _levelCompletePopup.Show();
         }
     }

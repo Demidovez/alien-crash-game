@@ -36,8 +36,17 @@ namespace App.Scripts.UI.Popups.LevelComplete
             
             if (body.TryGetComponent(out LevelCompletePopupLayout questionPopup))
             {
-                questionPopup.OnMenuClick = popupWrapper.Hide;
-                questionPopup.OnNextClick = () => _levelsManager.GoToNextLevel();
+                questionPopup.OnMenuClick = () =>
+                {
+                    popupWrapper.HideImmediately();
+                    _levelsManager.ExitLevel();
+                };
+                
+                questionPopup.OnNextClick = () =>
+                {
+                    popupWrapper.HideImmediately();
+                    _levelsManager.GoToCurrentLevel();
+                };
             }
             
             popupWrapper.Show();

@@ -45,29 +45,29 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         {
             _menuManager.ShowMenu();
             
-            _menuManager.OnContinueLevelEvent += ContinueLevel;
+            _menuManager.OnBackToLevelEvent += BackToLevel;
             _menuManager.OnStartLevelEvent += StartLevel;
             _menuManager.OnLevelsShowEvent += LevelsShow;
             _menuManager.OnExitGameEvent += ExitGame;
             
-            _inputActionsManager.OnCancelKeyPressed += ContinueLevel;
+            _inputActionsManager.OnCancelKeyPressed += BackToLevel;
         }
 
         public void Exit()
         {
             _menuManager.HideMenu();
             
-            _menuManager.OnContinueLevelEvent -= ContinueLevel;
+            _menuManager.OnBackToLevelEvent -= BackToLevel;
             _menuManager.OnStartLevelEvent -= StartLevel;
             _menuManager.OnLevelsShowEvent -= LevelsShow;
             _menuManager.OnExitGameEvent -= ExitGame;
             
-            _inputActionsManager.OnCancelKeyPressed -= ContinueLevel;
+            _inputActionsManager.OnCancelKeyPressed -= BackToLevel;
         }
 
-        private void ContinueLevel()
+        private void BackToLevel()
         {
-            if (_levelsManager.CurrentLevel != null && !_popupManager.IsActive)
+            if (_levelsManager.CanBackToLevel && !_popupManager.IsActive)
             {
                 _stateMachine.Enter<GameLoopState>();
             }

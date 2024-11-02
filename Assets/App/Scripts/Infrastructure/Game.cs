@@ -18,10 +18,5 @@ namespace App.Scripts.Infrastructure
         {
             OnBootedEvent?.Invoke();
         }
-
-        public void LevelComplete()
-        {
-            Debug.Log("LevelComplete");
-        }
     }
 }

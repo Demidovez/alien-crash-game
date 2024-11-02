@@ -16,3 +16,5 @@ MonoBehaviour:
   Name: "\u041F\u0430\u0434\u0435\u043D\u0438\u0435"
   Scene: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
   Order: 0
+  IsCompleted: 0
+  IsUnlocked: 1
