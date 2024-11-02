@@ -72,6 +72,7 @@ namespace App.Scripts.UI.Popups
 
         public void HideImmediately(Action callback = null)
         {
+            OnClose?.Invoke(Id);
             Destroy(gameObject);
             callback?.Invoke();
         }

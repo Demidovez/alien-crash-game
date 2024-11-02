@@ -9,19 +9,16 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         private readonly IGameStateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
         private readonly ILoadingScreen _loadingScreen;
-        private readonly ILevelsManager _levelsManager;
 
         public LoadLevelState(
             IGameStateMachine stateMachine, 
             ISceneLoader sceneLoader,
-            ILoadingScreen loadingScreen,
-            ILevelsManager levelsManager
+            ILoadingScreen loadingScreen
         ) 
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _loadingScreen = loadingScreen;
-            _levelsManager = levelsManager;
         }
 
         public void Enter(Level level)
@@ -30,7 +27,6 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
             
             _loadingScreen.Show();
             _sceneLoader.Load(level.Scene.name, OnLoaded);
-            _levelsManager.SetCurrentLevel(level);
         }
 
         public void Exit()

@@ -4,7 +4,7 @@ namespace App.Scripts.UI
 {
     public interface IMenuManager
     {
-        public event Action OnContinueLevelEvent;
+        public event Action OnBackToLevelEvent;
         public event Action OnStartLevelEvent;
         public event Action OnLevelsShowEvent;
         public event Action OnExitGameEvent;
@@ -12,7 +12,7 @@ namespace App.Scripts.UI
         public void ShowMenu();
         public void HideMenu();
         public void OnLevelsClick();
-        public void OnContinueClick();
+        public void OnBackClick();
         public void OnStartClick();
         public void OnExitClick();
     }

@@ -1,49 +1,63 @@
 ﻿using App.Scripts.Infrastructure.GameStateMachines;
 using App.Scripts.Infrastructure.GameStateMachines.States;
-using App.Scripts.Saving;
-using UnityEngine;
 
 namespace App.Scripts.Levels
 {
     public class LevelsManager: ILevelsManager
     {
         private readonly IGameStateMachine _gameStateMachine;
-        private readonly ILevelsData _levelsData;
-        private readonly ISavedData _savedData;
 
         public Level CurrentLevel { get; private set; }
+        public bool CanBackToLevel => CurrentLevel?.IsStarted ?? false;
+        public bool IsFirstLevel => CurrentLevel?.IsFirstLevel ?? false;
+        public bool IsLastLevel => CurrentLevel?.IsLastLevel ?? false;
 
         public LevelsManager(
-            IGameStateMachine gameStateMachine,
-            ILevelsData levelsData,
-            ISavedData savedData
+            IGameStateMachine gameStateMachine
         )
         {
             _gameStateMachine = gameStateMachine;
-            _levelsData = levelsData;
-            _savedData = savedData;
-        }
-
-        public void SetCurrentLevel(Level level)
-        {
-            CurrentLevel = level;
-        }
-
-        public void GoToNextLevel()
-        {
-            _gameStateMachine.Enter<LoadLevelState, Level>(CurrentLevel.Next);
         }
         
         public void GoToLevel(Level level)
         {
-            _gameStateMachine.Enter<LoadLevelState, Level>(level);
+            SetCurrentLevel(level);
+            
+            if (level.IsUnlocked)
+            {
+                _gameStateMachine.Enter<LoadLevelState, Level>(level);
+            }
         }
 
         public void GoToCurrentLevel()
         {
-            var level = CurrentLevel ?? _savedData.CurrentLevel ?? _levelsData.Levels[0];
+            if (CurrentLevel != null)
+            {
+                CurrentLevel.SetStartStatus(true);
+                _gameStateMachine.Enter<LoadLevelState, Level>(CurrentLevel);
+            }
+        }
+        
+        public void CompleteLevel()
+        {
+            CurrentLevel?.SetCompleteStatus(true);
+            CurrentLevel?.SetStartStatus(false);
+            CurrentLevel?.Next?.SetUnlockStatus(true);
             
-            GoToLevel(level);
+            SetCurrentLevel(CurrentLevel?.Next);
+        }
+
+        public void ExitLevel()
+        {
+            CurrentLevel?.SetStartStatus(false);
+            _gameStateMachine.Enter<MenuState>();
+        }
+        
+        public void SetCurrentLevel(Level level)
+        {
+            CurrentLevel?.SetStartStatus(false);
+            
+            CurrentLevel = level;
         }
     }
 }

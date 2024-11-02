@@ -26,8 +26,6 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
 
         public void Enter()
         {
-            _savedData.Restore();
-            
             if (_sceneLoader.GetCurrentScene() != Initial)
             {
                 _sceneLoader.Load(Initial, EnterLoadLevel);
@@ -45,6 +43,7 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
 
         private void EnterLoadLevel()
         {
+            _savedData.Restore();
             _stateMachine.Enter<MenuState>();
         }
     }

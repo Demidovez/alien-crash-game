@@ -9,5 +9,7 @@ namespace App.Scripts.Levels
         public string Name;
         public Object Scene;
         public int Order;
+        public bool IsCompleted;
+        public bool IsUnlocked;
     }
 }
