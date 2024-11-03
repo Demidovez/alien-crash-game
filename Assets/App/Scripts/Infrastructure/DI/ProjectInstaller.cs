@@ -68,8 +68,8 @@ namespace App.Scripts.Infrastructure.DI
         private void BindSoundManager()
         {
             Container
-                .Bind<ISoundManager>()
-                .To<SoundManager>()
+                .Bind<IAudioManager>()
+                .To<AudioManager>()
                 .AsSingle();
         }
 

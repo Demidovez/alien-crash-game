@@ -17,14 +17,14 @@ namespace App.Scripts.UI
         public Sprite SoundOnIcon;
         public Sprite SoundOffIcon;
 
-        private ISoundManager _soundManager;
+        private IAudioManager _audioManager;
         private bool _isActiveSounds;
         private bool _isActiveMusic;
 
         [Inject]
-        public void Construct(ISoundManager soundManager)
+        public void Construct(IAudioManager audioManager)
         {
-            _soundManager = soundManager;
+            _audioManager = audioManager;
         }
 
         private void Start()
@@ -34,20 +34,20 @@ namespace App.Scripts.UI
 
         private void UpdateIcons()
         {
-            SoundsIcon.sprite = _soundManager.IsActiveSounds ? SoundOnIcon : SoundOffIcon;
-            MusicIcon.sprite = _soundManager.IsActiveMusic ? MusicOnIcon : MusicOffIcon;
+            SoundsIcon.sprite = _audioManager.IsActiveSounds ? SoundOnIcon : SoundOffIcon;
+            MusicIcon.sprite = _audioManager.IsActiveMusic ? MusicOnIcon : MusicOffIcon;
         }
 
         public void OnMusicClick()
         {
-            _soundManager.ToggleMusic();
+            _audioManager.ToggleMusic();
 
             UpdateIcons();
         }
         
         public void OnSoundClick()
         {
-            _soundManager.ToggleSounds();
+            _audioManager.ToggleSounds();
             
             UpdateIcons();
         }

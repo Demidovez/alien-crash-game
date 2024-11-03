@@ -1,3 +1,4 @@
+using System;
 using App.Scripts.Cameras;
 using App.Scripts.InputActions;
 using UnityEngine;
@@ -8,6 +9,8 @@ namespace App.Scripts.Players
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMovement : MonoBehaviour, IPlayerMovement
     {
+        public event Action OnJumpedEvent;
+        public event Action OnLandingEvent;
         public bool IsGrounded { get; private set; }
         public bool IsMoving { get; private set; }
         public Vector2 MoveInput { get; private set; }
@@ -68,7 +71,15 @@ namespace App.Scripts.Players
         private void ValidateState()
         {
             IsMoving = _characterController.velocity != Vector3.zero;
-            IsGrounded = _characterController.isGrounded;
+
+            bool newIsGrounded = _characterController.isGrounded;
+
+            if (!IsGrounded && newIsGrounded)
+            {
+                OnLandingEvent?.Invoke();
+            }
+            
+            IsGrounded = newIsGrounded;
         }
         
         private void SetMoveInput(Vector2 moveInput)
@@ -129,6 +140,7 @@ namespace App.Scripts.Players
         {
             if (IsGrounded)
             {
+                OnJumpedEvent?.Invoke();
                 _verticalVelocity = Mathf.Sqrt(_jumpHeight * -3 * _gravity);
             }
         }

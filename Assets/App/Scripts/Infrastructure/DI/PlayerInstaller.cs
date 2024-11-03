@@ -9,12 +9,25 @@ namespace App.Scripts.Infrastructure.DI
     {
         public Transform WeaponShootPosition;
         
+        [Header("Audio")]
+        public PlayerAudioSource AudioSource;
+        
         public override void InstallBindings()
         {
             BindPlayer();
             BindPlayerMovement();
             BindPlayerHealth();
             BindPlayerShooting();
+            BindPlayerAnimator();
+            BindPlayerAudio();
+        }
+
+        private void BindPlayerAnimator()
+        {
+            Container
+                .Bind<Animator>()
+                .FromComponentInHierarchy()
+                .AsSingle();
         }
 
         private void BindPlayer()
@@ -50,6 +63,15 @@ namespace App.Scripts.Infrastructure.DI
                 .To<PlayerMovement>()
                 .FromComponentInHierarchy()
                 .AsSingle();
+        }
+        
+        private void BindPlayerAudio()
+        {
+            Container
+                .Bind(typeof(IPlayerAudio), typeof(ILateTickable), typeof(IDisposable))
+                .To<PlayerAudio>()
+                .AsSingle()
+                .WithArguments(AudioSource);
         }
     }
 }
