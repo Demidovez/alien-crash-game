@@ -8,6 +8,7 @@ namespace App.Scripts.Weapon
 {
     public class PlayerBlaster: MonoBehaviour, IPlayerBlaster
     {
+        public AudioSource AudioSource;
         public Transform ShootPoint;
         
         private IBulletsPool _bulletsPool;
@@ -36,6 +37,8 @@ namespace App.Scripts.Weapon
             Bullet bullet = GetBullet();
             
             bullet.MoveFromTo(_player.transform, ShootPoint.position, shootTargetPosition);
+            
+            AudioSource.Play();
         }
         
         private Bullet GetBullet()
