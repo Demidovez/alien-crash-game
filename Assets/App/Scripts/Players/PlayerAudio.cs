@@ -16,6 +16,7 @@ namespace App.Scripts.Players
 
         private bool _isPlayingMoving;
         private float _lastFootStep;
+        private float _lastTimeDamage;
 
         public PlayerAudio(
             PlayerAudioSource audioSource,
@@ -49,13 +50,19 @@ namespace App.Scripts.Players
         }
         
         private void DeathSound()
-        {
+        { 
             _audio.Source.PlayOneShot(_audio.Clips.Death, 1f);
         }
 
         private void DamageSound()
         {
-            _audio.Source.PlayOneShot(_audio.Clips.Damage, 0.3f);
+            var currentTime = Time.realtimeSinceStartup;
+
+            if (currentTime - _lastTimeDamage > 0.75f)
+            {
+                _audio.Source.PlayOneShot(_audio.Clips.Damage, 0.3f);
+                _lastTimeDamage = currentTime;
+            }
         }
 
         private void JumpSound()

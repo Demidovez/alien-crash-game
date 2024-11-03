@@ -9140,7 +9140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8494d49c903f4d71bc68007a682f6bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponShootPosition: {fileID: 5516592229597615346}
   AudioSource: {fileID: 4347753411563290202}
 --- !u!1 &8878532307725797463
 GameObject:
@@ -9597,7 +9596,7 @@ MonoBehaviour:
   Clips:
     Jump: {fileID: 8300000, guid: 92d18633bf9af52479dd42532626dc77, type: 3}
     Landing: {fileID: 8300000, guid: e4814a9fc34ae114aa59e6deb51a42aa, type: 3}
-    Damage: {fileID: 8300000, guid: 6156a6b3e68d26a43bce62e091c81171, type: 3}
+    Damage: {fileID: 8300000, guid: 379f646ba1fe4884ea9648bce5d660f6, type: 3}
     Death: {fileID: 8300000, guid: 19bc4cbbeb0ce6e4c9be3bbe3f140270, type: 3}
     FootsSteps:
     - {fileID: 8300000, guid: 0a459122c9323b040b7f6e0b832244e5, type: 3}
@@ -9692,12 +9691,6 @@ PrefabInstance:
 --- !u!4 &1711968265689148550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 579545991206157009, guid: 98ac7c8948e022e4d83a0f153daa25e9,
-    type: 3}
-  m_PrefabInstance: {fileID: 2290313589124011607}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &5516592229597615346 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6000496148645937829, guid: 98ac7c8948e022e4d83a0f153daa25e9,
     type: 3}
   m_PrefabInstance: {fileID: 2290313589124011607}
   m_PrefabAsset: {fileID: 0}
