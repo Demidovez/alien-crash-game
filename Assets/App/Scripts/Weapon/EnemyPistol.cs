@@ -7,6 +7,7 @@ namespace App.Scripts.Weapon
 {
     public class EnemyPistol : MonoBehaviour, IEnemyPistol
     {
+        public AudioSource AudioSource;
         public Transform ShootPoint;
         public string BulletPrefabPath;
         public GameObject Explosion;
@@ -40,6 +41,8 @@ namespace App.Scripts.Weapon
             
             Bullet bullet = GetBullet();
             bullet.MoveFromTo(ShootPoint.position, targetPosition);
+            
+            AudioSource.Play();
             
             StartCoroutine(FinishExplosion());
         }
