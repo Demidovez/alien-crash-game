@@ -25,6 +25,9 @@ namespace App.Scripts.Infrastructure.DI
         [Header("Levels")]
         public List<LevelSO> LevelsConfig;
 
+        [Header("Audio")] 
+        public GameObject MusicGamePrefab;
+
         public override void InstallBindings()
         {
             BindSavedData();
@@ -38,6 +41,7 @@ namespace App.Scripts.Infrastructure.DI
             BindLoadingScreen();
             BindPlayerInterfaceManager();
             BindLevelsData();
+            BindMusicGame();
         }
 
         private void BindSavedData()
@@ -133,6 +137,15 @@ namespace App.Scripts.Infrastructure.DI
                 .To<LevelsData>()
                 .AsSingle()
                 .WithArguments(LevelsConfig);
+        }
+        
+        private void BindMusicGame()
+        {
+            Container
+                .Bind<IMusicGame>()
+                .To<MusicGame>()
+                .FromComponentInNewPrefab(MusicGamePrefab)
+                .AsSingle();
         }
     }
 }
