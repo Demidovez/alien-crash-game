@@ -1,5 +1,6 @@
 ﻿using System;
 using App.Scripts.Players;
+using App.Scripts.Weapon;
 using UnityEngine;
 using Zenject;
 
@@ -7,7 +8,8 @@ namespace App.Scripts.Infrastructure.DI
 {
     public class PlayerInstaller : MonoInstaller
     {
-        public Transform WeaponShootPosition;
+        [Header("Audio")]
+        public PlayerAudioSource AudioSource;
         
         public override void InstallBindings()
         {
@@ -15,6 +17,17 @@ namespace App.Scripts.Infrastructure.DI
             BindPlayerMovement();
             BindPlayerHealth();
             BindPlayerShooting();
+            BindPlayerAnimator();
+            BindPlayerAudio();
+            BindPlayerBlaster();
+        }
+
+        private void BindPlayerAnimator()
+        {
+            Container
+                .Bind<Animator>()
+                .FromComponentInHierarchy()
+                .AsSingle();
         }
 
         private void BindPlayer()
@@ -31,8 +44,16 @@ namespace App.Scripts.Infrastructure.DI
             Container
                 .Bind(typeof(IPlayerShooting), typeof(IDisposable))
                 .To<PlayerShooting>()
-                .AsSingle()
-                .WithArguments(WeaponShootPosition);
+                .AsSingle();
+        }
+        
+        private void BindPlayerBlaster()
+        {
+            Container
+                .Bind<IPlayerBlaster>()
+                .To<PlayerBlaster>()
+                .FromComponentInHierarchy()
+                .AsSingle();
         }
 
         private void BindPlayerHealth()
@@ -50,6 +71,15 @@ namespace App.Scripts.Infrastructure.DI
                 .To<PlayerMovement>()
                 .FromComponentInHierarchy()
                 .AsSingle();
+        }
+        
+        private void BindPlayerAudio()
+        {
+            Container
+                .Bind(typeof(IPlayerAudio), typeof(ILateTickable), typeof(IDisposable))
+                .To<PlayerAudio>()
+                .AsSingle()
+                .WithArguments(AudioSource);
         }
     }
 }

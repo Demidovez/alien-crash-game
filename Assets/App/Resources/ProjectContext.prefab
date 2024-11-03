@@ -125,6 +125,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 48173c73a2c7b014da806f4556382bf4, type: 2}
   - {fileID: 11400000, guid: 3f0ae2399ed4ccf45bb62f514353d69c, type: 2}
   - {fileID: 11400000, guid: 0888dc6e162221a43b23c7846a510077, type: 2}
+  MusicGamePrefab: {fileID: 2287429312731675090, guid: 04436b0519fe6fc4fab95c8ddc8e9552,
+    type: 3}
 --- !u!114 &-8159888806758062004
 MonoBehaviour:
   m_ObjectHideFlags: 0

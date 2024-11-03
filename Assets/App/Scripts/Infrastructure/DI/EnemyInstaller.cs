@@ -21,6 +21,9 @@ namespace App.Scripts.Infrastructure.DI
         [Header("Navigation")] 
         public float DeltaStopDistance = 1.4f;
         
+        [Header("Audio")]
+        public EnemyAudioSource AudioSource;
+        
         public override void InstallBindings()
         {
             BindFieldOfView();
@@ -32,6 +35,7 @@ namespace App.Scripts.Infrastructure.DI
             BindEnemyHealth();
             BindEnemyNavigation();
             BindEnemyNavMeshAgent();
+            BindEnemyAudio();
         }
 
         private void BindEnemyHealth()
@@ -108,6 +112,15 @@ namespace App.Scripts.Infrastructure.DI
                 .Bind(typeof(IEnemyChaseManager), typeof(ITickable), typeof(IDisposable))
                 .To<EnemyChaseManager>()
                 .AsSingle();
+        }
+        
+        private void BindEnemyAudio()
+        {
+            Container
+                .Bind(typeof(IEnemyAudio), typeof(ILateTickable), typeof(IDisposable))
+                .To<EnemyAudio>()
+                .AsSingle()
+                .WithArguments(AudioSource);
         }
     }
 }

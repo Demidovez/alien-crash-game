@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Weapon;
+using UnityEngine;
 using Zenject;
 
 namespace App.Scripts.Enemies

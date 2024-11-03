@@ -15,27 +15,27 @@ namespace App.Scripts.Saving
 
         private readonly ILevelsData _levelsData;
         private readonly ILevelsManager _levelsManager;
-        private readonly ISoundManager _soundManager;
+        private readonly IAudioManager _audioManager;
 
         public SavedData(
             ILevelsData levelsData,
             ILevelsManager levelsManager,
-            ISoundManager soundManager
+            IAudioManager audioManager
         )
         {
             _levelsData = levelsData;
             _levelsManager = levelsManager;
-            _soundManager = soundManager;
+            _audioManager = audioManager;
 
-            _soundManager.OnToggleSoundsEvent += SaveSoundsState;
-            _soundManager.OnToggleMusicEvent += SaveMusicState;
+            _audioManager.OnToggleSoundsEvent += SaveAudiosState;
+            _audioManager.OnToggleMusicEvent += SaveMusicState;
             _levelsManager.OnUnlockedLevelEvent += SaveUnlockedLevelId;
         }
         
         public void Dispose()
         {
-            _soundManager.OnToggleSoundsEvent -= SaveSoundsState;
-            _soundManager.OnToggleMusicEvent -= SaveMusicState;
+            _audioManager.OnToggleSoundsEvent -= SaveAudiosState;
+            _audioManager.OnToggleMusicEvent -= SaveMusicState;
             _levelsManager.OnUnlockedLevelEvent -= SaveUnlockedLevelId;
         }
 
@@ -90,10 +90,10 @@ namespace App.Scripts.Saving
                 isActiveMusic = PlayerPrefs.GetString(MusicKey) == ActiveStatus;
             }
 
-            _soundManager.Init(isActiveSounds, isActiveMusic);
+            _audioManager.Init(isActiveSounds, isActiveMusic);
         }
 
-        private void SaveSoundsState(bool isActive)
+        private void SaveAudiosState(bool isActive)
         {
             PlayerPrefs.SetString(SoundsKey, isActive ? ActiveStatus : InactiveStatus);
             PlayerPrefs.Save();
