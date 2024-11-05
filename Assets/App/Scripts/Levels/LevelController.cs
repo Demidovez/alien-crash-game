@@ -1,8 +1,12 @@
 ﻿using System;
+using App.Scripts.Cameras;
+using App.Scripts.Players;
 using App.Scripts.ShipDetail;
 using App.Scripts.Teleports;
+using App.Scripts.UI;
 using App.Scripts.UI.Popups.LevelComplete;
 using App.Scripts.UI.Popups.ShipDetailsCollected;
+using UnityEngine;
 using Zenject;
 
 namespace App.Scripts.Levels
@@ -14,6 +18,8 @@ namespace App.Scripts.Levels
         private readonly ILevelCompletePopup _levelCompletePopup;
         private readonly ITeleport _teleport;
         private readonly ILevelsManager _levelsManager;
+        private readonly IPlayerInterfaceManager _playerInterfaceManager;
+        private readonly ICameraController _cameraController;
 
         private bool _isNextLevelLast;
 
@@ -22,7 +28,9 @@ namespace App.Scripts.Levels
             IShipDetailsCollectedPopup shipDetailsCollectedPopup,
             ILevelCompletePopup levelCompletePopup,
             ITeleport teleport,
-            ILevelsManager levelsManager
+            ILevelsManager levelsManager,
+            IPlayerInterfaceManager playerInterfaceManager,
+            ICameraController cameraController
         )
         {
             _shipDetailCounter = shipDetailCounter;
@@ -30,7 +38,9 @@ namespace App.Scripts.Levels
             _levelCompletePopup = levelCompletePopup;
             _teleport = teleport;
             _levelsManager = levelsManager;
-            
+            _playerInterfaceManager = playerInterfaceManager;
+            _cameraController = cameraController;
+
             _isNextLevelLast = _levelsManager.CurrentLevel?.Next?.IsLastLevel ?? false;
         }
         
@@ -44,6 +54,17 @@ namespace App.Scripts.Levels
         {
             _shipDetailCounter.OnShipDetailsCollectedEvent -= CollectedDetails;
             _teleport.OnTeleportedEvent -= EnteredTeleport;
+        }
+
+        public void WholeGameComplete()
+        {
+
+        }
+
+        public void WholeGameAlmostComplete()
+        {
+            _playerInterfaceManager.SetVisible(false);
+            _cameraController.DisableCamera();
         }
 
         private void CollectedDetails()

@@ -6,5 +6,6 @@ namespace App.Scripts.Cameras
     {
         public void SetTarget(Transform target);
         public Transform GetCameraTransform();
+        public void DisableCamera();
     }
 }
