@@ -4,6 +4,7 @@ using App.Scripts.Players;
 using App.Scripts.ShipDetail;
 using App.Scripts.Teleports;
 using App.Scripts.UI;
+using App.Scripts.UI.Popups.GameWin;
 using App.Scripts.UI.Popups.LevelComplete;
 using App.Scripts.UI.Popups.ShipDetailsCollected;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace App.Scripts.Levels
         private readonly ILevelsManager _levelsManager;
         private readonly IPlayerInterfaceManager _playerInterfaceManager;
         private readonly ICameraController _cameraController;
+        private readonly IGameWinPopup _gameWinPopup;
 
         private bool _isNextLevelLast;
 
@@ -30,7 +32,8 @@ namespace App.Scripts.Levels
             ITeleport teleport,
             ILevelsManager levelsManager,
             IPlayerInterfaceManager playerInterfaceManager,
-            ICameraController cameraController
+            ICameraController cameraController,
+            IGameWinPopup gameWinPopup
         )
         {
             _shipDetailCounter = shipDetailCounter;
@@ -40,6 +43,7 @@ namespace App.Scripts.Levels
             _levelsManager = levelsManager;
             _playerInterfaceManager = playerInterfaceManager;
             _cameraController = cameraController;
+            _gameWinPopup = gameWinPopup;
 
             _isNextLevelLast = _levelsManager.CurrentLevel?.Next?.IsLastLevel ?? false;
         }
@@ -58,7 +62,7 @@ namespace App.Scripts.Levels
 
         public void WholeGameComplete()
         {
-
+            _gameWinPopup.Show();
         }
 
         public void WholeGameAlmostComplete()

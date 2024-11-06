@@ -119,16 +119,16 @@ MonoBehaviour:
     type: 3}
   PlayerInterfacePrefab: {fileID: 9087244476181352734, guid: 9ee3d8dc4a47f2c4b9826950d20e74ed,
     type: 3}
+  MusicGamePrefab: {fileID: 2287429312731675090, guid: 04436b0519fe6fc4fab95c8ddc8e9552,
+    type: 3}
+  PlayerActionsPrefab: {fileID: 1291227444690846649, guid: 6da99d8d771f52e4688231e44a72e685,
+    type: 3}
   LevelsConfig:
   - {fileID: 11400000, guid: c306518b72d96474fa318f5bfef18308, type: 2}
   - {fileID: 11400000, guid: 294674a8e6d8a0343badfd6c229177be, type: 2}
   - {fileID: 11400000, guid: 48173c73a2c7b014da806f4556382bf4, type: 2}
   - {fileID: 11400000, guid: 3f0ae2399ed4ccf45bb62f514353d69c, type: 2}
   - {fileID: 11400000, guid: 0888dc6e162221a43b23c7846a510077, type: 2}
-  MusicGamePrefab: {fileID: 2287429312731675090, guid: 04436b0519fe6fc4fab95c8ddc8e9552,
-    type: 3}
-  PlayerActionsPrefab: {fileID: 1291227444690846649, guid: 6da99d8d771f52e4688231e44a72e685,
-    type: 3}
 --- !u!114 &-8159888806758062004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +166,8 @@ MonoBehaviour:
   PopupLevelCompletePrefab: {fileID: 4738774442233306157, guid: 240c710379ad859499081ea89cb451cb,
     type: 3}
   PopupGameOverPrefab: {fileID: 4738774442233306157, guid: 43e4b969efe1ba447b818ead67472ac2,
+    type: 3}
+  PopupGameWinPrefab: {fileID: 4738774442233306157, guid: 963b6960b99d889438c85ff856a20f69,
     type: 3}
   LevelCardPrefab: {fileID: 597405809377286729, guid: 1d29f2ca7fa450c409663d65954f2701,
     type: 3}
