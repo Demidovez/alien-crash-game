@@ -1,6 +1,7 @@
 ﻿using System;
 using App.Scripts.UI.Popups;
 using App.Scripts.UI.Popups.GameOver;
+using App.Scripts.UI.Popups.GameStart;
 using App.Scripts.UI.Popups.GameWin;
 using App.Scripts.UI.Popups.LevelComplete;
 using App.Scripts.UI.Popups.Levels;
@@ -24,6 +25,7 @@ namespace App.Scripts.Infrastructure.DI
         public GameObject PopupLevelCompletePrefab;
         public GameObject PopupGameOverPrefab;
         public GameObject PopupGameWinPrefab;
+        public GameObject PopupGameStartPrefab;
         
         [Header("Levels")]
         public GameObject LevelCardPrefab;
@@ -38,6 +40,7 @@ namespace App.Scripts.Infrastructure.DI
             BindLevelCompletePopup();
             BindGameOverPopup();
             BindGameWinPopup();
+            BindGameStartPopup();
         }
 
         private void BindPopupsContainer()
@@ -110,6 +113,15 @@ namespace App.Scripts.Infrastructure.DI
                 .To<GameWinPopup>()
                 .AsSingle()
                 .WithArguments(PopupGameWinPrefab);
+        }
+        
+        private void BindGameStartPopup()
+        {
+            Container
+                .Bind<IGameStartPopup>()
+                .To<GameStartPopup>()
+                .AsSingle()
+                .WithArguments(PopupGameStartPrefab);
         }
     }
 }

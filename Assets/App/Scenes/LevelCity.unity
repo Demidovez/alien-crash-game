@@ -1722,7 +1722,7 @@ PrefabInstance:
     - target: {fileID: 4155080109789580010, guid: 111581697d0199c4da09c51668129b7a,
         type: 3}
       propertyPath: EnemyType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4155080109789580010, guid: 111581697d0199c4da09c51668129b7a,
         type: 3}
@@ -1976,7 +1976,7 @@ PrefabInstance:
     - target: {fileID: 4155080109789580010, guid: 111581697d0199c4da09c51668129b7a,
         type: 3}
       propertyPath: EnemyType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4155080109789580010, guid: 111581697d0199c4da09c51668129b7a,
         type: 3}

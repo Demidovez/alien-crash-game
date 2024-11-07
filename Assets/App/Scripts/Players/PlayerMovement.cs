@@ -25,6 +25,7 @@ namespace App.Scripts.Players
         private CharacterController _characterController;
         private IInputActionsManager _inputActionsManager;
         private IPlayerShooting _playerShooting;
+        private IPlayerHealth _playerHealth;
         private Vector3 _movement;
         private float _rotationX;
         private float _rotationY;
@@ -34,12 +35,14 @@ namespace App.Scripts.Players
         public void Construct(
             ICameraController cameraController, 
             IInputActionsManager inputActionsManager,
-            IPlayerShooting playerShooting
+            IPlayerShooting playerShooting,
+            IPlayerHealth playerHealth
         )
         {
             _cameraTransform = cameraController.GetCameraTransform();
             _inputActionsManager = inputActionsManager;
             _playerShooting = playerShooting;
+            _playerHealth = playerHealth;
         }
 
         private void Awake()
@@ -84,7 +87,7 @@ namespace App.Scripts.Players
         
         private void SetMoveInput(Vector2 moveInput)
         {
-            MoveInput = moveInput;
+            MoveInput = _playerHealth.IsAlive ? moveInput : Vector2.zero;
         }
 
         private void ApplyGravity()
@@ -138,7 +141,7 @@ namespace App.Scripts.Players
         
         private void Jump()
         {
-            if (IsGrounded)
+            if (IsGrounded && _playerHealth.IsAlive)
             {
                 OnJumpedEvent?.Invoke();
                 _verticalVelocity = Mathf.Sqrt(_jumpHeight * -3 * _gravity);

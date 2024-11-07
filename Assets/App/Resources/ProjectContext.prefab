@@ -127,7 +127,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c306518b72d96474fa318f5bfef18308, type: 2}
   - {fileID: 11400000, guid: 294674a8e6d8a0343badfd6c229177be, type: 2}
   - {fileID: 11400000, guid: 48173c73a2c7b014da806f4556382bf4, type: 2}
-  - {fileID: 11400000, guid: 3f0ae2399ed4ccf45bb62f514353d69c, type: 2}
   - {fileID: 11400000, guid: 0888dc6e162221a43b23c7846a510077, type: 2}
 --- !u!114 &-8159888806758062004
 MonoBehaviour:
@@ -168,6 +167,8 @@ MonoBehaviour:
   PopupGameOverPrefab: {fileID: 4738774442233306157, guid: 43e4b969efe1ba447b818ead67472ac2,
     type: 3}
   PopupGameWinPrefab: {fileID: 4738774442233306157, guid: 963b6960b99d889438c85ff856a20f69,
+    type: 3}
+  PopupGameStartPrefab: {fileID: 4738774442233306157, guid: 597d6af7c0b55924cae796130203a44f,
     type: 3}
   LevelCardPrefab: {fileID: 597405809377286729, guid: 1d29f2ca7fa450c409663d65954f2701,
     type: 3}

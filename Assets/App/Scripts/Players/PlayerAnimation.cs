@@ -23,6 +23,7 @@ namespace App.Scripts.Players
         private static readonly int UnderAttackTrigger = Animator.StringToHash("UnderAttackTrigger");
         private static readonly int DeadTrigger = Animator.StringToHash("DeadTrigger");
         private static readonly int ShootTrigger = Animator.StringToHash("ShootTrigger");
+        private static readonly int AliveTrigger = Animator.StringToHash("AliveTrigger");
 
         [Inject]
         public void Construct(
@@ -40,6 +41,7 @@ namespace App.Scripts.Players
         {
             _playerHealth.OnTookDamageEvent += OnTookDamage;
             _playerHealth.OnDeadEvent += OnDead;
+            _playerHealth.OnAliveEvent += OnAlive;
             _playerShooting.OnShootEvent += OnShoot;
         }
 
@@ -64,12 +66,18 @@ namespace App.Scripts.Players
         {
             _playerHealth.OnTookDamageEvent -= OnTookDamage;
             _playerHealth.OnDeadEvent -= OnDead;
+            _playerHealth.OnAliveEvent -= OnAlive;
             _playerShooting.OnShootEvent -= OnShoot;
         }
 
         private void OnShoot()
         {
             _animator.SetTrigger(ShootTrigger);
+        }
+        
+        private void OnAlive()
+        {
+            Invoke(nameof(Alive), 0.1f);
         }
 
         private void OnTookDamage()
@@ -80,6 +88,14 @@ namespace App.Scripts.Players
         private void OnDead()
         {
             _animator.SetTrigger(DeadTrigger);
+        }
+
+        private void Alive()
+        {
+            if (_animator != null)
+            {
+                _animator.SetTrigger(AliveTrigger);
+            }
         }
     }
 }
