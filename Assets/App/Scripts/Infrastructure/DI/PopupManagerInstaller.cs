@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using App.Scripts.UI.Popups;
 using App.Scripts.UI.Popups.GameOver;
+using App.Scripts.UI.Popups.GameStart;
+using App.Scripts.UI.Popups.GameWin;
 using App.Scripts.UI.Popups.LevelComplete;
 using App.Scripts.UI.Popups.Levels;
 using App.Scripts.UI.Popups.Questions;
@@ -23,6 +24,8 @@ namespace App.Scripts.Infrastructure.DI
         public GameObject PopupShipDetailsCollectedPrefab;
         public GameObject PopupLevelCompletePrefab;
         public GameObject PopupGameOverPrefab;
+        public GameObject PopupGameWinPrefab;
+        public GameObject PopupGameStartPrefab;
         
         [Header("Levels")]
         public GameObject LevelCardPrefab;
@@ -36,6 +39,8 @@ namespace App.Scripts.Infrastructure.DI
             BindShipDetailsCollectedPopup();
             BindLevelCompletePopup();
             BindGameOverPopup();
+            BindGameWinPopup();
+            BindGameStartPopup();
         }
 
         private void BindPopupsContainer()
@@ -99,6 +104,24 @@ namespace App.Scripts.Infrastructure.DI
                 .To<GameOverPopup>()
                 .AsSingle()
                 .WithArguments(PopupGameOverPrefab);
+        }
+        
+        private void BindGameWinPopup()
+        {
+            Container
+                .Bind<IGameWinPopup>()
+                .To<GameWinPopup>()
+                .AsSingle()
+                .WithArguments(PopupGameWinPrefab);
+        }
+        
+        private void BindGameStartPopup()
+        {
+            Container
+                .Bind<IGameStartPopup>()
+                .To<GameStartPopup>()
+                .AsSingle()
+                .WithArguments(PopupGameStartPrefab);
         }
     }
 }

@@ -17,6 +17,11 @@ namespace App.Scripts.Cameras
         {
             return FallowCamera.transform;
         }
+        
+        public void DisableCamera()
+        {
+            FallowCamera.Priority = 0;
+        }
     }  
 }
 
