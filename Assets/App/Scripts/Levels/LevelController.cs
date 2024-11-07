@@ -63,7 +63,7 @@ namespace App.Scripts.Levels
 
             if (_levelsManager.IsFirstLevel)
             {
-                _gameObjectHolder.StartCoroutine(ShopUpInfo());
+                _gameObjectHolder.LoadCoroutine(ShopUpInfo());
             }
         }
 

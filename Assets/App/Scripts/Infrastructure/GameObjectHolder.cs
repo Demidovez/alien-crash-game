@@ -1,9 +1,20 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace App.Scripts.Infrastructure
 {
     public class GameObjectHolder : MonoBehaviour, IGameObjectHolder
     {
+        public Coroutine LoadCoroutine(IEnumerator coroutine)
+        {
+            return StartCoroutine(coroutine);
+        }
+        
+        public void UnloadCoroutine(Coroutine coroutine)
+        {
+            StopCoroutine(coroutine);
+        }
+        
         public GameObject InstantiateByPrefab(GameObject prefab, Transform parent, bool inFirstIndex = false)
         {
             if (parent)

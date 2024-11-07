@@ -33,7 +33,7 @@ namespace App.Scripts.Enemies
         {
             if (_concussionCoroutine != null)
             {
-                _gameObjectHolder.StopCoroutine(_concussionCoroutine);
+                _gameObjectHolder.UnloadCoroutine(_concussionCoroutine);
             }
         }
 
@@ -65,7 +65,7 @@ namespace App.Scripts.Enemies
             if (_health <= 0)
             {
                 OnConcussionEvent?.Invoke();
-                _concussionCoroutine = _gameObjectHolder.StartCoroutine(Concussion());
+                _concussionCoroutine = _gameObjectHolder.LoadCoroutine(Concussion());
             }
         }
         

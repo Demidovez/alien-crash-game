@@ -194,7 +194,7 @@ namespace App.Scripts.Enemies
         private void OnTookDamage(Transform attacker)
         {
             _navMeshAgent.speed = 0f;
-            _gameObjectHolder.StartCoroutine(SetForceDestinationTargetWithDelay(attacker));
+            _gameObjectHolder.LoadCoroutine(SetForceDestinationTargetWithDelay(attacker));
         }
 
         private void OnConcussion()

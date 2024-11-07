@@ -47,7 +47,7 @@ namespace App.Scripts.Players
             _health = 0f;
             OnAliveEvent?.Invoke();
 
-            _gameObjectHolder.StartCoroutine(RestoreHealth());
+            _gameObjectHolder.LoadCoroutine(RestoreHealth());
         }
 
         private IEnumerator RestoreHealth()
@@ -71,7 +71,7 @@ namespace App.Scripts.Players
             if (_health <= 0)
             {
                 OnDeadEvent?.Invoke();
-                _gameObjectHolder.StartCoroutine(Death());
+                _gameObjectHolder.LoadCoroutine(Death());
             }
             else if(value < -0.1f)
             {

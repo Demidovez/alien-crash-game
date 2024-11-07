@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 namespace App.Scripts.Tools.WayPoints
@@ -30,3 +31,4 @@ namespace App.Scripts.Tools.WayPoints
         }
     }
 }
+#endif
