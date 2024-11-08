@@ -18,9 +18,9 @@ namespace App.Scripts.Cameras
             return FallowCamera.transform;
         }
         
-        public void DisableCamera()
+        public void SetVisible(bool isVisible)
         {
-            FallowCamera.Priority = 0;
+            FallowCamera.Priority = isVisible ? 100 : 0;
         }
     }  
 }

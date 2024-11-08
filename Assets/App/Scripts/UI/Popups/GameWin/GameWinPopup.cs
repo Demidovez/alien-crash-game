@@ -1,4 +1,5 @@
-﻿using App.Scripts.Infrastructure;
+﻿using App.Scripts.Cameras;
+using App.Scripts.Infrastructure;
 using App.Scripts.Levels;
 using UnityEngine;
 
@@ -10,18 +11,21 @@ namespace App.Scripts.UI.Popups.GameWin
         private readonly IGameObjectHolder _gameObjectHolder;
         private readonly ILevelsManager _levelsManager;
         private readonly GameObject _popupBodyPrefab;
+        private readonly ICameraController _cameraController;
 
         public GameWinPopup(
             IPopupManager popupManager,
             IGameObjectHolder gameObjectHolder,
             ILevelsManager levelsManager,
-            GameObject popupBodyPrefab
+            GameObject popupBodyPrefab,
+            ICameraController cameraController
         )
         {
             _popupManager = popupManager;
             _gameObjectHolder = gameObjectHolder;
             _levelsManager = levelsManager;
             _popupBodyPrefab = popupBodyPrefab;
+            _cameraController = cameraController;
         }
         
         public void Show()
@@ -39,6 +43,7 @@ namespace App.Scripts.UI.Popups.GameWin
                 gameWinPopup.OnFinishClick = () =>
                 {
                     popupWrapper.HideImmediately();
+                    _cameraController.SetVisible(true);
                     _levelsManager.ExitLevel();
                 };
             }

@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/App/Scenes/LevelFarm.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/App/Scenes/LevelCity.unity
-    guid: 24c8b7b01a131c648813853dcaf5149f
+    path: Assets/App/Scenes/LevelFarm2.unity
+    guid: 06e8b5edeb67ce0478537b6109c1b838
   - enabled: 1
     path: Assets/App/Scenes/LevelEscape.unity
     guid: f9281f0a2424d49468cf45beebc7b604
