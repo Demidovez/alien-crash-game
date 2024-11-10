@@ -8,6 +8,6 @@ namespace App.Scripts.Levels
         public int Id;
         public Sprite Icon;
         public string Name;
-        public Object Scene;
+        public string Scene;
     }
 }

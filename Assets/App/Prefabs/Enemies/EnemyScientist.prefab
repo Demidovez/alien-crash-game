@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ViewRadius: 10
-  ViewAngle: 65
+  ViewAngle: 160
   VisibleTarget: {fileID: 0}
   _targetMask:
     serializedVersion: 2

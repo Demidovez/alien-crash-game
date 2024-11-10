@@ -7,7 +7,7 @@ namespace App.Scripts.Levels
         public int Id { get; private set; }
         public Sprite Icon { get; private set; }
         public string Name { get; private set; }
-        public Object Scene { get; private set; }
+        public string Scene { get; private set; }
         public Level Next { get; private set; }
         public bool IsCompleted { get; private set; }
         public bool IsStarted { get; private set; }

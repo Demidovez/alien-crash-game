@@ -63,7 +63,7 @@ namespace App.Scripts.Levels
 
             if (_levelsManager.IsFirstLevel)
             {
-                _gameObjectHolder.StartCoroutine(ShopUpInfo());
+                _gameObjectHolder.LoadCoroutine(ShopUpInfo());
             }
         }
 
@@ -87,7 +87,7 @@ namespace App.Scripts.Levels
         public void WholeGameAlmostComplete()
         {
             _playerInterfaceManager.SetVisible(false);
-            _cameraController.DisableCamera();
+            _cameraController.SetVisible(false);
         }
 
         private void CollectedDetails()

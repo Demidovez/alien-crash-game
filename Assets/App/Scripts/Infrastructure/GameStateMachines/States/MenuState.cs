@@ -12,7 +12,6 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
     public class MenuState : IState
     {
         private readonly IGameStateMachine _stateMachine;
-        private readonly IGame _game;
         private readonly IMenuManager _menuManager;
         private readonly IInputActionsManager _inputActionsManager;
         private readonly IPopupManager _popupManager;
@@ -22,7 +21,6 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
 
         public MenuState(
             IGameStateMachine stateMachine, 
-            IGame game,
             IMenuManager menuManager,
             IInputActionsManager inputActionsManager,
             IPopupManager popupManager,
@@ -32,7 +30,6 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
         )
         {
             _stateMachine = stateMachine;
-            _game = game;
             _menuManager = menuManager;
             _inputActionsManager = inputActionsManager;
             _popupManager = popupManager;

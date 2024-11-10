@@ -29,7 +29,7 @@ namespace App.Scripts.Infrastructure.GameStateMachines.States
             Cursor.lockState = CursorLockMode.Locked;
             
             _loadingScreen.Show();
-            _sceneLoader.Load(level.Scene.name, OnLoaded);
+            _sceneLoader.Load(level.Scene, OnLoaded);
             _playerInterfaceManager.Reset();
         }
 

@@ -1,4 +1,5 @@
-﻿using App.Scripts.Components;
+﻿#if UNITY_EDITOR
+using App.Scripts.Components;
 using UnityEditor;
 using UnityEngine;
 
@@ -32,3 +33,4 @@ namespace App.Scripts.Editors
         }
     }
 }
+#endif

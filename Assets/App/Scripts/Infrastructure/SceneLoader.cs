@@ -16,7 +16,7 @@ namespace App.Scripts.Infrastructure
         
         public void Load(string name, Action onLoaded = null)
         {
-            _gameObjectHolder.StartCoroutine(LoadScene(name, onLoaded));
+            _gameObjectHolder.LoadCoroutine(LoadScene(name, onLoaded));
         }
 
         public string GetCurrentScene()
